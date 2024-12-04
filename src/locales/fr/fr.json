@@ -1,0 +1,37 @@
+{
+    "home": "Accueil",
+    "acompanhantes": "Escortes",
+    "stories": "Histoires",
+    "filters": "Filtres",
+    "search": "Rechercher...",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "myAccount": "Mon compte",
+    "settings": "Paramètres",
+    "logout": "Se déconnecter",
+    "footer": {
+      "discover_services": "Découvrez les meilleurs services d'escorte dans les principales régions du Portugal.",
+      "quick_links": "Liens rapides",
+      "escorts_in_lisboa": "Escorts à Lisbonne",
+      "escorts_in_porto": "Escorts à Porto",
+      "escorts_in_faro": "Escorts à Faro",
+      "escorts_in_madeira": "Escorts à Madère",
+      "escorts_in_acores": "Escorts aux Açores",
+      "useful_information": "Informations utiles",
+      "terms_and_conditions": "Termes et conditions",
+      "privacy_policy": "Politique de confidentialité",
+      "help": "Aide",
+      "contact": "Contact",
+      "blog": "Blog",
+      "payment_methods": "Méthodes de paiement",
+      "all_rights_reserved": " XGirl. Tous droits réservés."
+    },
+  
+    "dashboard": {
+      "escort_title": "Escort Girls et Masseuses Érotiques au Portugal",
+      "featured_ads": "Annonces en Vedette",
+      "search_area": "Recherchez dans votre zone",
+      "news": "Actualités"
+    }
+  }
+  

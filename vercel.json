@@ -1,0 +1,43 @@
+<<<<<<< HEAD
+{ "redirects": [
+      {
+        "source": "/(.*)",
+        "has": [
+          {
+            "type": "host",
+            "value": "xgirl.fr"
+          }
+        ],
+        "destination": "https://www.xgirl.fr",
+        "permanent": true
+      }
+
+    ]
+  }
+ 
+=======
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "xgirl.fr"
+        }
+      ],
+      "destination": "https://www.xgirl.fr",
+      "permanent": true
+    }
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "scripts": {
+    "build": "apt-get update && apt-get install -y libpixman-1-dev libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev && npm install && npm run build"
+  }
+}
+>>>>>>> dc9ece3d2c42eb898fccb7fb595979d3115e3e61

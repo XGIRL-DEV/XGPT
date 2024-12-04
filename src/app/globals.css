@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.slick-slide img {
+}
+
+@media only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi) {
+  .slick-slide img {
+    /* Aplicar estilos específicos para alta resolução */
+    /* Exemplo: Ajustando tamanho ou qualidade da imagem para telas Retina */
+    width: auto;
+    max-width: 100%;
+  }
+}
