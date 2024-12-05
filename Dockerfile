@@ -1,4 +1,4 @@
-# Utiliser une image de base Node.js
+# Utiliser une image de base Node.js dev
 FROM node:18-alpine
 
 # Définir le répertoire de travail
