@@ -57,13 +57,13 @@ jobs:
     - name: Deploy to VPS
       run: |
         # Créer le dossier cible et le fichier .env s'il n'existent pas
-        ssh vps-host "mkdir -p /opt/xgirl && touch /opt/xgirl/.env"
+        ssh -o ServerAliveInterval=60 vps-host "mkdir -p /opt/xgirl && touch /opt/xgirl/.env"
 
         # Copier l'image Docker vers le VPS
-        scp xgirl-app.tar.gz vps-host:/opt/xgirl/xgirl-app.tar.gz
+        scp -o ServerAliveInterval=60 xgirl-app.tar.gz vps-host:/opt/xgirl/xgirl-app.tar.gz
 
         # Exécuter les étapes sur le VPS
-        ssh vps-host << 'EOF'
+        ssh -o ServerAliveInterval=60 vps-host << 'EOF'
           set -e
 
           # Naviguer vers le répertoire cible
