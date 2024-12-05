@@ -1,6 +1,10 @@
 # Utiliser une image de base Node.js dev
 FROM node:18-alpine
 
+# Installer les dépendances système nécessaires pour node-gyp et canvas
+RUN apk add --no-cache python3 make g++ \
+    && ln -sf python3 /usr/bin/python
+
 # Définir le répertoire de travail
 WORKDIR /src/app
 
