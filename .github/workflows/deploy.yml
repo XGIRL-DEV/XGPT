@@ -1,0 +1,85 @@
+name: Xgirl Next.js App
+
+on:
+  push:
+    branches:
+      - docker
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build the application
+      run: npm run build
+
+    - name: Build Docker image
+      run: |
+        docker build -t xgirl-app:latest .
+        docker save xgirl-app:latest -o xgirl-app.tar.gz
+
+    - name: Configure SSH Access
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keygen -p -P "$SSH_PASSPHRASE" -N "" -f ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+        echo -e "Host vps-host\n  HostName ${{ secrets.VPS_HOST }}\n  User ${{ secrets.VPS_USER }}\n  IdentityFile ~/.ssh/id_rsa\n  StrictHostKeyChecking no" > ~/.ssh/config
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+        VPS_USER: ${{ secrets.VPS_USER }}
+        VPS_HOST: ${{ secrets.VPS_HOST }}
+
+    - name: Test SSH Connection
+      run: ssh vps-host "echo 'SSH connection successful!'"
+
+    - name: Deploy to VPS
+      run: |
+        # Vérifier et créer le répertoire cible si nécessaire
+        ssh vps-host "mkdir -p /opt/xgirl && touch /opt/xgirl/.env"
+
+        # Copier l'image Docker sur le VPS
+        scp xgirl-app.tar.gz vps-host:/opt/xgirl/xgirl-app.tar.gz
+
+        # Se connecter au VPS pour déployer l'application
+        ssh vps-host << 'EOF'
+          set -e
+
+          # Aller dans le répertoire cible
+          cd /opt/xgirl
+
+          # Charger l'image Docker
+          docker load < xgirl-app.tar.gz
+
+          # Arrêter et supprimer les conteneurs existants
+          docker stop xgirl-app || true
+          docker rm xgirl-app || true
+
+          # Vérifier que le fichier .env existe
+          if [ ! -f /opt/xgirl/.env ]; then
+            echo "Erreur : Le fichier .env est manquant dans /opt/xgirl/"
+            exit 1
+          fi
+
+          # Lancer le nouveau conteneur avec un fichier .env préexistant
+          docker run -d --restart unless-stopped --name xgirl-app --env-file /opt/xgirl/.env -p 3001:3000 xgirl-app:latest
+
+          # Nettoyer les fichiers
+          rm xgirl-app.tar.gz
+        EOF
+
+    - name: Cleanup SSH Configuration
+      run: rm -rf ~/.ssh
