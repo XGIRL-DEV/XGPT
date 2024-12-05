@@ -587,7 +587,7 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({ handleVoltar }) => {
               className="px-6 py-3 bg-pink-800 hover:bg-pink-900 rounded-lg text-sm font-medium "
               onClick={handleGuardar}
             >
-              Guardar
+              Guardarsss
             </button>
           </div>
         </footer>
