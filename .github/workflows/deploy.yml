@@ -83,7 +83,8 @@ jobs:
           fi
 
           # Lancer un nouveau conteneur avec les variables d'environnement
-          docker run -d --restart unless-stopped --name xgirl-app --env-file /opt/xgirl/.env -p 3001:3000 xgirl-app:latest
+          docker run -d --restart unless-stopped --name xgirl-app --env-file /opt/xgirl/.env -p 127.0.0.1:3001:3000 xgirl-app:latest
+
 
           # Supprimer les fichiers temporaires
           rm xgirl-app.tar.gz
