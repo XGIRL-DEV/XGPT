@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState<boolean>(false); // Novo estado para o menu de idiomas
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("PT"); // Idioma padrão
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("FR"); // Idioma padrão
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const dropdownRef = useRef<HTMLUListElement>(null);
@@ -141,7 +141,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
               </Link>
 
             <Link
-              href="/acompanhantes"
+              href="/escort"
               className={`nav-link flex items-center px-4 py-3 text-white h-full ${
                 pathname === "/acompanhantes" ? "bg-pink-900" : "hover:bg-pink-800"
               } transition duration-200`}
