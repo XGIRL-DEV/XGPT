@@ -5,33 +5,35 @@
     "filters": "Filtres",
     "search": "Rechercher...",
     "login": "Se connecter",
+    "searchBar": "Chercher...",
     "register": "S'inscrire",
     "myAccount": "Mon compte",
     "settings": "Paramètres",
     "logout": "Se déconnecter",
-    "footer": {
-      "discover_services": "Découvrez les meilleurs services d'escorte dans les principales régions du Portugal.",
-      "quick_links": "Liens rapides",
-      "escorts_in_lisboa": "Escorts à Lisbonne",
-      "escorts_in_porto": "Escorts à Porto",
-      "escorts_in_faro": "Escorts à Faro",
-      "escorts_in_madeira": "Escorts à Madère",
-      "escorts_in_acores": "Escorts aux Açores",
-      "useful_information": "Informations utiles",
-      "terms_and_conditions": "Termes et conditions",
-      "privacy_policy": "Politique de confidentialité",
-      "help": "Aide",
-      "contact": "Contact",
-      "blog": "Blog",
-      "payment_methods": "Méthodes de paiement",
-      "all_rights_reserved": " XGirl. Tous droits réservés."
-    },
-  
+    
     "dashboard": {
-      "escort_title": "Escort Girls et Masseuses Érotiques au Portugal",
+      "escort_title_en": "Escort Girls et Masseuses Érotiques en France",
+      "meta_description": "Découvrez les meilleures escort girls et masseuses érotiques en France. Explorez nos annonces en vedette et nos nouveautés.",
+      "meta_keywords": "escort girls, masseuses érotiques, annonces, France, services",
+      "meta_og_description": "Trouvez les meilleures escort girls et masseuses érotiques en France. Consultez nos annonces et nos nouveautés.",
       "featured_ads": "Annonces en Vedette",
-      "search_area": "Recherchez dans votre zone",
-      "news": "Actualités"
-    }
+      "search_area": "Recherche dans ta Région",
+      "news": "Nouveautés"
+    },
+    "escort": {
+    "title": "Accompagnatrices de Luxe et Masseuses Érotiques au Portugal",
+    "subtitle": "Découvrez les meilleures professionnelles de tout le pays",
+    "search_title": "Rechercher une Escort",
+    "select_district": "District",
+    "search_placeholder": "Rechercher par nom ou tag...",
+    "previous_page": "Précédent",
+    "next_page": "Suivant",
+    "current_page": "Page {{currentPage}} de {{totalPages}}"
+  },
+ 
+  "storyPage": {
+    "titleStory": "Escort Girls, Masseuses érotiques et Accompagnatrices de luxe en France",
+    "latest_stories": "Derniers Stories"
+  }
   }
   

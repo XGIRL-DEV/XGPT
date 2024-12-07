@@ -1,9 +1,10 @@
 {
     "home": "Home",
-    "acompanhantes": "Escorts",
+    "acompanhantes": "Escort",
     "stories": "Stories",
     "filters": "Filters",
     "search": "Search...",
+    "searchBar": "Search...",
     "login": "Login",
     "register": "Sign Up",
     "myAccount": "My Account",
@@ -27,11 +28,31 @@
       "all_rights_reserved": "&copy; {{year}} XGirl. All rights reserved."
     },
     
-      "dashboard": {
-        "escort_title": "Escort Girls and Erotic Masseuses in Portugal",
-        "featured_ads": "Featured Ads",
-        "search_area": "Search in Your Area",
-        "news": "News"
-      }
+    "dashboard": {
+      "escort_title_en": "Escort Girls and Erotic Masseuses in France",
+      "meta_description": "Discover the best escort girls and erotic masseuses in France. Explore our featured ads and news.",
+      "meta_keywords": "escort girls, erotic masseuses, ads, France, services",
+      "meta_og_description": "Find the best escort girls and erotic masseuses in France. Check out our ads and updates.",
+      "featured_ads": "Featured Ads",
+      "search_area": "Search in Your Area",
+      "news": "News"
+    },
+
+    "escort": {
+    "title": "Luxury Escorts and Erotic Masseuses in Portugal",
+    "subtitle": "Discover the best professionals from all over the country",
+    "search_title": "Search for an Escort",
+    "select_district": "District",
+    "search_placeholder": "Search by name or tag...",
+    "previous_page": "Previous",
+    "next_page": "Next",
+    "current_page": "Page {{currentPage}} of {{totalPages}}"
+
+  },
+
+ "storyPage": {
+    "titleStory": "Escort Girls, Erotic Masseuses and Luxury Companions in France",
+    "latest_stories": "Latest Stories"
+  }
   }
   
