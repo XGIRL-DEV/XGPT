@@ -8,9 +8,15 @@
     "searchBar": "Chercher...",
     "register": "S'inscrire",
     "myAccount": "Mon compte",
-    "settings": "Paramètres",
-    "logout": "Se déconnecter",
+    "FR":"Francais",
+    "EN":"Anglais",
     
+      "user": {
+        "myAccount": "Mon compte",
+        "settings": "Paramètres",
+        "logout": "Déconnexion"
+      
+    },
     "dashboard": {
       "escort_title_en": "Escort Girls et Masseuses Érotiques en France",
       "meta_description": "Découvrez les meilleures escort girls et masseuses érotiques en France. Explorez nos annonces en vedette et nos nouveautés.",
@@ -34,6 +40,58 @@
   "storyPage": {
     "titleStory": "Escort Girls, Masseuses érotiques et Accompagnatrices de luxe en France",
     "latest_stories": "Derniers Stories"
+  },
+
+  "profile": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "tariffs_starting_from": "Tarifs à partir de {{tarifa}} €",
+    "call_to": "Appeler {{nome}}",
+    "share_profile_of": "Partager le Profil de {{nome}}",
+    "share_by_email": "Partager par Email",
+    "copy_link": "Copier le Lien",
+    "link_copied": "Lien copié!",
+    "certified_profile": "Profil Certifié",
+    "certified": "Certifié",
+    "certified_description_1": "Un profil certifié signifie que les photos ont été validées par un modérateur de l'équipe {{team}} et correspondent à la réalité.",
+    "certified_description_2": "En plus de la validation humaine, un système automatique analyse toutes les photos des profils certifiés pour garantir qu'elles n'appartiennent pas à une autre personne sur internet.",
+    "certified_satisfaction": "Profil certifié = Rencontre 100% satisfaite.",
+    "time_elapsed": {
+      "more_than_48_hours": "Il y a plus de 48 heures",
+      "minutes_ago": "Il y a {{minutes}} minute{{plural}}",
+      "hours_and_minutes_ago": "Il y a {{hours}} heure{{hoursPlural}} {{minutes}} minute{{minutesPlural}}",
+      "indeterminate": "Temps indéterminé"
+    },
+    "call_me": "Appelez-moi",
+    "share_profile": "Partager le Profil", "stories_of": "Histoires de {{name}}",
+    "description": "Description",
+    "photos_of": "Photos de {{name}}",
+    "loading": "Chargement...",
+    "not_certified": "Non certifié",
+    "video_not_supported": "Votre navigateur ne supporte pas l'élément vidéo.",
+    "about": "À propos de {{name}}",
+    "services_provided": "Services proposés",
+    "languages": "Langues",
+    "accepts": "Accepte :",
+    "no_payment_methods_selected": "Aucune méthode de paiement sélectionnée.",
+     "rates": "Tarifs :",
+    "comments": "Commentaires",
+    "no_comments_yet": "Pas encore de commentaires.",
+    "anonymous": "Anonyme",
+    "leave_comment": "Laissez votre commentaire",
+    "write_comment_placeholder": "Écrivez votre commentaire ici...",
+    "send_comment": "Envoyer le commentaire",
+
+    "language": {
+    "russian": "Russe",
+    "german": "Allemand",
+    "portuguese": "Portugais",
+    "french": "Français",
+    "english": "Anglais",
+    "italian": "Italien",
+    "spanish": "Espagnol",
+    "arabic": "Arabe"
+  
   }
-  }
+  }}
   

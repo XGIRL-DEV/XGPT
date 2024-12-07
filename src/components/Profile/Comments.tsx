@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import supabase from "@/database/supabase";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 type Comment = {
   id: number;
@@ -24,6 +25,7 @@ function Comments({  }: CommentsProps) {
   const [isEmojiPickerVisible, setIsEmojiPickerVisible] = useState(false); // Controle da visibilidade do seletor de emojis
   const emojiInputRef = useRef<HTMLTextAreaElement | null>(null); // Ref para a área de texto
   const userUID = useSelector((state: any) => state.profile?.profile.userUID);
+  const { t, i18n } = useTranslation();
 
   // Lista de emojis para o seletor
   const emojiList = ["😊", "😂", "😍", "😐", "😢", "😠", "😎", "🥳", "🤩", "🤔"];
@@ -108,10 +110,12 @@ function Comments({  }: CommentsProps) {
     <div className="space-y-4">
       {/* Card para exibir comentários */}
       <div className="bg-gray-800 p-6 rounded-2xl border border-zinc-700 shadow-md">
-        <h2 className="text-pink-700 text-2xl mb-4">Comentários</h2>
+        <h2 className="text-pink-700 text-2xl mb-4">  {t("profile.comments")}
+        </h2>
         <div className="space-y-2">
           {comments.length === 0 ? (
-            <p className="text-gray-400">Ainda não há comentários.</p>
+            <p className="text-gray-400">  {t("profile.no_comments_yet")}
+</p>
           ) : (
             comments.map((comment) => (
               <div key={comment.id} className="bg-gray-700 p-4 rounded-md shadow-sm">
@@ -129,7 +133,7 @@ function Comments({  }: CommentsProps) {
                   </div>
                   <div className="flex items-center">
                     <p className="text-pink-500 text-sm font-semibold">
-                      {comment.authorName || "Anônimo"}
+                    {comment.authorName || t("profile.anonymous")}
                     </p>
                     <span className="ml-2 text-lg">😊</span> {/* Coloque o emoji aqui */}
                   </div>
@@ -146,11 +150,13 @@ function Comments({  }: CommentsProps) {
 
       {/* Card para novo comentário */}
       <div className="bg-gray-800 p-6 rounded-2xl border border-zinc-700 shadow-md relative">
-        <h3 className="text-pink-700 text-lg mb-4">Deixe seu comentário</h3>
+        <h3 className="text-pink-700 text-lg mb-4">  {t("profile.leave_comment")}
+        </h3>
         <input
           type="text"
           className="w-full bg-gray-800 text-white p-4 rounded-md mb-4 border border-zinc-700"
-          placeholder="Seu nome"
+          placeholder={t("profile.write_comment_placeholder")}
+
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
         />
@@ -203,7 +209,7 @@ function Comments({  }: CommentsProps) {
           onClick={handleCommentSubmit}
           className="bg-pink-700 text-white px-4 py-2 rounded-md hover:bg-pink-600"
         >
-          Enviar Comentário
+          {t("profile.send_comment")}
         </button>
       </div>
     </div>

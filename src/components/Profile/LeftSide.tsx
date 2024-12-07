@@ -5,6 +5,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { Profile } from "@/types";
 import Image from "next/image"; 
 // import '../../styles/globals.min.css';
+import { useTranslation } from "react-i18next";
 
 interface LeftSideProps {
   selectedProfile: Profile;
@@ -18,33 +19,41 @@ const LeftSide: React.FC<LeftSideProps> = ({
   handleLigaMeClick,
 }) => {
   const [timeElapsed, setTimeElapsed] = useState<string>("");
+  const { t, i18n } = useTranslation();
 
   // Função para formatar o tempo
   const formatTimeElapsed = (minutesElapsed: number): string => {
     const hoursElapsed = minutesElapsed / 60;
 
     if (hoursElapsed > 48) {
-      return "Há mais de 48 horas";
+      return t("profile.time_elapsed.more_than_48_hours");
     } else if (minutesElapsed < 60) {
-      return `Há ${minutesElapsed} minuto${minutesElapsed !== 1 ? 's' : ''}`;
+      return t("profile.time_elapsed.minutes_ago", {
+        minutes: minutesElapsed,
+        plural: minutesElapsed !== 1 ? "s" : "",
+      });
     } else {
       const hours = Math.floor(hoursElapsed);
       const minutes = minutesElapsed % 60;
-      return `Há ${hours} hora${hours !== 1 ? 's' : ''}${minutes > 0 ? ` ${minutes} minuto${minutes !== 1 ? 's' : ''}` : ''}`;
-    }
+      return t("profile.time_elapsed.hours_and_minutes_ago", {
+        hours,
+        hoursPlural: hours !== 1 ? "s" : "",
+        minutes,
+        minutesPlural: minutes > 0 ? (minutes !== 1 ? "s" : "") : "",
+      });    }
   };
 
   // Função para calcular o tempo decorrido
   const calculateTimeElapsed = () => {
     if (!selectedProfile || !selectedProfile.tagtimestamp) {
-      setTimeElapsed("Tempo indeterminado");
+      setTimeElapsed(t("profile.time_elapsed.indeterminate"));
       return;
     }
 
     const tagTimestamp = new Date(selectedProfile.tagtimestamp);
 
     if (isNaN(tagTimestamp.getTime())) {
-      setTimeElapsed("Tempo indeterminado");
+      setTimeElapsed(t("profile.time_elapsed.indeterminate"));
       return;
     }
 
@@ -139,7 +148,7 @@ const LeftSide: React.FC<LeftSideProps> = ({
                   onClick={handleLigaMeClick}
                 >
                   <FiPhone className="mr-2 text-white z-10" />
-                  <p className="text-sm text-white z-10">Liga-me</p>
+                  <p className="text-sm text-white z-10">{t("profile.call_me")}</p>
                   <div className="absolute top-0 left-0 w-full h-full transform -skew-x-12 bg-white opacity-20 animate-slide"></div>
                 </div>
               </div>
@@ -151,7 +160,7 @@ const LeftSide: React.FC<LeftSideProps> = ({
                 onClick={handlePartilhaClick}
               >
                 <IoShareSocialOutline size={20} className="mr-2 text-white" />
-                <p className="text-sm">Partilhar o Perfil</p>
+                <p className="text-sm">{t("profile.share_profile")}</p>
               </div>
             </div>
           </div>

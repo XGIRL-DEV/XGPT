@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 interface ServicosPrestadosProps {
   selectedProfile: any;
@@ -9,10 +10,11 @@ const ServicosPrestados: React.FC<ServicosPrestadosProps> = ({
   selectedProfile,
 }) => {
   const servico = selectedProfile?.servico;
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="bg-gray-800 grid gap-2 py-6 w-full px-10  border border-zinc-700 rounded-3xl">
-      <p className="text-pink-600 text-2xl mb-2">Serviços Prestados</p>
+      <p className="text-pink-600 text-2xl mb-2">  {t("profile.services_provided")}</p>
       {servico && Array.isArray(servico) ? (
         <div className="grid grid-cols- md:grid-cols-3 gap-3 w-full">
           {servico.map((servicoItem, index) => (
