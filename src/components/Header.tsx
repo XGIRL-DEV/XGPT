@@ -13,7 +13,7 @@ import Image from "next/image";
 import SearchModal from "./SearchModal";
 import Filtro from "./Filtro";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "../context/LanguageContext"; /// Importer le contexte du langage
+import { useLanguage } from "../context/LanguageContext"; // Importer le contexte du langage
 
 
 interface HeaderProps {
