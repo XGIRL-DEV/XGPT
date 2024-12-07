@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState<boolean>(false); // Novo estado para o menu de idiomas
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("PT"); // Idioma padrão
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("FR"); // Idioma padrão
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const dropdownRef = useRef<HTMLUListElement>(null);
@@ -141,9 +141,9 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
               </Link>
 
             <Link
-              href="/acompanhantes"
+              href="/escort"
               className={`nav-link flex items-center px-4 py-3 text-white h-full ${
-                pathname === "/acompanhantes" ? "bg-pink-900" : "hover:bg-pink-800"
+                pathname === "/escort" ? "bg-pink-900" : "hover:bg-pink-800"
               } transition duration-200`}
             >
               {t("acompanhantes")}
@@ -173,7 +173,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
           <div className="relative py-2 px-2">
   <input
     type="text"
-    placeholder="Chercher..."
+    placeholder={t("searchBar")}
     onClick={() => setModalOpen(true)} // Abrir o modal ao clicar
     className="px-2 py-2 pl-10 w-72 text-sm bg-white text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500"
   />
