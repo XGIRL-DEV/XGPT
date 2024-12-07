@@ -23,6 +23,7 @@ import { VscVerifiedFilled } from "react-icons/vsc"; // Não esqueça de importa
 import Comments from "@/components/Profile/Comments"
 import PhotosAndCertificado from "@/components/Profile/PhotosAndCertificado"; // Import the new component
 import StoriesComponent from "@/components/Profile/StoriesComponent";
+import { useTranslation } from "react-i18next";
 
 
 function UserProfile() {
@@ -44,6 +45,7 @@ function UserProfile() {
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
 
   const [thumbnails, setThumbnails] = useState<string[]>([]);
+  const { t, i18n } = useTranslation();
 
 
   const userUID = useSelector((state: any) => state.profile?.profile.userUID);
@@ -237,7 +239,7 @@ console.log("stories RDX", storiesRDX)
 
               {selectedProfile && selectedProfile.storyURL?.length > 0 && (
   <div className="flex flex-col ml-8 md:ml-10 md:mr-24">
-    <p className="text-pink-700 text-2xl mb-4 font-semibold">Stories de {selectedProfile.nome}</p>
+    <p className="text-pink-700 text-2xl mb-4 font-semibold"> {t("profile.stories_of", { name: selectedProfile.nome })}</p>
     <div className="flex md:grid grid-cols-1  md:grid-cols-4 gap-6 md:gap-2">
       {selectedProfile.storyURL.map((media, index) => {
         if (!media) return null;
@@ -293,8 +295,8 @@ console.log("stories RDX", storiesRDX)
                 <ServicosPrestados selectedProfile={selectedProfile} />
 
                 <div className="bg-gray-800 grid gap-2 items-center  py-6 w-full px-10  border border-zinc-700 rounded-3xl">
-                  <p className="text-pink-700 text-2xl">Descrição</p>
-                  <div className="gap-4 mt-6">
+                <p className="text-pink-700 text-2xl">{t("profile.description")}</p>
+                <div className="gap-4 mt-6">
                     <div
                       className="text-white "
                       style={{ textAlign: "justify" }}

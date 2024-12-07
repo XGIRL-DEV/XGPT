@@ -10,6 +10,13 @@
     "myAccount": "My Account",
     "settings": "Settings",
     "logout": "Log out",
+    "FR":"French",
+    "EN":"English",
+    "user": {
+      "myAccount": "My Account",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
     "footer": {
       "discover_services": "Discover the best escort services in the top regions of Portugal.",
       "quick_links": "Quick Links",
@@ -53,6 +60,59 @@
  "storyPage": {
     "titleStory": "Escort Girls, Erotic Masseuses and Luxury Companions in France",
     "latest_stories": "Latest Stories"
+  },
+  "profile": {
+    "previous": "Previous",
+    "next": "Next",
+    "tariffs_starting_from": "Tariffs starting from {{tarifa}} €",
+    "call_to": "Call {{nome}}",
+    "share_profile_of": "Share the Profile of {{nome}}",
+    "share_by_email": "Share by Email",
+    "copy_link": "Copy Link",
+    "link_copied": "Link copied!",
+    "certified_profile": "Certified Profile",
+    "certified": "Certified",
+    "certified_description_1": "A certified profile means the photos were validated by a moderator from the {{team}} team and match reality.",
+    "certified_description_2": "Beyond human moderation, an automatic system analyzes all photos from certified profiles to ensure they do not belong to someone else on the internet.",
+    "certified_satisfaction": "Certified profile = 100% satisfied encounter.",
+    "time_elapsed": {
+      "more_than_48_hours": "More than 48 hours ago",
+      "minutes_ago": "{{minutes}} minute{{plural}} ago",
+      "hours_and_minutes_ago": "{{hours}} hour{{hoursPlural}} {{minutes}} minute{{minutesPlural}} ago",
+      "indeterminate": "Time indeterminate"
+    },
+    "call_me": "Call me",
+    "share_profile": "Share the Profile",
+    "stories_of": "Stories of {{name}}",
+    "description": "Description",
+    "photos_of": "Photos of {{name}}",
+    "loading": "Loading...",
+    "not_certified": "Not Certified",
+    "video_not_supported": "Your browser does not support the video element.",
+    "about": "About {{name}}",
+      "rates": "Rates:",
+   
+    "services_provided": "Services Provided",
+    "languages": "Languages",
+    "accepts": "Accepts:",
+    "no_payment_methods_selected": "No payment methods selected.",
+    "comments": "Comments",
+    "no_comments_yet": "No comments yet.",
+    "anonymous": "Anonymous",
+    "leave_comment": "Leave your comment",
+    "write_comment_placeholder": "Write your comment here...",
+    "send_comment": "Send Comment",
+    
+    "language": {
+      "russian": "Russian",
+      "german": "German",
+      "portuguese": "Portuguese",
+      "french": "French",
+      "english": "English",
+      "italian": "Italian",
+      "spanish": "Spanish",
+      "arabic": "Arabic"
+    }
   }
   }
   

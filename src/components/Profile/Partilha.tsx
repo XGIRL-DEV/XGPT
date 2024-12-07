@@ -3,6 +3,7 @@ import { ImCross } from "react-icons/im";
 import { MdEmail, MdContentCopy } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 interface PartilhaProps {
   selectedProfile: {
@@ -20,6 +21,7 @@ const Partilha: React.FC<PartilhaProps> = ({
   const [mostrarPartilha, setMostrarPartilha] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // Referência para o modal
   const [copySuccess, setCopySuccess] = useState(false); // Estado para verificar se o link foi copiado com sucesso
+  const { t, i18n } = useTranslation();
 
   // Função para fechar o modal
   const fecharPartilha = () => {
@@ -68,7 +70,7 @@ const Partilha: React.FC<PartilhaProps> = ({
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-lg md:text-xl text-white font-semibold">
-                Partilhar o Perfil de {selectedProfile?.nome}
+              {t("profile.share_profile_of", { nome: selectedProfile?.nome })}
               </h1>
               <button className="p-2 rounded-full hover:bg-gray-700" onClick={fecharPartilha}>
                 <ImCross
@@ -98,8 +100,8 @@ const Partilha: React.FC<PartilhaProps> = ({
                   className="flex items-center"
                 >
                   <MdEmail size={22} className="mr-2 text-white" />
-                  <span className="text-white font-medium">Partilhar por Email</span>
-                </a>
+                  <span className="text-white font-medium">{t("profile.share_by_email")}</span>
+                  </a>
               </div>
 
               {/* Copy Link */}
@@ -108,14 +110,14 @@ const Partilha: React.FC<PartilhaProps> = ({
                 onClick={copyToClipboard}
               >
                 <MdContentCopy size={22} className="mr-2 text-white" />
-                <span className="text-white font-medium">Copiar Link</span>
-              </div>
+                <span className="text-white font-medium">{t("profile.copy_link")}</span>
+                </div>
 
               {/* Copy Success Message */}
               {copySuccess && (
                 <div className="flex justify-center mt-2">
-                  <span className="text-green-500 text-sm">Link copiado!</span>
-                </div>
+<span className="text-green-500 text-sm">{t("profile.link_copied")}</span>
+</div>
               )}
             </div>
           </div>

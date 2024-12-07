@@ -201,23 +201,23 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                   ref={languageRef}
                   className="absolute right-0 mt-2 w-32 bg-pink-800 text-white shadow-lg rounded-lg py-2"
                 >
-                  <li
+                  {/* <li
                     onClick={() => handleLanguageChange("pt")}
                     className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
                   >
                     Português
-                  </li>
+                  </li> */}
                   <li
                     onClick={() => handleLanguageChange("en")}
                     className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
                   >
-                    Inglês
+                    {t("EN")}
                   </li>
                   <li
                     onClick={() => handleLanguageChange("fr")}
                     className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
                   >
-                    Francês
+                   {t("FR")}
                   </li>
                 </ul>
               )}
@@ -233,7 +233,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                   } transition duration-200`}
                 >
                   <FaUser className="mr-2 text-sm" />
-                  Login
+                  {t("login")}
                 </Link>
                 <Link
                   href="/regista2"
@@ -242,7 +242,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                   } transition duration-200`}
                 >
                   <FaUser className="mr-2 text-sm" />
-                  Regista-te
+                  {t("register")}
                 </Link>
               </>
             ) : (
@@ -284,8 +284,8 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                         className="flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200"
                       >
                         <FaUser className="mr-2" />
-                        A Minha Conta
-                      </li>
+                        {t("user.myAccount")}                     
+                         </li>
                       <li
                         onClick={() => {
                           router.push("/Definicoes");
@@ -294,14 +294,15 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                         className="flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200"
                       >
                         <FaCog className="mr-2" />
-                        Definições
+                        {t("user.settings")}
                       </li>
                       <li
                         onClick={handleLogout}
                         className="flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200"
                       >
                         <FaSignOutAlt className="mr-2" />
-                        Sair
+                        {t("user.logout")}
+
                       </li>
                     </ul>
                   )}

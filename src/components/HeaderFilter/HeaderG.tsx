@@ -4,7 +4,7 @@ import { supabase } from "../../database/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Profile } from "@/types";
-
+import { useTranslation } from "react-i18next";
 
 interface HeaderGProps {
   currentProfileIndex: number;
@@ -23,6 +23,8 @@ const HeaderG: React.FC<HeaderGProps> = ({
     router.push(`/girl?distrito=${encodeURIComponent(district)}`);
   };
 
+  const { t, i18n } = useTranslation();
+
   const handleNextProfile = () => {
     // Verifica se há um próximo perfil válido
     const nextIndex = (currentProfileIndex + 1) % profiles.length;
@@ -30,7 +32,7 @@ const HeaderG: React.FC<HeaderGProps> = ({
     
     if (nextProfile) {
       setCurrentProfileIndex(nextIndex);
-      router.push(`/Acompanhantes/${nextProfile.nome}`);
+      router.push(`/escort/${nextProfile.nome}`);
     }
   };
 
@@ -41,7 +43,7 @@ const HeaderG: React.FC<HeaderGProps> = ({
     
     if (prevProfile) {
       setCurrentProfileIndex(prevIndex);
-      router.push(`/Acompanhantes/${prevProfile.nome}`);
+      router.push(`/escort/${prevProfile.nome}`);
     }
   };
 
@@ -57,7 +59,7 @@ const HeaderG: React.FC<HeaderGProps> = ({
           onClick={handlePrevProfile}
         >
           <IoIosArrowRoundBack size={20} className="mr-1" />
-          <span className="hidden sm:inline">Anterior</span>
+          <span className="hidden sm:inline">{t("profile.previous")}</span>
         </button>
   
         {/* Informações do Perfil */}
@@ -81,7 +83,7 @@ const HeaderG: React.FC<HeaderGProps> = ({
           className="flex items-center px-4 py-1 border border-pink-800 text-sm rounded-md text-white bg-pink-800 hover:bg-pink-900 hover:text-zinc-300 transition duration-300 ease-in-out transform"
           onClick={handleNextProfile}
         >
-          <span className="hidden sm:inline">Próximo</span>
+          <span className="hidden sm:inline">{t("profile.next")}</span>
           <IoIosArrowRoundForward size={20} className="ml-1" />
         </button>
       </div>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { IoInformationCircle } from "react-icons/io5";
 import { BlurImage } from "@/components/BlurImage";
+import { useTranslation } from "react-i18next";
 
 interface PhotosAndCertificadoProps {
   selectedProfile: any;
@@ -18,18 +19,24 @@ const PhotosAndCertificado: React.FC<PhotosAndCertificadoProps> = ({
   isCertified,
   handleCertificadoClick,
   handlePhotoClick,
+
 }) => {
+
+  const { t, i18n } = useTranslation();
+
+
   return (
     <div className="bg-gray-800 gap-6 py-8 w-full min-h-[300px] justify-center items-center px-10  border border-zinc-700 rounded-3xl shadow-lg">
    <div className="flex justify-between mb-8">
   <p className="text-pink-700 text-2xl mb-4 font-semibold">
-    Fotografias de {selectedProfile?.nome}
+  {t("profile.photos_of", { name: selectedProfile?.nome })}
+
   </p>
 
   {loading || isCertified === null ? (
     <div className="md:ml-4 p-2 rounded-md flex items-center bg-zinc-700 h-8">
-      <p className="text-white">Carregando...</p>
-    </div>
+<p className="text-white">{t("profile.loading")}</p>
+</div>
   ) : (
     <div
       className={`ml-4 p-2 rounded-md flex items-center justify-center cursor-pointer transition duration-300 ease-in-out h-8 ${
@@ -40,8 +47,9 @@ const PhotosAndCertificado: React.FC<PhotosAndCertificadoProps> = ({
       onClick={handleCertificadoClick}
     >
       <p className="text-white text-xs md:text-sm mr-2">
-        {isCertified ? "Certificado" : "Não Certificado"}
-      </p>
+      <p className="text-white text-xs md:text-sm mr-2">
+  {isCertified ? t("profile.certified") : t("profile.not_certified")}
+</p>      </p>
       {isCertified ? (
         <VscVerifiedFilled size={20} className="text-white" />
       ) : (
@@ -73,8 +81,8 @@ const PhotosAndCertificado: React.FC<PhotosAndCertificadoProps> = ({
                       : "video/ogg"
                   }
                 />
-                Seu navegador não suporta o elemento de vídeo.
-              </video>
+  {t("profile.video_not_supported")}
+  </video>
             ) : (
               <Image
                 key={index}

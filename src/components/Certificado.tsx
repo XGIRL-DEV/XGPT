@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { ImCross } from "react-icons/im";
 import { VscVerifiedFilled } from "react-icons/vsc";
+import { useTranslation } from "react-i18next";
 
 interface CertificadoProps {
   setShowCertificado: (show: boolean) => void;
@@ -15,6 +16,7 @@ interface CertificadoProps {
 const Certificado: React.FC<CertificadoProps> = ({ setShowCertificado }) => {
   const [mostrarCertificado, setMostrarCertificado] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // Referência para o modal
+  const { t, i18n } = useTranslation();
 
   // Função para fechar o modal
   const fecharCertificado = () => {
@@ -48,7 +50,7 @@ const Certificado: React.FC<CertificadoProps> = ({ setShowCertificado }) => {
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-lg md:text-xl text-white font-semibold">
-                Perfil Certificado
+              {t("profile.certified_profile")}
               </h1>
               <button onClick={fecharCertificado} className="p-2 rounded-full hover:bg-gray-700">
                 <ImCross
@@ -63,22 +65,22 @@ const Certificado: React.FC<CertificadoProps> = ({ setShowCertificado }) => {
 
             {/* Certificado Badge */}
             <div className="flex items-center justify-center bg-green-600 py-2 px-4 rounded-lg mb-6">
-              <span className="text-white font-medium">Certificado</span>
+              <span className="text-white font-medium">{t("profile.certified")}</span>
               <VscVerifiedFilled size={20} className="text-white ml-2" />
             </div>
 
             {/* Certificado Description */}
             <div className="text-gray-400">
-              <p className="mb-4">
-                Um perfil certificado significa que as fotos foram validadas por um moderador da equipe <span className="text-pink-500 font-medium">XGirl</span> e correspondem à realidade.
-              </p>
-              <p className="mb-4">
-                Além do controle humano, um sistema automático analisa todas as fotos dos perfis certificados para garantir que não pertencem a outra pessoa na internet.
-              </p>
-              <p>
-                <strong className="text-gray-200">Perfil certificado = Encontro 100% satisfeito.</strong>
-              </p>
-            </div>
+  <p className="mb-4">
+    {t("profile.certified_description_1", {
+      team: <span className="text-pink-500 font-medium">XGirl</span>,
+    })}
+  </p>
+  <p className="mb-4">{t("profile.certified_description_2")}</p>
+  <p>
+    <strong className="text-gray-200">{t("profile.certified_satisfaction")}</strong>
+  </p>
+</div>
           </div>
         </div>
       )}

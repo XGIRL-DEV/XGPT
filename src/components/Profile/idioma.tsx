@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 interface Profile {
   lingua: string[];
@@ -19,30 +20,31 @@ const Linguas: React.FC<LinguasProps> = ({ selectedProfile }) => {
     (state: any) => state.profile.linguaCheckboxes
   );
   // console.log("Lingua Checkboxes", linguaCheckboxes);
+  const { t, i18n } = useTranslation();
 
 
 
 
   const obterBandeira = (lingua: string): string => {
     switch (lingua) {
-      case "Russo":
-        return "/Flags/ru.svg"; // Caminho relativo para a pasta public
-      case "Alemão":
+      case t("language.russian"):
+        return "/Flags/ru.svg";
+      case t("language.german"):
         return "/Flags/ale.svg";
-      case "Português":
+      case t("language.portuguese"):
         return "/Flags/pt.svg";
-      case "Francês":
+      case t("language.french"):
         return "/Flags/fr.svg";
-      case "Inglês":
+      case t("language.english"):
         return "/Flags/ing.svg";
-      case "Italiano":
+      case t("language.italian"):
         return "/Flags/it.svg";
-      case "Espanhol":
+      case t("language.spanish"):
         return "/Flags/es.svg";
-      case "Árabe":
+      case t("language.arabic"):
         return "/Flags/ar.png";
       default:
-        return ""; // Pode definir uma imagem padrão para línguas sem bandeira específica
+        return ""; // Bandeira padrão, se necessário
     }
   };
 
@@ -53,7 +55,8 @@ const Linguas: React.FC<LinguasProps> = ({ selectedProfile }) => {
 
   return (
     <div className="bg-gray-800 pl-12 pt-10 pb-10 mb-8 md:mb-0 w-full border border-zinc-700 rounded-3xl">
-      <p className="text-pink-600 text-2xl">Idiomas</p>
+      <p className="text-pink-600 text-2xl">  {t("profile.languages")}
+      </p>
       <div className="grid grid-cols-2 gap-x-4 gap-y-4 mt-4">
         {linguaRedux &&
           linguaRedux.map((lingua: string, index: number) => (

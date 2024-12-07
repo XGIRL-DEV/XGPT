@@ -18,6 +18,8 @@ import {
   TbZodiacTaurus,
   TbZodiacVirgo,
 } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
+
 
 interface Profile {
   nome: string;
@@ -55,10 +57,16 @@ const signoIcons: { [key: string]: JSX.Element } = {
 };
 
 const Sobre: React.FC<SobreProps> = ({ selectedProfile }) => {
+
+  const { t, i18n } = useTranslation();
+
   return (
     <div className=" bg-gray-800 grid gap-2 py-3 w-full px-10 border border-zinc-700 rounded-3xl">
-      <p className="text-pink-600 text-2xl">Sobre {selectedProfile?.nome} </p>
-      <div className="grid grid-cols-2 gap-2 mt-2 mb-4 text-sm">
+       <p className="text-pink-600 text-2xl"> 
+  {t("profile.about", { name: selectedProfile?.nome })}</p>
+
+  
+  <div className="grid grid-cols-2 gap-2 mt-2 mb-4 text-sm">
         <div className="flex items-center">
           <LiaBirthdayCakeSolid className="text-pink-800 mr-2" />
           <p className="text-zinc-200">{selectedProfile?.idade}</p>

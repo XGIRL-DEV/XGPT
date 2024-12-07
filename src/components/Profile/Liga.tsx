@@ -13,6 +13,7 @@ import it from "../../../public/Flags/it.svg";
 import es from "../../../public/Flags/es.svg";
 import ar from "../../../public/Flags/ar.png";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface LigaProps {
   selectedProfile: {
@@ -27,6 +28,7 @@ interface LigaProps {
 const Liga: React.FC<LigaProps> = ({ selectedProfile, setShowLiga }) => {
   const [mostrarLiga, setMostrarLiga] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null); // Ref para o modal
+  const { t, i18n } = useTranslation();
 
   const fecharLiga = () => {
     setMostrarLiga(false);
@@ -89,8 +91,7 @@ const Liga: React.FC<LigaProps> = ({ selectedProfile, setShowLiga }) => {
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
               <h1 className="text-lg md:text-xl text-white font-semibold">
-                Liga a {selectedProfile?.nome}
-              </h1>
+              {t("profile.call_to", { nome: selectedProfile?.nome })}              </h1>
               <button
                 className="p-2 rounded-full hover:bg-gray-700"
                 onClick={fecharLiga}
@@ -137,7 +138,7 @@ const Liga: React.FC<LigaProps> = ({ selectedProfile, setShowLiga }) => {
             <div className="flex items-center justify-center mb-6">
               <FaMoneyBillWave size={28} className="text-pink-600 mr-3" />
               <p className="text-white text-lg font-medium">
-                Tarifas a partir de {selectedProfile?.tarifa} €
+              {t("profile.tariffs_starting_from", { tarifa: selectedProfile?.tarifa })}
               </p>
             </div>
 
