@@ -10,6 +10,9 @@ import MainCard from "@/components/MainCard";
 import { Listbox } from "@headlessui/react";
 import { FiChevronDown } from "react-icons/fi";
 
+import { useTranslation } from "react-i18next";
+
+
 export interface Profile {
   nome: string;
   cidade: string;
@@ -53,6 +56,8 @@ function GirlsPage() {
   const searchParams = useSearchParams();
   const itemsPerPage = 15;
 
+  const { t, i18n } = useTranslation();
+  // const { language, changeLanguage } = useLanguage(); 
 
 
   useEffect(() => {
@@ -123,28 +128,33 @@ function GirlsPage() {
     <div className="bg-gray-900 text-white w-screen">
       <div className="px-4 md:px-36 py-4">
         <h1 className="text-3xl md:text-4xl pink-500 font-bold text-center">
-          Acompanhantes de Luxo e Massagistas Eróticas em Portugal
+
+        {t("escort.title")}
         </h1>
         <p className="text-lg md:text-xl text-gray-300 text-center mt-2">
-          Descubra as melhores profissionais de todo o país
+        {t("escort.subtitle")}
+ 
         </p>
       </div>
   
       <CaroselRound profiles={filteredProfiles} />
   
       <div className="px-4 md:px-36 mb-2">
-        <h2 className="text-xl md:text-2xl pink-500 mb-2">Buscar Acompanhante</h2>
+
+        <h2 className="text-xl md:text-2xl pink-500 mb-2">{t("escort.search_title")}</h2>
+
       </div>
   
       <div className="px-4 md:px-36 w-full md:w-2/4 mb-4 flex flex-col md:flex-row items-center gap-2">
         <div className="relative w-full md:w-1/3">
           <Listbox value={selectedDistrito} onChange={handleDistritoSelect}>
-            <Listbox.Button className="w-full py-2 px-3 bg-pink-500 text-white rounded-md shadow-md flex justify-between items-center">
-              {selectedDistrito === "Distrito"
-                ? `Distrito (${totalProfiles})`
-                : `${selectedDistrito}`}
-              <FiChevronDown className="w-5 h-5 ml-2" />
-            </Listbox.Button>
+
+          <Listbox.Button className="w-full py-2 px-3 bg-pink-500 text-white rounded-md shadow-md flex justify-between items-center">
+  {selectedDistrito === "Distrito" || !selectedDistrito
+    ? t("escort.select_district", { total: totalProfiles })
+    : selectedDistrito}
+  <FiChevronDown className="w-5 h-5 ml-2" />
+</Listbox.Button>
             <Listbox.Options className="absolute w-full mt-2 bg-white rounded-md shadow-lg z-20 max-h-60 overflow-auto">
               <Listbox.Option
                 key="Distrito"
@@ -191,21 +201,23 @@ function GirlsPage() {
       <div className="px-4 md:px-36">
         <MainCard profiles={filteredProfiles} currentPage={currentPage} itemsPerPage={itemsPerPage} />
   
-        <div className="flex justify-center items-center mt-4">
+
+        <div className="flex justify-center items-center mt-4 mb-10">
           <button
             onClick={goToPreviousPage}
             disabled={currentPage === 1}
             className="px-4 py-2 bg-pink-800 text-white rounded-md shadow-md disabled:opacity-50"
           >
-            Anterior
+          {t("escort.previous_page")}
           </button>
-          <span className="mx-4 text-lg">{`Página ${currentPage} de ${totalPages}`}</span>
-          <button
+          <span className="mx-4 text-lg">
+  {t("escort.current_page", { currentPage, totalPages })}
+</span>          <button
             onClick={goToNextPage}
             disabled={currentPage === totalPages}
             className="px-4 py-2 bg-pink-800 text-white rounded-md shadow-md disabled:opacity-50"
           >
-            Próxima
+          {t("escort.next_page")}
           </button>
         </div>
       </div>
