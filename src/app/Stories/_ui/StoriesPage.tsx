@@ -11,6 +11,8 @@ import { Profile } from "@/types";
 import StoryCard from "@/components/StoryCard";
 import StoryBigS from "@/components/StoryBigS";
 // import CitySelector from "@/components/CitySelector";
+import { useTranslation } from "react-i18next";
+
 
 function StoriesPage({}) {
   // State declarations
@@ -66,11 +68,14 @@ function StoriesPage({}) {
     }
   }, [selectedCidade, profiles]);
 
+  const { t, i18n } = useTranslation();
+
+
   return (
     <div className="text-gray-600 bg-gray-900">
       <div className="px-2 md:px-36">
         <p className="text-pink-800 text-3xl text-center justify-center">
-          Escort Girls, Masseuses érotiques et Accompagnatrices de luxe en France
+        {t("storyPage.titleStory")}
         </p>
         {/* <div>
         <CitySelector onCityChange={setSelectedCidade} />
@@ -78,7 +83,7 @@ function StoriesPage({}) {
       </div>
       <CaroselRound profiles={filteredProfiles} />
       <p className="text-pink-800 text-3xl text-center justify-center pt-8 md:pt-4">
-        Derniers Stories
+      {t("storyPage.latest_stories")}
       </p>
       <div className="px-8 md:px-36">
         {showLargeStory && (
