@@ -6,12 +6,17 @@ import Link from "next/link";
 import { fetchProfiles } from "@/services/profileService";
 import "../styles/globals.min.css";
 import Map from "@/components/Map";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../context/LanguageContext"; // Importe o contexto de idioma
+
 
 // Chargement dynamique des composants lourds
 const CaroselG = dynamic(() => import("@/components/CaroselG"), { ssr: false });
 const InfoCard = dynamic(() => import("@/components/InfoCard"), { ssr: false });
 const LastAnnounce = dynamic(() => import("@/components/LastAnnounce"), { ssr: false });
 const MainCard = dynamic(() => import("@/components/MainCard"), { ssr: false });
+
+
 
 interface Profile {
   nom: string;
@@ -60,6 +65,9 @@ const Dashboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  const { t, i18n } = useTranslation();
+const { language, changeLanguage } = useLanguage(); 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -106,7 +114,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="text-gray-600 bg-black w-full overflow-x-hidden">
       <Head>
-        <title>Escort Girls et Masseuses Érotiques en France</title>
+      <title>{t("dashboard.escort_title_en")}</title>
         <meta name="description" content="Découvrez les meilleures escort girls et masseuses érotiques en France. Explorez nos annonces en vedette et nos nouveautés." />
         <meta name="keywords" content="escort girls, masseuses érotiques, annonces, France, services" />
         <meta name="author" content="Xgirl" />
@@ -122,12 +130,12 @@ const Dashboard: React.FC = () => {
       </div>
 
       <p className="text-pink-800 text-xl md:text-3xl flex justify-center mb-6 w-full pt-4">
-        Escort Girls et Masseuses érotiques en France
+      {t("dashboard.escort_title_en")}
       </p>
 
       <div className="w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full">
         <Link href="/girls">
-          <p className="text-white text-3xl flex">Annonces en Vedette</p>
+          <p className="text-white text-3xl flex">{t("dashboard.featured_ads")}</p>
         </Link>
       </div>
 
@@ -136,7 +144,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       <p className="text-pink-800 text-2xl flex justify-center pb-5 w-full h-[50px]">
-        Recherche dans ta Région
+      {t("dashboard.search_area")}
       </p>
 
       <Map profiles={profiles} />
@@ -148,7 +156,8 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full">
-        <p className="text-white text-3xl flex">Nouveautés</p>
+        <p className="text-white text-3xl flex">
+        {t("dashboard.news")}          </p>
       </div>
 
       <div className="w-full px-4 sm:px-10 md:px-16 lg:px-32 xl:px-48 max-w-full">
