@@ -184,7 +184,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
   </div>
 </div>
 
-          {/* Área de usuário e configurações */}
+          {/* Área de usuário e configurações ddddddddddddd*/}
           <div className="flex items-center space-x-2 h-full text-sm">
             {/* Menu de Idiomas */}
             <div className="relative">
