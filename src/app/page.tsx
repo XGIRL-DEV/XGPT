@@ -112,7 +112,7 @@ const { language, changeLanguage } = useLanguage();
   };
 
   return (
-    <div className="text-gray-600 bg-black w-full overflow-x-hidden">
+    <div className="text-gray-600 bg-gray-900 w-full overflow-x-hidden">
       <Head>
       <title>{t("dashboard.escort_title_en")}</title>
         <meta name="description" content="Découvrez les meilleures escort girls et masseuses érotiques en France. Explorez nos annonces en vedette et nos nouveautés." />

@@ -91,7 +91,39 @@
     "italian": "Italien",
     "spanish": "Espagnol",
     "arabic": "Arabe"
-  
   }
-  }}
+ 
+  },
+ "loginPage": {
+    "title": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "email_placeholder": "Entrez votre email", 
+    "password_placeholder": "Entrez votre mot de passe", 
+    "login_button": "Se connecter",
+    "register_link": "Vous n'avez pas de compte ? Inscrivez-vous ici",
+    "description": "Connectez-vous à X-Girl pour découvrir des expériences uniques et confidentielles."
+  },
+
+
+    "RegisterPage": {
+    "title": "XGirl.fr est la référence pour les annonces descort exclusives en France",
+    "description_1": "Découvrez des milliers descorts sur XGirl.fr",
+    "description_2": "Le processus dinscription est simple et rapide.",
+    "description_3": "Augmentez vos revenus considérablement ! Attirez entre 30 et 450 clients chaque mois.",
+    "description_4": "Profitez de mises en avant chaque mois sans frais supplémentaires.",
+    "advantages_link": "Cliquez ici pour voir tous les avantages",
+    "create_account_title": "Créez un nouveau compte",
+    "email_label": "Email*",
+    "email_placeholder": "Entrez votre email",
+    "password_label": "Mot de passe*",
+    "password_placeholder": "Entrez votre mot de passe",
+    "confirm_password_label": "Confirmez votre mot de passe*",
+    "confirm_password_placeholder": "Confirmez votre mot de passe",
+    "register_button": "Créez votre compte"
+    
+  }
+
+  
+}
   

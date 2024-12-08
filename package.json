@@ -26,6 +26,7 @@
     "@heroicons/react": "^2.1.5",
     "@mui/material": "^6.1.8",
     "@next/bundle-analyzer": "^15.0.3",
+    "@nextui-org/react": "^2.6.4",
     "@react-google-maps/api": "^2.20.3",
     "@reduxjs/toolkit": "^2.3.0",
     "@supabase/auth-ui-react": "^0.4.7",

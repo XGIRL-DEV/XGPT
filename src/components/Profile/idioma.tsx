@@ -54,7 +54,7 @@ const Linguas: React.FC<LinguasProps> = ({ selectedProfile }) => {
 
 
   return (
-    <div className="bg-gray-800 pl-12 pt-10 pb-10 mb-8 md:mb-0 w-full border border-zinc-700 rounded-3xl">
+    <div className="bg-gray-800 pl-12 pt-10 pb-10 mb-8 md:mb-0 w-full border border-zinc-700 rounded-xl">
       <p className="text-pink-600 text-2xl">  {t("profile.languages")}
       </p>
       <div className="grid grid-cols-2 gap-x-4 gap-y-4 mt-4">

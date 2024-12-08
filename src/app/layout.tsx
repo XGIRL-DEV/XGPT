@@ -6,6 +6,7 @@ import 'normalize.css'; // Charge normalize.css
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import '../i18n/i18n'; 
+import { NextUIProvider } from "@nextui-org/react"; // Importar o NextUIProvider
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -73,10 +74,12 @@ export default function RootLayout({
         <meta property="og:image:alt" content="Logo XGirl" />
         <meta property="twitter:card" content="summary_large_image" />
       </head>
-      <body className={`${inter.className} bg-gray-900 pt-10 `}> {/* Ajout du padding haut et bas */}
-        <ReduxProvider>
-        <LanguageProvider>
-          <MainProvider>{children}</MainProvider>
+      <body className={`${inter.className} bg-gray-900 pt-4 `}> {/* Ajout du padding haut et bas */}
+      <ReduxProvider>
+          <LanguageProvider>
+            <NextUIProvider> {/* NextUIProvider deve englobar MainProvider */}
+              <MainProvider>{children}</MainProvider>
+            </NextUIProvider>
           </LanguageProvider>
         </ReduxProvider>
 

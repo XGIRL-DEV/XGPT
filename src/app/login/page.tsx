@@ -8,8 +8,12 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess, loginFailure, addProfileData } from '@/actions/ProfileActions';
 import { fetchProfileFromDatabase } from '@/services/profileService';
 import Head from 'next/head';
+import { useTranslation } from 'react-i18next';
+
 
 const Login = () => {
+  const { t } = useTranslation(); // Usando o hook de tradução
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>(''); // État pour le message d'erreur
@@ -39,12 +43,9 @@ const Login = () => {
           router.push(returnUrl);
           localStorage.removeItem('returnUrl');
         } else {
-          router.push('/');
-        }
-      } else {
         router.push('/login');
       }
-    };
+    };}
 
     const { data: authListener } = supabase.auth.onAuthStateChange(handleAuthStateChange);
 
@@ -89,7 +90,7 @@ const Login = () => {
         localStorage.setItem('userToken', tokenID);
         localStorage.setItem('email', email);
 
-        router.push('/Acompanhantes');
+        router.push('/escort');
       } else {
         console.log("L'objet utilisateur retourné est vide ou indéfini.");
       }
@@ -110,23 +111,22 @@ const Login = () => {
         <meta name="robots" content="index, follow" />
       </Head>
 
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-900 px-4 -mt-60 -mb-10">
+      <div className="flex flex-col items-center mt-36 h-screen bg-gray-900 px-4 ">
         {/* Texte motivant */}
-        <p className="text-center text-gray-400 text-sm mb-4 max-w-md">
+        {/* <p className="text-center text-gray-400 text-sm mb-4 max-w-md">
           Découvrez des moments uniques avec <span className="text-pink-500 font-bold">une totale confidentialité</span> et <span className="text-pink-500 font-bold">sécurité</span>.
-        </p>
+        </p> */}
 
         <div className="bg-gray-800 w-full max-w-md md:w-1/3 rounded-lg shadow-2xl border border-gray-700 px-6 py-6 space-y-4">
           {/* En-tête */}
           <h1 className="text-3xl md:text-4xl font-extrabold text-center text-pink-600 mb-4">
-            Connectez-vous sur <br /> <span className="text-white">X-Girl</span>
+            {t('loginPage.title')}
           </h1>
           <p className="text-center text-gray-400 text-sm mb-4">
-            Trouvez des expériences uniques et inoubliables en un clic.
-          </p>
+          {t('loginPage.description')}          </p>
 
           {/* Avantages */}
-          <ul className="list-disc list-inside text-gray-300 text-sm space-y-1 mb-6">
+          {/* <ul className="list-disc list-inside text-gray-300 text-sm space-y-1 mb-6">
             <li>
               <span className="text-pink-500">Profils exclusifs :</span> Trouvez des accompagnantes qui répondent à vos préférences.
             </li>
@@ -136,7 +136,7 @@ const Login = () => {
             <li>
               <span className="text-pink-500">Facile et rapide :</span> Inscrivez-vous et commencez en quelques minutes.
             </li>
-          </ul>
+          </ul> */}
 
           {/* Formulaire */}
           <div className="space-y-4">
@@ -146,13 +146,13 @@ const Login = () => {
                 className="block mb-1 text-sm font-medium text-gray-300"
                 htmlFor="email"
               >
-                Email*
-              </label>
+                {t('loginPage.email')}
+                </label>
               <div className="relative">
                 <input
                   id="email"
                   type="email"
-                  placeholder="Entrez votre email"
+                  placeholder={t('loginPage.email_placeholder')} // Usar a tradução do placeholder
                   value={email}
                   onChange={handleEmailChange}
                   className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-3 pl-10"
@@ -182,13 +182,13 @@ const Login = () => {
                 className="block mb-1 text-sm font-medium text-gray-300"
                 htmlFor="password"
               >
-                Mot de passe*
+                  {t('loginPage.password')}
               </label>
               <div className="relative">
                 <input
                   id="password"
                   type="password"
-                  placeholder="Entrez votre mot de passe"
+                  placeholder={t('loginPage.password_placeholder')} // Usar a tradução do placeholder
                   value={password}
                   onChange={handlePasswordChange}
                   className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-3 pl-10"
@@ -225,17 +225,16 @@ const Login = () => {
             onClick={handleLogin}
             className="py-2 text-lg font-medium text-center text-white rounded-lg bg-pink-600 w-full hover:bg-pink-500 transition-all duration-200 focus:ring focus:ring-pink-400"
           >
-            Connexion
+             {t('loginPage.login_button')}
           </button>
 
           {/* Lien pour l'inscription */}
           <div className="text-center mt-4">
-            <p className="text-gray-400 text-sm">Vous navez pas encore de compte ?</p>
             <Link
               href="/regista2"
               className="text-pink-600 cursor-pointer hover:text-pink-500 font-semibold"
             >
-              Inscrivez-vous
+              {t('loginPage.register_link')}
             </Link>
           </div>
         </div>

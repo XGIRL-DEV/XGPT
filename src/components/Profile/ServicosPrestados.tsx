@@ -13,7 +13,7 @@ const ServicosPrestados: React.FC<ServicosPrestadosProps> = ({
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="bg-gray-800 grid gap-2 py-6 w-full px-10  border border-zinc-700 rounded-3xl">
+    <div className="bg-gray-800 grid gap-2 py-6 w-full px-10  border border-zinc-700 rounded-xl">
       <p className="text-pink-600 text-2xl mb-2">  {t("profile.services_provided")}</p>
       {servico && Array.isArray(servico) ? (
         <div className="grid grid-cols- md:grid-cols-3 gap-3 w-full">

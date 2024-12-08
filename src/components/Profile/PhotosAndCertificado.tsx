@@ -26,7 +26,7 @@ const PhotosAndCertificado: React.FC<PhotosAndCertificadoProps> = ({
 
 
   return (
-    <div className="bg-gray-800 gap-6 py-8 w-full min-h-[300px] justify-center items-center px-10  border border-zinc-700 rounded-3xl shadow-lg">
+    <div className="bg-gray-800 gap-6 py-8 w-full min-h-[300px] justify-center items-center px-10  border border-zinc-700 rounded-xl shadow-lg">
    <div className="flex justify-between mb-8">
   <p className="text-pink-700 text-2xl mb-4 font-semibold">
   {t("profile.photos_of", { name: selectedProfile?.nome })}

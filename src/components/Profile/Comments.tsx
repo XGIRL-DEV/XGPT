@@ -109,7 +109,7 @@ function Comments({  }: CommentsProps) {
   return (
     <div className="space-y-4">
       {/* Card para exibir comentários */}
-      <div className="bg-gray-800 p-6 rounded-2xl border border-zinc-700 shadow-md">
+      <div className="bg-gray-800 p-6 rounded-xl border border-zinc-700 shadow-md">
         <h2 className="text-pink-700 text-2xl mb-4">  {t("profile.comments")}
         </h2>
         <div className="space-y-2">
@@ -149,7 +149,7 @@ function Comments({  }: CommentsProps) {
       </div>
 
       {/* Card para novo comentário */}
-      <div className="bg-gray-800 p-6 rounded-2xl border border-zinc-700 shadow-md relative">
+      <div className="bg-gray-800 p-6 rounded-xl border border-zinc-700 shadow-md relative">
         <h3 className="text-pink-700 text-lg mb-4">  {t("profile.leave_comment")}
         </h3>
         <input
