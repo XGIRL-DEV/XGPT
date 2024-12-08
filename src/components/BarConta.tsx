@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+
+
 import {
   FaInfoCircle,
   FaUser,
@@ -48,6 +51,7 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
   
   };
 
+  const { t, i18n } = useTranslation();
 
   
   return (
@@ -70,7 +74,10 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
           }`}
         >
           <FaInfoCircle className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Informações</span>
+          <span className="ml-4 hidden lg:block">
+
+          {t("MyProfileBar.info")}
+          </span>
         </button>
 
         <button
@@ -80,7 +87,7 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
           }`}
         >
           <FaUser className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Outras Info</span>
+          <span className="ml-4 hidden lg:block"> {t("MyProfileBar.other_info")}</span>
         </button>
 
         <button
@@ -90,7 +97,7 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
           }`}
         >
           <FaCamera className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Alterar Fotos</span>
+          <span className="ml-4 hidden lg:block">{t("MyProfileBar.change_photos")}</span>
         </button>
 
         <button
@@ -100,14 +107,14 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
           }`}
         >
           <FaVideo className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Os Meus Stories</span>
+          <span className="ml-4 hidden lg:block">{t("MyProfileBar.my_stories")}</span>
         </button>
 
         <button 
 
        className="flex items-center justify-center w-full p-4 rounded-xl transition-all hover:bg-pink-500 text-white shadow-lg bg-gray-800">
           <FaCog className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Definições</span>
+          <span className="ml-4 hidden lg:block">{t("MyProfileBar.settings")}</span>
         </button>
 
         {/* Botão para ver o perfil */}
@@ -116,7 +123,7 @@ const nomeRedux =  useSelector((state: any) => state.profile?.profile.nome);
           className="flex items-center justify-center w-full p-4 rounded-xl transition-all hover:bg-pink-500 text-white shadow-lg bg-gray-800"
         >
           <FaEye className="text-2xl" />
-          <span className="ml-4 hidden lg:block">Ver Perfil</span>
+          <span className="ml-4 hidden lg:block">{t("MyProfileBar.view_profile")}</span>
         </button>
       </nav>
     </aside>

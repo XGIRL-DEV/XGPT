@@ -10,9 +10,9 @@ const NotFound: React.FC = () => {
         <p className="text-2xl mb-4">Página não encontrada</p>
         <p className="mb-8">Desculpe, a página que você está procurando não existe.</p>
         <Link href="/">
-          <a className="text-pink-800 hover:text-pink-900 hover:underline">
+          <p className="text-pink-800 hover:text-pink-900 hover:underline">
             Voltar para a página inicial
-          </a>
+          </p>
         </Link>
       </div>
     </div>

@@ -100,7 +100,7 @@ const MainCard: React.FC<MainCardProps> = ({
           onClick={onProfileClick}
         >
           <Card className="overflow-hidden transition-all hover:scale-105 hover:shadow-2xl duration-300 bg-gray-800 border-gray-700">
-            <div className="relative aspect-square">
+            <div className="relative aspect-[3/4]">
               <Image
                 src={profile.photos[0] || "/logo.webp"}
                 alt={profile.nome}
@@ -109,25 +109,27 @@ const MainCard: React.FC<MainCardProps> = ({
                 className="rounded-t-lg"
                 priority
               />
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <div className="absolute top-4 left-2 flex flex-col gap-2">
                 {profile.live && (
                   <Badge
                     variant="destructive"
-                    className="animate-pulse flex items-center gap-1"
+                    className="bg-red-600 text-white flex items-center gap-1"
                   >
-                    <MdFiberManualRecord className="h-2 w-2" />
-                    <span className="text-xs">Live Cam</span>
+                    <MdFiberManualRecord className="h-1 w-1" />
+                    <span className="text-xs text-white">Live Cam</span>
                   </Badge>
                 )}
               </div>
-              <div className="absolute top-4 right-4">
+
+
+              <div className="absolute top-4 right-2">
                 {Array.isArray(profile.stories) && profile.stories.length > 0 && (
                   <Badge
                     variant="secondary"
                     className="bg-pink-800 text-white flex items-center gap-1"
                   >
                     <FaVideo className="h-3 w-3" />
-                    <span className="text-xs">Stories</span>
+                    <span className="text-xxs">Stories</span>
                   </Badge>
                 )}
               </div>
@@ -144,24 +146,28 @@ const MainCard: React.FC<MainCardProps> = ({
                 </p>
               </div>
             </div>
-            <CardContent className="relative bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-inner">
-  <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
-    {profile.tag ? `"${profile.tag}"` : "Sem texto postado."}
+            <CardContent className="relative bg-gray-200 dark:bg-gray-700 p-4 rounded-lg shadow-inner flex flex-col gap-2">
+  {/* Tag */}
+  <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+    {profile.tag ? (
+      <span className="italic text-sm text-pink-600 dark:text-gray-200">"{profile.tag}"</span>
+    ) : (
+      <span className="text-gray-500">Sem texto postado.</span>
+    )}
   </p>
-  <span className="absolute top-2 right-2 text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-    <MdFiberManualRecord className="text-xs text-green-500" />
-    Postado agora
-  </span>
-</CardContent>
-<CardFoter className="flex justify-between items-center border-t border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-4 py-2">
-  <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-    <RiMessage2Fill className="text-lg text-gray-400 dark:text-gray-500" />
-    {timeElapsedList[index]}
+
+  {/* Divisor Estético */}
+  <hr className="border-gray-300 dark:border-gray-600 my-2" />
+
+  {/* Tempo Decorrido */}
+  <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-2">
+    <RiMessage2Fill className="text-lg text-yellow-600 dark:text-yellow-600" />
+    <span className="text-gray-700 dark:text-gray-300">
+      {timeElapsedList[index]}
+    </span>
   </div>
-  <button className="text-sm text-blue-500 hover:underline">
-    Ver mais
-  </button>
-</CardFoter>
+</CardContent>
+
           </Card>
         </Link>
       ))}

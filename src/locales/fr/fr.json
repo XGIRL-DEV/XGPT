@@ -17,6 +17,34 @@
         "logout": "Déconnexion"
       
     },
+
+    "Footer": {
+      "services_description": "Découvrez les meilleurs services d'escort dans les principales régions de France.",
+      "quick_links_title": "LIENS RAPIDES",
+      "escort_paris": "Escort à Paris",
+      "escort_lyon": "Escort à Lyon",
+      "escort_marseille": "Escort à Marseille",
+      "escort_lille": "Escort à Lille",
+      "escort_toulouse": "Escort à Toulouse",
+      "top_categories_title": "TOP CATÉGORIE",
+      "vip_escorts": "Escortes VIP",
+      "bdsm": "BDSM",
+      "salons": "Salons",
+      "stories": "Stories",
+      "erotic_massage": "Massage érotique",
+      "about_title": "À PROPOS",
+      "faq": "FAQ",
+      "dmca": "DMCA",
+      "report": "Report",
+      "terms_conditions": "Termes et Conditions",
+      "privacy_policy": "Politique de Confidentialité",
+      "xgirl_history": "L'histoire de XGIRL",
+      "contact": "Contact",
+      "join_us": "Nous rejoindre",
+      "disclaimer": "Ce site web est une ressource publicitaire et d'information et, à ce titre, n'a aucun lien ni aucune responsabilité avec les sites ou individus mentionnés ici. Nous vendons UNIQUEMENT des espaces publicitaires, nous ne sommes pas une agence d'escorte et nous ne sommes en aucun cas impliqués dans des activités d'escorte ou de prostitution. Nous n'assumons aucune responsabilité pour le contenu ou les actions des sites web des tiers ou des individus auxquels vous pouvez accéder en suivant les liens, les e-mails ou les contacts téléphoniques de ce portail.",
+      "copyright": "© {year} XGirl. Tous droits réservés."
+    },
+
     "dashboard": {
       "escort_title_en": "Escort Girls et Masseuses Érotiques en France",
       "meta_description": "Découvrez les meilleures escort girls et masseuses érotiques en France. Explorez nos annonces en vedette et nos nouveautés.",
@@ -122,8 +150,27 @@
     "confirm_password_placeholder": "Confirmez votre mot de passe",
     "register_button": "Créez votre compte"
     
-  }
-
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Vous avez une question ? Envoyez-nous un message et nous vous répondrons sous 24 heures.",
+    "email_label": "Votre email",
+    "email_placeholder": "votreemail@exemple.com",
+    "subject_label": "Sujet",
+    "subject_placeholder": "Comment pouvons-nous vous aider ?",
+    "message_label": "Votre message",
+    "message_placeholder": "Laissez votre message...",
+    "send_button": "Envoyer le message",
+    "thank_you_message": "Merci de nous avoir contactés sur XGirl.pt !"
+},
+"MyProfileBar": {
+    "info": "Informations",
+    "other_info": "Autres Infos",
+    "change_photos": "Changer les Photos",
+    "my_stories": "Mes Stories",
+    "settings": "Paramètres",
+    "view_profile": "Voir le Profil"
+}
   
 }
   

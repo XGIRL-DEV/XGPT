@@ -4,8 +4,12 @@ import emailjs from "emailjs-com"; // Importando o EmailJS
 import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+
 
 function Contacto() {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -65,11 +69,11 @@ function Contacto() {
     <div className="text-gray-200 bg-gray-900 pt-18 rounded-lg shadow-lg w-full max-w-xl mx-auto px-4 py-6 font-sans space-y-4 ">
       <section className="bg-gray-800 rounded-lg p-6 md:p-8">
         <h1 className="text-3xl md:text-4xl font-extrabold text-center text-pink-800 mb-4">
-          Contato
+        {t('contact.title')}
         </h1>
         <h2 className="text-sm font-light text-center text-gray-400 mb-6">
-          Tem alguma dúvida? Envie-nos uma mensagem e responderemos em até 24
-          horas.
+        {t('contact.subtitle')}
+
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -78,15 +82,15 @@ function Contacto() {
               htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
-              Seu e-mail
-            </label>
+        {t('contact.email_label')}
+        </label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2"
-              placeholder="seuemail@exemplo.com"
+              placeholder={t('contact.email_placeholder')}
               required
             />
           </div>
@@ -96,15 +100,15 @@ function Contacto() {
               htmlFor="subject"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
-              Assunto
-            </label>
+        {t('contact.subject_label')}
+        </label>
             <input
               type="text"
               id="subject"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               className="block p-2 w-full text-sm text-white bg-gray-700 rounded-lg border border-gray-600 shadow-sm focus:ring-pink-500 focus:border-pink-500"
-              placeholder="Como podemos ajudá-lo?"
+              placeholder={t('contact.subject_placeholder')}
               required
             />
           </div>
@@ -114,15 +118,15 @@ function Contacto() {
               htmlFor="message"
               className="block mb-2 text-sm font-medium text-gray-300"
             >
-              Sua mensagem
-            </label>
+        {t('contact.message_label')}
+        </label>
             <textarea
               id="message"
               rows="4"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="block p-2 w-full text-sm text-white bg-gray-700 rounded-lg border border-gray-600 focus:ring-pink-500 focus:border-pink-500"
-              placeholder="Deixe sua mensagem..."
+              placeholder={t('contact.message_placeholder')}
               required
             ></textarea>
           </div>
@@ -133,8 +137,8 @@ function Contacto() {
             className="py-2 md:py-3 text-sm font-medium text-center text-white rounded-lg bg-pink-800 w-full hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-pink-300 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!recaptchaValue}
           >
-            Enviar Mensagem
-          </button>
+        {t('contact.send_button')}
+        </button>
         </form>
 
         {/* ReCAPTCHA */}
@@ -149,7 +153,7 @@ function Contacto() {
         <ToastContainer />
 
         <p className="mt-6 text-center text-gray-400 text-sm">
-          Obrigado por entrar em contato com a XGirl.pt!
+        {t('contact.thank_you_message')}
         </p>
       </section>
     </div>

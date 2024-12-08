@@ -17,22 +17,31 @@
       "settings": "Settings",
       "logout": "Logout"
     },
-    "footer": {
-      "discover_services": "Discover the best escort services in the top regions of Portugal.",
-      "quick_links": "Quick Links",
-      "escorts_in_lisboa": "Escorts in Lisbon",
-      "escorts_in_porto": "Escorts in Porto",
-      "escorts_in_faro": "Escorts in Faro",
-      "escorts_in_madeira": "Escorts in Madeira",
-      "escorts_in_acores": "Escorts in the Azores",
-      "useful_information": "Useful Information",
-      "terms_and_conditions": "Terms and Conditions",
+    "Footer": {
+      "services_description": "Discover the best escort services in the main regions of France.",
+      "quick_links_title": "QUICK LINKS",
+      "escort_paris": "Escort in Paris",
+      "escort_lyon": "Escort in Lyon",
+      "escort_marseille": "Escort in Marseille",
+      "escort_lille": "Escort in Lille",
+      "escort_toulouse": "Escort in Toulouse",
+      "top_categories_title": "TOP CATEGORIES",
+      "vip_escorts": "VIP Escorts",
+      "bdsm": "BDSM",
+      "salons": "Salons",
+      "stories": "Stories",
+      "erotic_massage": "Erotic Massage",
+      "about_title": "ABOUT",
+      "faq": "FAQ",
+      "dmca": "DMCA",
+      "report": "Report",
+      "terms_conditions": "Terms and Conditions",
       "privacy_policy": "Privacy Policy",
-      "help": "Help",
+      "xgirl_history": "The Story of XGirl",
       "contact": "Contact",
-      "blog": "Blog",
-      "payment_methods": "Payment Methods",
-      "all_rights_reserved": "&copy; {{year}} XGirl. All rights reserved."
+      "join_us": "Join Us",
+      "disclaimer": "This website is an advertising and informational resource and, as such, has no connection or responsibility with the sites or individuals mentioned here. We only sell advertising spaces, we are not an escort agency and are in no way involved in escort or prostitution activities. We assume no responsibility for the content or actions of third-party websites or individuals that you may access through links, emails, or phone contacts on this portal.",
+      "copyright": "© {year} XGirl. All rights reserved."
     },
     
     "dashboard": {
@@ -145,7 +154,27 @@
       "confirm_password_label": "Confirm your password*",
       "confirm_password_placeholder": "Confirm your password",
       "register_button": "Create your account"
-    }
+    },
+    "contact": {
+        "title": "Contact",
+      "subtitle": "Have a question? Send us a message, and we will respond within 24 hours.",
+      "email_label": "Your email",
+      "email_placeholder": "youremail@example.com",
+      "subject_label": "Subject",
+      "subject_placeholder": "How can we help you?",
+      "message_label": "Your message",
+      "message_placeholder": "Leave your message...",
+      "send_button": "Send Message",
+      "thank_you_message": "Thank you for reaching out to XGirl.pt!"
+    },
+    "MyProfileBar": {
+    "info": "Information",
+    "other_info": "Other Info",
+    "change_photos": "Change Photos",
+    "my_stories": "My Stories",
+    "settings": "Settings",
+    "view_profile": "View Profile"
+}
 
   }
   
