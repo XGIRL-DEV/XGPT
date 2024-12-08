@@ -137,6 +137,8 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                 pathname === "/" ? "bg-pink-900" : "hover:bg-pink-800"
               } transition duration-200`}
             >
+              
+
               {t("home")}
               </Link>
 

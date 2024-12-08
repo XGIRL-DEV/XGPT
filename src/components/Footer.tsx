@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+
 
 function Footer() {
+
+  const { t, i18n } = useTranslation();
+
+
   return (
     <footer className="bg-gray-800 w-full pt-8" style={{ borderTop: '4px solid #C2136A' }}>
       <div className="max-w-screen-xl mx-auto px-4">
@@ -19,20 +25,20 @@ function Footer() {
               </div>
             </Link>
             <p className="text-sm text-gray-400 mb-4">
-              Découvrez les meilleurs services descort dans les principales régions de France.
+            {t('Footer.services_description')}
             </p>
           </div>
 
           {/* LIENS RAPIDES */}
           <div className="mb-8">
-            <p className="text-xl text-white py-2">LIENS RAPIDES</p>
-            <ul className="space-y-1">
+          <p className="text-xl text-white py-2">{t('Footer.quick_links_title')}</p>
+          <ul className="space-y-1">
               <li>
                 <Link
                   href="/Acompanhantes?distrito=Lisboa"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escort à Paris
+                   {t('Footer.escort_paris')}
                 </Link>
               </li>
               <li>
@@ -40,15 +46,15 @@ function Footer() {
                   href="/girls?distrito=Porto"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escort à Lyon
-                </Link>
+                  {t('Footer.escort_lyon')}
+                 </Link>
               </li>
               <li>
                 <Link
                   href="/girls?distrito=Faro"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escort à Marseille
+                   {t('Footer.escort_marseille')}
                 </Link>
               </li>
               <li>
@@ -56,7 +62,7 @@ function Footer() {
                   href="/girls?distrito=Madeira"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escort à Lille
+                  {t('Footer.escort_lille')}
                 </Link>
               </li>
               <li>
@@ -64,7 +70,7 @@ function Footer() {
                   href="/girls?distrito=Acores"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escort à Toulouse
+                  {t('Footer.escort_toulouse')}
                 </Link>
               </li>
             </ul>
@@ -72,14 +78,14 @@ function Footer() {
 
           {/* TOP CATÉGORIE */}
           <div className="mb-8">
-            <p className="text-xl text-white py-2">TOP CATÉGORIE</p>
+            <p className="text-xl text-white py-2">{t('Footer.top_categories_title')}</p>
             <ul className="space-y-1">
               <li>
                 <Link
                   href="/Acompanhantes"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Escortes VIP
+                   {t('Footer.vip_escorts')}
                 </Link>
               </li>
               <li>
@@ -87,7 +93,7 @@ function Footer() {
                   href="/tarifs"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  BDSM
+                   {t('Footer.bdsm')}
                 </Link>
               </li>
               <li>
@@ -95,7 +101,7 @@ function Footer() {
                   href="/apropos"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Salons
+                   {t('Footer.salons')}
                 </Link>
               </li>
               <li>
@@ -103,15 +109,15 @@ function Footer() {
                   href="/Stories"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Stories
+                   {t('Footer.stories')}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/Stories"
+                  href="/stories"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Massage érotique
+                 {t('Footer.erotic_massage')}
                 </Link>
               </li>
             </ul>
@@ -119,28 +125,28 @@ function Footer() {
 
           {/* À PROPOS */}
           <div className="mb-8">
-            <p className="text-xl text-white py-2">À PROPOS</p>
+            <p className="text-xl text-white py-2">{t('Footer.about_title')}</p>
             <ul className="space-y-1">
               <li className="flex space-x-2">
                 <Link
                   href="/faq"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  FAQ
+                 {t('Footer.faq')}
                 </Link>
                 <span className="text-white">/</span>
                 <Link
                   href="/dmca"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  DMCA
+                  {t('Footer.dmca')}
                 </Link>
                 <span className="text-white">/</span>
                 <Link
                   href="/report"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Report
+                  {t('Footer.report')}
                 </Link>
               </li>
               <li>
@@ -148,7 +154,7 @@ function Footer() {
                   href="/Termos"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Termes et Conditions
+                 {t('Footer.terms_conditions')}
                 </Link>
               </li>
               <li>
@@ -156,7 +162,7 @@ function Footer() {
                   href="/Privacidade"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Politique de Confidentialité
+                  {t('Footer.privacy_policy')}
                 </Link>
               </li>
               <li className="flex space-x-2">
@@ -164,14 +170,14 @@ function Footer() {
                   href="/faq"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Lhistoire de XGIRL
+                  {t('Footer.xgirl_history')}
                 </Link>
                 <span className="text-white">/</span>
                 <Link
-                  href="/dmca"
+                  href="/contact"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Contact
+                  {t('Footer.contact')}
                 </Link>
               </li>
               <li>
@@ -179,7 +185,7 @@ function Footer() {
                   href="/regista2"
                   className="text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]"
                 >
-                  Nous rejoindre
+                 {t('Footer.join_us')}
                 </Link>
               </li>
             </ul>
@@ -187,12 +193,7 @@ function Footer() {
         </div>
         {/* Droit Ressource */}
         <div className="text-xs text-gray-400 md:flex-1 ">
-        Ce site web est une ressource publicitaire et dinformation et, à ce titre, na aucun lien ni aucune responsabilité
-        avec les sites ou individus mentionnés ici. Nous vendons UNIQUEMENT des espaces publicitaires, 
-        nous ne sommes pas une agence descorte et nous ne sommes en aucun cas impliqués dans des activités 
-        descorte ou de prostitution. Nous nassumons aucune responsabilité pour le contenu ou les actions de sites 
-        web des tiers ou des individus auxquels vous pouvez accéder en suivant les liens, les e-mails ou les contacts 
-        téléphoniques de ce portail.
+        {t('Footer.disclaimer')}
         </div>
         </div>
         {/* FOOTER BAS */}
@@ -205,8 +206,8 @@ function Footer() {
     
     {/* Colonne du milieu (COPYRIGHT centré) */}
     <div className="flex items-center justify-center">
-      <p className="text-xs text-white text-center">
-        &copy; {new Date().getFullYear()} XGirl. Tous droits réservés.
+    <p className="text-xs text-white text-center">
+        {t('Footer.copyright', { year: new Date().getFullYear() })}
       </p>
     </div>
 
