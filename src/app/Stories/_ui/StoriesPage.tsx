@@ -72,9 +72,9 @@ function StoriesPage({}) {
 
 
   return (
-    <div className="text-gray-600 bg-gray-900">
+    <div className="text-gray-600 bg-gray-900 pt-4">
       <div className="px-2 md:px-36">
-        <p className="text-pink-800 text-3xl text-center justify-center">
+        <p className="text-pink-800 text-3xl text-center justify-center mt-4">
         {t("storyPage.titleStory")}
         </p>
         {/* <div>

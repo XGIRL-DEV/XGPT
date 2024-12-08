@@ -30,7 +30,7 @@ const { t, i18n } = useTranslation();
   const pagamentos = selectedProfile?.pagamento;
 
   return (
-    <div className="bg-gray-800 px-10 pt-10 pb-10 w-full border border-zinc-700 rounded-3xl">
+    <div className="bg-gray-800 px-10 pt-10 pb-10 w-full border border-zinc-700 rounded-xl">
 <p className="text-pink-600 text-2xl">
   {t("profile.rates")}
 </p>

@@ -61,7 +61,7 @@ const Sobre: React.FC<SobreProps> = ({ selectedProfile }) => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className=" bg-gray-800 grid gap-2 py-3 w-full px-10 border border-zinc-700 rounded-3xl">
+    <div className=" bg-gray-800 grid gap-2 py-3 w-full px-10 border border-zinc-700 rounded-xl">
        <p className="text-pink-600 text-2xl"> 
   {t("profile.about", { name: selectedProfile?.nome })}</p>
 

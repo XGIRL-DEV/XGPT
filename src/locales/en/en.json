@@ -61,6 +61,8 @@
     "titleStory": "Escort Girls, Erotic Masseuses and Luxury Companions in France",
     "latest_stories": "Latest Stories"
   },
+
+
   "profile": {
     "previous": "Previous",
     "next": "Next",
@@ -113,6 +115,37 @@
       "spanish": "Spanish",
       "arabic": "Arabic"
     }
-  }
+    
+     
+  },
+
+
+  "loginPage": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "email_placeholder": "Enter your email", 
+    "password_placeholder": "Enter your password", 
+    "login_button": "Login",
+    "register_link": "Don't have an account? Register here",
+    "description": "Login to X-Girl to discover unique and confidential experiences."
+  },
+  "RegisterPage": {
+      "title": "XGirl.fr is the reference for exclusive escort listings in France",
+      "description_1": "Discover thousands of escorts on XGirl.fr",
+      "description_2": "The registration process is simple and quick.",
+      "description_3": "Increase your income significantly! Attract between 30 and 450 clients every month.",
+      "description_4": "Enjoy featured listings every month at no additional cost.",
+      "advantages_link": "Click here to see all the benefits", 
+      "create_account_title": "Create a New Account",
+      "email_label": "Email*",
+      "email_placeholder": "Enter your email",
+      "password_label": "Password*",
+      "password_placeholder": "Enter your password",
+      "confirm_password_label": "Confirm your password*",
+      "confirm_password_placeholder": "Confirm your password",
+      "register_button": "Create your account"
+    }
+
   }
   

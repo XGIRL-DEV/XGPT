@@ -193,7 +193,7 @@ console.log("stories RDX", storiesRDX)
       />
       <div className="container relative">
         <div className="w-screen bg-gray-900 flex flex-col user-profile justify-center align-middle">
-        <div className="md:flex md:mx-36 my-20 md:mt-22 relative">
+        <div className="md:flex md:mx-36 my-20 md:mt-24 relative">
         {showLiga && (
               <Liga
                 selectedProfile={selectedProfile as any}
@@ -282,7 +282,7 @@ console.log("stories RDX", storiesRDX)
 
 
 <div className="grid md:mx-0 gap-y-6 justify-center items-center px-10 md:px-2 min-h-screen align-middle ">
-<PhotosAndCertificado
+              <PhotosAndCertificado
                 selectedProfile={selectedProfile}
                 loading={loading}
                 isCertified={isCertified}
@@ -294,7 +294,7 @@ console.log("stories RDX", storiesRDX)
 
                 <ServicosPrestados selectedProfile={selectedProfile} />
 
-                <div className="bg-gray-800 grid gap-2 items-center  py-6 w-full px-10  border border-zinc-700 rounded-3xl">
+                <div className="bg-gray-800 grid gap-2 items-center  py-6 w-full px-10  border border-zinc-700 rounded-xl">
                 <p className="text-pink-700 text-2xl">{t("profile.description")}</p>
                 <div className="gap-4 mt-6">
                     <div
