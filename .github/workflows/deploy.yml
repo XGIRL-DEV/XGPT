@@ -85,6 +85,9 @@ jobs:
           # Lancer un nouveau conteneur avec les variables d'environnement
           docker run -d --restart unless-stopped --name xgirl-app --env-file /opt/xgirl/.env -p :3001:3000 xgirl-app:latest
 
+          # Connecter le conteneur au réseau `nginx-proxy-manager_default`
+          docker network connect nginx-proxy-manager_default xgirl-app
+
 
           # Supprimer les fichiers temporaires
           rm xgirl-app.tar.gz
