@@ -89,7 +89,7 @@ jobs:
           docker run -d --restart unless-stopped --name xgirl-app \
             --network nginx-proxy-manager_default \
             --env-file /opt/xgirl/.env \
-            -p 127.0.0.1:3001:3000 \  # Restriction à localhost
+            -p 127.0.0.1:3001:3000 \
             xgirl-app:latest
 
 
