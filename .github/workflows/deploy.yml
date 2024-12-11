@@ -87,13 +87,11 @@ jobs:
 
           # Lancer le nouveau conteneur avec une restriction d'accès à localhost
           docker run -d --restart unless-stopped --name xgirl-app \
-            --network web \
+            --network nginx-proxy-manager_default \
             --env-file /opt/xgirl/.env \
             -p 127.0.0.1:3001:3000 \  # Restriction à localhost
             xgirl-app:latest
 
-          # Connecter le conteneur au réseau `nginx-proxy-manager_default`
-          docker network connect nginx-proxy-manager_default xgirl-app
 
           # Supprimer les fichiers temporaires
           rm xgirl-app.tar.gz
