@@ -82,21 +82,12 @@ jobs:
             exit 1
           fi
 
-          # Lancer le nouveau conteneur dans les réseaux `nginx-proxy-manager_default` et `traefik_default`
+          # Lancer le nouveau conteneur avec une restriction d'accès à localhost
           docker run -d --restart unless-stopped --name xgirl-app \
             --network web \
             --env-file /opt/xgirl/.env \
-            -p :3001:3000 \
-            --label traefik.enable=true \
-            --label traefik.http.routers.xgirl.rule="Host(`xgirl.fr`)" \
-            --label traefik.http.routers.xgirl.entrypoints=web \
-            --label traefik.http.routers.xgirl.tls.certresolver=letsencrypt \
-            --label traefik.http.services.xgirl.loadbalancer.server.port=3001 \
+            -p 127.0.0.1:3001:3000 \  # Restriction à localhost
             xgirl-app:latest
-
-          # Connecter le conteneur au réseau `nginx-proxy-manager_default`
-          docker network connect nginx-proxy-manager_default xgirl-app
-
 
           # Supprimer les fichiers temporaires
           rm xgirl-app.tar.gz
