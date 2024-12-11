@@ -76,6 +76,9 @@ jobs:
           docker stop xgirl-app || true
           docker rm xgirl-app || true
 
+          # Vérifier que le réseau `nginx-proxy-manager_default` existe, sinon le créer
+          docker network inspect nginx-proxy-manager_default >/dev/null 2>&1 || docker network create nginx-proxy-manager_default
+
           # Vérifier que le fichier .env est présent
           if [ ! -f /opt/xgirl/.env ]; then
             echo "Erreur : Le fichier .env est manquant dans /opt/xgirl/"
@@ -88,6 +91,9 @@ jobs:
             --env-file /opt/xgirl/.env \
             -p 127.0.0.1:3001:3000 \  # Restriction à localhost
             xgirl-app:latest
+
+          # Connecter le conteneur au réseau `nginx-proxy-manager_default`
+          docker network connect nginx-proxy-manager_default xgirl-app
 
           # Supprimer les fichiers temporaires
           rm xgirl-app.tar.gz
