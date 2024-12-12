@@ -1,15 +1,14 @@
 "use client";
 import {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
-import {supabase} from "../../database/supabase";
-import {Profile} from "@/types";
-import Image from "next/image";
 
+import Image from "next/image";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useSelector} from "react-redux";
 import CommonInput from "@/components/ui/common-input";
 import SideBarAdmin from "./_ui/side-bar-admin";
+import {profileDataService} from "@/services/profileDataService";
 
 const AdminPage: React.FC = () => {
 	const [pendingProfiles, setPendingProfiles] = useState<Profile[]>([]);
@@ -17,22 +16,16 @@ const AdminPage: React.FC = () => {
 	const [inactiveProfiles, setInactiveProfiles] = useState<Profile[]>([]);
 	const [certificatedProfiles, setCertificatedProfiles] = useState<Profile[]>([]);
 	const [NoncertificatedProfiles, setNoncertificatedProfiles] = useState<Profile[]>([]);
-
 	const [activeSection, setActiveSection] = useState<string>("pending");
 	const [expandedProfile, setExpandedProfile] = useState<number | null>(null);
-
-	const [searchTerm, setSearchTerm] = useState<string>(""); // Novo estado para o termo de pesquisa
+	const [searchTerm, setSearchTerm] = useState<string>("");
 
 	const router = useRouter();
-
 	const userEmail = useSelector((state: any) => state.profile?.profile.email);
 
 	useEffect(() => {
 		const authorizedEmails = process.env.NEXT_PUBLIC_AUTHORIZED_EMAILS?.split(",") || [];
-
-		// Verifique se o usuário está autenticado e autorizado
 		if (!userEmail || !authorizedEmails.includes(userEmail)) {
-			// Redireciona para a página de login ou para onde desejar
 			router.push("/login");
 		}
 	}, [userEmail, router]);
@@ -42,214 +35,83 @@ const AdminPage: React.FC = () => {
 	}, []);
 
 	const fetchProfiles = async () => {
-		await fetchPendingProfiles();
-		await fetchApprovedProfiles();
-		await fetchInactiveProfiles();
-		await fetchcertificatedProfiles();
-		await fetchNonCertificatedProfiles();
-	};
-
-	const fetchPendingProfiles = async () => {
 		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").is("status", null);
+			const [pending, approved, inactive, certificated, nonCertificated] = await Promise.all([
+				profileDataService.getPendingProfiles(),
+				profileDataService.getApprovedProfiles(),
+				profileDataService.getInactiveProfiles(),
+				profileDataService.getCertificatedProfiles(),
+				profileDataService.getNonCertificatedProfiles(),
+			]);
 
-			if (error) {
-				throw error;
-			}
-
-			const profilesWithPhotos = await Promise.all(data.map(fetchProfileData));
-			setPendingProfiles(profilesWithPhotos);
+			setPendingProfiles(pending);
+			setApprovedProfiles(approved);
+			setInactiveProfiles(inactive);
+			setCertificatedProfiles(certificated);
+			setNoncertificatedProfiles(nonCertificated);
 		} catch (error) {
-			console.error("Error fetching pending profiles:", error.message);
+			console.error("Error fetching profiles:", error);
+			toast.error("Erro ao carregar os perfis. Tente novamente.");
 		}
-	};
-
-	const fetchApprovedProfiles = async () => {
-		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").eq("status", true);
-
-			if (error) {
-				throw error;
-			}
-
-			// Fetch profiles with both profile and verification photos
-			const profilesWithPhotos = await Promise.all(data.map(fetchProfileData));
-			setApprovedProfiles(profilesWithPhotos);
-		} catch (error) {
-			console.error("Error fetching approved profiles:", error.message);
-		}
-	};
-
-	const fetchProfileData = async (profile: Profile) => {
-		const profileWithPhoto = await fetchProfilePhotos(profile);
-		const profileWithVPhoto = await fetchProfileVPhotos(profileWithPhoto);
-		return profileWithVPhoto;
-	};
-
-	const fetchInactiveProfiles = async () => {
-		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").eq("status", false);
-
-			if (error) {
-				throw error;
-			}
-
-			const profilesWithPhotos = await Promise.all(data.map(fetchProfileData));
-			setInactiveProfiles(profilesWithPhotos);
-		} catch (error) {
-			console.error("Error fetching inactive profiles:", error.message);
-		}
-	};
-
-	const fetchcertificatedProfiles = async () => {
-		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").eq("certificado", true);
-
-			if (error) {
-				throw error;
-			}
-
-			const profilesWithPhotos = await Promise.all(data.map(fetchProfileData));
-			setCertificatedProfiles(profilesWithPhotos);
-		} catch (error) {
-			console.error("Error fetching active profiles:", error.message);
-		}
-	};
-
-	const fetchNonCertificatedProfiles = async () => {
-		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").eq("certificado", false);
-
-			if (error) {
-				throw error;
-			}
-
-			const profilesWithPhotos = await Promise.all(data.map(fetchProfileData));
-			setNoncertificatedProfiles(profilesWithPhotos);
-		} catch (error) {
-			console.error("Error fetching active profiles:", error.message);
-		}
-	};
-
-	const fetchProfilePhotos = async (profile: Profile) => {
-		const {data: profilePhotoData, error: profilePhotoError} = await supabase.from("profilephoto").select("*").eq("userUID", profile.userUID);
-
-		const profilePhotoURL = profilePhotoData && profilePhotoData.length > 0 ? profilePhotoData[0].imageurl : null;
-
-		return {
-			...profile,
-			photoURL: profilePhotoURL,
-		};
-	};
-
-	const fetchProfileVPhotos = async (profile: Profile) => {
-		const {data: profileVPhotoData, error: profileVPhotoDataError} = await supabase.from("VPhoto").select("*").eq("userUID", profile.userUID);
-
-		// Log para verificar se houve erro ao buscar a foto de verificação
-		if (profileVPhotoDataError) {
-			console.error("Error fetching verification photo:", profileVPhotoDataError.message);
-			return {
-				...profile,
-				vphotoURL: null, // Retorna a URL como null se houver erro
-			};
-		}
-
-		const profileVPhotoURL = profileVPhotoData?.[0]?.imageurl || null;
-
-		// Log para verificar a URL da foto de verificação recebida
-		console.log("Verification photo URL for userUID", profile.userUID, ":", profileVPhotoURL);
-
-		return {
-			...profile,
-			vphotoURL: profileVPhotoURL,
-		};
 	};
 
 	const handleApprove = async (id: number) => {
 		try {
-			const {error} = await supabase.from("ProfilesData").update({status: true}).eq("id", id);
+			await profileDataService.approveProfile(id);
+			const approvedProfile = pendingProfiles.find(profile => profile.id === id) || inactiveProfiles.find(profile => profile.id === id);
 
-			if (error) {
-				throw error;
-			} else {
-				const approvedProfile =
-					pendingProfiles.find(profile => profile.id === id) ||
-					pendingProfiles.find(profile => profile.id === id) ||
-					inactiveProfiles.find(profile => profile.id === id);
-
-				fetchProfiles();
-				if (approvedProfile) {
-					toast.success(`O perfil de ${approvedProfile.nome} foi aprovado.`);
-				}
+			await fetchProfiles();
+			if (approvedProfile) {
+				toast.success(`O perfil de ${approvedProfile.nome} foi aprovado.`);
 			}
 		} catch (error) {
-			console.error("Error approving profile:", error.message);
+			console.error("Error approving profile:", error);
 			toast.error("Erro ao aprovar o perfil. Tente novamente.");
 		}
 	};
 
 	const handleReject = async (id: number) => {
 		try {
-			const {error} = await supabase.from("ProfilesData").update({status: false}).eq("id", id);
+			await profileDataService.rejectProfile(id);
+			const rejectedProfile = approvedProfiles.find(profile => profile.id === id) || pendingProfiles.find(profile => profile.id === id);
 
-			if (error) {
-				throw error;
-			} else {
-				const rejectedProfile =
-					approvedProfiles.find(profile => profile.id === id) ||
-					pendingProfiles.find(profile => profile.id === id) ||
-					inactiveProfiles.find(profile => profile.id === id);
-
-				fetchProfiles();
-				if (rejectedProfile) {
-					toast.success(`O perfil de ${rejectedProfile.nome} foi rejeitado com sucesso.`);
-				}
+			await fetchProfiles();
+			if (rejectedProfile) {
+				toast.success(`O perfil de ${rejectedProfile.nome} foi rejeitado com sucesso.`);
 			}
 		} catch (error) {
-			console.error("Error rejecting profile:", error.message);
+			console.error("Error rejecting profile:", error);
 			toast.error("Erro ao rejeitar o perfil. Tente novamente.");
 		}
 	};
 
 	const handleRejectCertificado = async (id: number) => {
 		try {
-			const {error} = await supabase.from("ProfilesData").update({certificado: false}).eq("id", id);
+			await profileDataService.rejectCertificate(id);
+			const rejectedProfile = certificatedProfiles.find(profile => profile.id === id);
 
-			if (error) {
-				throw error;
-			} else {
-				const rejectedProfile = certificatedProfiles.find(profile => profile.id === id);
-
-				fetchProfiles();
-				if (rejectedProfile) {
-					toast.success(`O perfil de ${rejectedProfile.nome} foi rejeitado com sucesso.`);
-				}
+			await fetchProfiles();
+			if (rejectedProfile) {
+				toast.success(`O perfil de ${rejectedProfile.nome} foi rejeitado com sucesso.`);
 			}
 		} catch (error) {
-			console.error("Error rejecting profile:", error.message);
-			toast.error("Erro ao rejeitar o perfil. Tente novamente.");
+			console.error("Error rejecting certificate:", error);
+			toast.error("Erro ao rejeitar o certificado. Tente novamente.");
 		}
 	};
 
 	const handleAceptCertificado = async (id: number) => {
 		try {
-			const {error} = await supabase.from("ProfilesData").update({certificado: true}).eq("id", id);
+			await profileDataService.acceptCertificate(id);
+			const acceptedProfile = approvedProfiles.find(profile => profile.id === id);
 
-			if (error) {
-				throw error;
-			} else {
-				const rejectedProfile = approvedProfiles.find(profile => profile.id === id);
-
-				certificatedProfiles.find(profile => profile.id === id);
-
-				fetchProfiles();
-				if (rejectedProfile) {
-					toast.success(`O perfil de ${rejectedProfile.nome} foi certificado com sucesso.`);
-				}
+			await fetchProfiles();
+			if (acceptedProfile) {
+				toast.success(`O perfil de ${acceptedProfile.nome} foi certificado com sucesso.`);
 			}
 		} catch (error) {
-			console.error("Error rejecting profile:", error.message);
-			toast.error("Erro ao rejeitar o perfil. Tente novamente.");
+			console.error("Error accepting certificate:", error);
+			toast.error("Erro ao certificar o perfil. Tente novamente.");
 		}
 	};
 
