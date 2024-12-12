@@ -9,6 +9,7 @@ import {BlurImage} from "@/components/ui/blur-image";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer} from "react-toastify";
+import { Dialog,DialogContent } from "@/components/ui/dialog";
 
 interface ModificarFotosProps {
 	handleVoltar: () => void;
@@ -149,8 +150,8 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
 	};
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center bg-black bg-transparent backdrop-blur-lg z-50 '>
-			<div className='md:w-full md:max-w-4xl bg-gray-800 text-white rounded-xl border border-gray-500 shadow-xl my-24 mx-12 overflow-hidden h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
+		<Dialog>
+			<DialogContent className='md:w-full md:max-w-4xl  h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
 				<header className='bg-pink-800 py-6 px-4 md:px-10'>
 					<h1 className='text-xl md:text-3xl font-bold tracking-wide text-center'>Gerir Fotos</h1>
 					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Pode adicionar até 10 fotos</p>
@@ -208,8 +209,8 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
 						</button>
 					</div>
 				</footer>
-			</div>
-		</div>
+			</DialogContent>
+		</Dia>
 	);
 };
 

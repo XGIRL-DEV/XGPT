@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 import {Field, Label, Textarea} from "@headlessui/react";
 import clsx from "clsx";
 import {Button} from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const RegistoContacto: React.FC = () => {
 	const dispatch = useDispatch();
@@ -71,8 +72,8 @@ const RegistoContacto: React.FC = () => {
 	console.log("Estado Redux completo:", reduxState);
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center bg-gray-700 bg-transparent backdrop-blur-md z-50'>
-			<div className='w-full max-w-4xl bg-gray-800 text-white rounded-xl shadow-xl overflow-hidden h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-y-auto'>
+		<Dialog>
+			<DialogContent className='w-full max-w-4xl  overflow-hidden h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-y-auto'>
 				<div className='w-full pt-2 mb-2'>
 					<p className='text-pink-800 text-xl mt-8 pb-0 px-6'>Cria o teu Perfil de Anunciante</p>
 				</div>
@@ -142,8 +143,8 @@ const RegistoContacto: React.FC = () => {
 						</footer>
 					</div>
 				</div>
-			</div>
-		</div>
+			</DialogContent>
+		</Dia>
 	);
 };
 

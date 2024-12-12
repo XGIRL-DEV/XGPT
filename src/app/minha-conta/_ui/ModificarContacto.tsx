@@ -11,6 +11,9 @@ import {Field, Label, Textarea} from "@headlessui/react";
 import clsx from "clsx";
 import EmojiPicker, {EmojiClickData} from "emoji-picker-react";
 import {FaSmile} from "react-icons/fa"; // Importa um ícone de emoji
+
+import {Dialog} from "@/components/ui/dialog";
+import {DialogContent} from "@radix-ui/react-dialog";
 import CheckPagamento from "@/components/register/check-pagamento";
 import CheckLinguas from "@/components/register/check-linguas";
 import CheckServico from "@/components/register/check-servico";
@@ -142,8 +145,8 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 	};
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center bg-black bg-transparent backdrop-blur-lg z-50 '>
-			<div className='md:w-full md:max-w-4xl bg-gray-800 text-white rounded-xl border border-gray-500 shadow-xl my-24 mx-12 overflow-hidden h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
+		<Dialog>
+			<DialogContent className='md:w-full md:max-w-4xl h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
 				<header className='bg-pink-800 py-6 px-4 md:px-10'>
 					<h1 className='text-xl md:text-3xl font-bold tracking-wide text-center'>Dados Gerais</h1>
 					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Altere os seus dados sempre que quiser</p>
@@ -211,8 +214,8 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 						</button>
 					</div>
 				</footer>
-			</div>
-		</div>
+			</DialogContent>
+		</Dialog>
 	);
 };
 

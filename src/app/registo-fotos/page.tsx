@@ -7,6 +7,7 @@ import {IoTrashBin} from "react-icons/io5";
 import supabase from "@/database/supabase";
 import {updatePhotos, updateVPhotos} from "@/actions/ProfileActions";
 import {BlurImage} from "@/components/ui/blur-image";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const RegistoFotos: React.FC = () => {
 	const dispatch = useDispatch();
@@ -86,8 +87,8 @@ const RegistoFotos: React.FC = () => {
 	};
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md z-50'>
-			<div className='w-full max-w-4xl bg-gray-900 text-white rounded-xl shadow-2xl overflow-hidden h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-y-auto'>
+		<Dialog>
+			<DialogContent className='w-full max-w-4xl h-[90vh] sm:h-auto sm:max-h-[80vh]'>
 				{/* Header */}
 				<header className='w-full px-6 pt-8 pb-4'>
 					<h1 className='text-pink-800 text-2xl font-semibold'>Cria o teu Perfil de Anunciante</h1>
@@ -183,8 +184,8 @@ const RegistoFotos: React.FC = () => {
 						</Link>
 					</div>
 				</footer>
-			</div>
-		</div>
+			</DialogContent>
+		</Dia>
 	);
 };
 
