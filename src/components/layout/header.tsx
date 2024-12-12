@@ -245,7 +245,7 @@ const Header: React.FC<HeaderProps> = ({blur}) => {
 											</li>
 											<li
 												onClick={() => {
-													router.push("/Definicoes");
+													router.push("/definicoes");
 													setLanguageDropdownOpen(false);
 												}}
 												className='flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200'

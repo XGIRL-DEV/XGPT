@@ -4,9 +4,9 @@ import {useSelector, useDispatch} from "react-redux";
 import {updateTag} from "@/actions/ProfileActions";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Button} from "./ui/button";
-import CommonInput from "./ui/common-input";
-import {Dialog, DialogContent} from "./ui/dialog";
+import {Button} from "../ui/button";
+import CommonInput from "../ui/common-input";
+import {Dialog, DialogContent} from "../ui/dialog";
 import {profileDataService} from "@/services/profileDataService";
 
 interface ModalAtualizarTagProps {

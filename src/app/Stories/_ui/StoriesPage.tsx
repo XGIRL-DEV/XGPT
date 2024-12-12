@@ -10,7 +10,7 @@ import {Profile} from "@/types";
 
 // import CitySelector from "@/components/CitySelector";
 import {useTranslation} from "react-i18next";
-import CaroselRound from "@/components/carosel-round";
+import CaroselRound from "@/components/ui/carosel-round";
 import StoryBigS from "./storyBigS";
 import StoryCard from "./StoryCard";
 

@@ -9,7 +9,7 @@ import {FiChevronDown} from "react-icons/fi";
 
 import {useTranslation} from "react-i18next";
 import MainCard from "@/components/ui/main-card";
-import CaroselRound from "@/components/carosel-round";
+import CaroselRound from "@/components/ui/carosel-round";
 import {Button} from "@/components/ui/button";
 
 export interface Profile {

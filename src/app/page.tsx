@@ -11,7 +11,7 @@ import {useLanguage} from "../context/LanguageContext"; // Importe o contexto de
 import {useTranslation} from "react-i18next";
 import MainCard from "@/components/ui/main-card";
 
-import LastAnnounce from "@/components/last-announce";
+import LastAnnounce from "@/app/_ui/last-announce";
 import CarouselG from "@/app/_ui/carosel-g";
 import InfoCard from "@/components/ui/info-card";
 
