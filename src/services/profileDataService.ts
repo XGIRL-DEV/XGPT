@@ -1,4 +1,5 @@
 // services/profileService.ts
+import {Profile, UserProfileData} from "@/types";
 import {supabase} from "../database/supabase";
 
 export class ProfileDataService {
@@ -202,6 +203,56 @@ export class ProfileDataService {
 		}
 
 		return photoData;
+	}
+
+	async fetchProfiles() {
+		try {
+			const {data, error} = await supabase.from("ProfilesData").select("*").eq("status", true);
+
+			if (error) {
+				throw error;
+			}
+			return data;
+		} catch (error: any) {
+			console.error("Erro ao buscar perfis:", error?.message);
+			throw error;
+		}
+	}
+
+	async fetchProfile(profileName: string) {
+		try {
+			const {data: profileData, error: profileError} = await supabase.from("ProfilesData").select("*").eq("nome", decodeURIComponent(profileName)).single();
+
+			if (profileError) {
+				throw profileError;
+			}
+
+			const {data: photoData, error: photoError} = await supabase.from("profilephoto").select("*").eq("userUID", profileData.userUID);
+
+			if (photoError) {
+				throw photoError;
+			}
+
+			const {data: storyData, error: storyError} = await supabase.from("stories").select("*").eq("userUID", profileData.userUID);
+
+			if (storyError) {
+				throw storyError;
+			}
+
+			const combinedProfileData = {
+				...profileData,
+				photoURL: photoData.map(photo => photo.imageurl) || [],
+				storyURL: storyData?.map(story => story.storyurl) || [],
+			};
+
+			return {
+				profile: combinedProfileData,
+				isCertified: profileData.certificado,
+			};
+		} catch (error: any) {
+			console.error("Erro ao buscar perfil:", error.message);
+			throw error;
+		}
 	}
 }
 

@@ -1,19 +1,13 @@
 "use client";
 import {useEffect, useState} from "react";
-
 import Liga from "@/components/Profile/liga";
 import Partilha from "@/components/Profile/partilha";
 import Certificado from "@/app/escort/_ui/certificado";
 import Sobre from "@/components/Profile/sobre";
-import supabase from "@/database/supabase";
-
 import Tarifas from "@/components/Profile/tarifas";
-
 import Linguas from "@/components/Profile/idioma";
 import {useParams} from "next/navigation";
-
 import {useSelector} from "react-redux";
-
 import {useTranslation} from "react-i18next";
 import LeftSide from "@/components/Profile/left-side";
 import FotoBig from "@/components/Profile/foto-big";
@@ -22,46 +16,35 @@ import PhotosAndCertificado from "@/components/Profile/photos-and-certificado";
 import ServicosPrestados from "@/components/Profile/servicos-prestados";
 import HeaderG from "@/components/header-filter/header-g";
 import Comments from "./_ui/comments";
+import {Profile} from "@/types";
+import {profileDataService} from "@/services/profileDataService";
 
 function UserProfile() {
 	const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 	const [profiles, setProfiles] = useState<Profile[]>([]);
-	const [isCertified, setIsCertified] = useState<boolean | null>(null); // Inicialize como null
-	const [loading, setLoading] = useState<boolean>(true); // Novo estado de carregamento
+	const [isCertified, setIsCertified] = useState<boolean | null>(null);
+	const [loading, setLoading] = useState<boolean>(true);
 	const {profileName} = useParams<{profileName: string}>();
 	const [showLargePhoto, setShowLargePhoto] = useState(false);
 	const [showLargeStory, setShowLargeStory] = useState(false);
-
 	const [photoIndex, setPhotoIndex] = useState(0);
 	const [StoryIndex, setStoryIndex] = useState(0);
-
 	const [showLiga, setShowLiga] = useState(false);
 	const [showPartilha, setShowPartilha] = useState(false);
 	const [showCertificado, setShowCertificado] = useState(false);
 	const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
-
 	const [thumbnails, setThumbnails] = useState<string[]>([]);
 	const {t, i18n} = useTranslation();
 
 	const userUID = useSelector((state: any) => state.profile?.profile.userUID);
-	console.log("uid", userUID);
-
 	const photoURLsRedux = useSelector((state: any) => state.profile?.profile.photos);
-	console.log("fotos redux", photoURLsRedux);
-
 	const storyURLsRedux = useSelector((state: any) => state.profile?.profile.stories);
-	console.log("stories redux", storyURLsRedux);
 
 	const storiesRDX = selectedProfile?.storyURL;
-	console.log("stories RDX", storiesRDX);
 
 	const fetchProfiles = async () => {
 		try {
-			const {data, error} = await supabase.from("ProfilesData").select("*").eq("status", true);
-
-			if (error) {
-				throw error;
-			}
+			const data = await profileDataService.fetchProfiles();
 			setProfiles(data);
 		} catch (error: any) {
 			console.error("Erro ao buscar perfis:", error?.message);
@@ -75,48 +58,14 @@ function UserProfile() {
 	useEffect(() => {
 		async function fetchProfile() {
 			try {
-				setLoading(true); // Inicia o carregamento
-				const {data: profileData, error: profileError} = await supabase.from("ProfilesData").select("*").eq("nome", decodeURIComponent(profileName)).single();
-
-				if (profileError) {
-					throw profileError;
-				}
-
-				const {data: photoData, error: photoError} = await supabase.from("profilephoto").select("*").eq("userUID", profileData.userUID);
-
-				if (photoError) {
-					throw photoError;
-				}
-
-				// Log dos dados de fotos recebidos para inspecionar
-				console.log("Dados de fotos recebidos do Supabase:", photoData);
-
-				const photoURLs = photoData.map(photo => photo.imageurl);
-				console.log("URLs das fotos mapeadas:", photoURLs);
-
-				// Log dos dados combinados (perfil + fotos)
-
-				const {data: storyData, error: storyError} = await supabase.from("stories").select("*").eq("userUID", profileData.userUID);
-
-				if (storyError) {
-					throw storyError;
-				}
-
-				const storyURL = storyData.map(story => story.storyurl);
-				console.log("URLs dos stories mapeadas:", storyURL);
-
-				const combinedProfileData = {
-					...profileData,
-					photoURL: photoData.map(photo => photo.imageurl) || [], // Garante que seja sempre um array
-					storyURL: storyData?.map(story => story.storyurl) || [],
-				};
-
-				setIsCertified(profileData.certificado); // Atualize o estado com a certificação
-				setSelectedProfile(combinedProfileData); // Atualize o perfil selecionado
+				setLoading(true);
+				const {profile, isCertified: certified} = await profileDataService.fetchProfile(profileName);
+				setIsCertified(certified);
+				setSelectedProfile(profile);
 			} catch (error: any) {
 				console.error("Erro ao buscar perfil:", error.message);
 			} finally {
-				setLoading(false); // Encerra o carregamento
+				setLoading(false);
 			}
 		}
 

@@ -1,4 +1,4 @@
-interface Profile {
+export interface Profile {
 	id: number;
 	nome: string;
 	photos: string[];
@@ -36,7 +36,7 @@ interface Profile {
 	live?: boolean; // Adicionei a propriedade 'live' aqui, tornando-a opcional
 }
 
-interface UserProfileData {
+export interface UserProfileData {
 	userUID: string;
 	email: string;
 	nome: string;
@@ -66,7 +66,7 @@ interface UserProfileData {
 	status: null;
 }
 
-interface PhotoData {
+export interface PhotoData {
 	userUID: string;
 	imageurl: string;
 }
