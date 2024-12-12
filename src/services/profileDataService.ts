@@ -163,6 +163,46 @@ export class ProfileDataService {
 
 		return data.status;
 	}
+
+	static async createProfile(userData: UserProfileData): Promise<null> {
+		const {data: profileData, error: profileError} = await supabase.from("ProfilesData").insert([userData]);
+
+		if (profileError) {
+			throw new Error(`Erro ao inserir dados na tabela ProfilesData: ${profileError.message}`);
+		}
+
+		return profileData;
+	}
+
+	static async uploadProfilePhotos(userUID: string, photoURLs: string[]): Promise<null> {
+		const photoInsertions = photoURLs.map(photoURL => ({
+			userUID,
+			imageurl: photoURL,
+		}));
+
+		const {data: photoData, error: photoError} = await supabase.from("profilephoto").insert(photoInsertions);
+
+		if (photoError) {
+			throw new Error(`Erro ao inserir URLs das fotos na tabela profilephoto: ${photoError.message}`);
+		}
+
+		return photoData;
+	}
+
+	static async uploadVerificationPhotos(userUID: string, photoURLs: string[]): Promise<null> {
+		const photoInsertions = photoURLs.map(photoURL => ({
+			userUID,
+			imageurl: photoURL,
+		}));
+
+		const {data: photoData, error: photoError} = await supabase.from("VPhoto").insert(photoInsertions);
+
+		if (photoError) {
+			throw new Error(`Erro ao inserir URLs das fotos de verificação: ${photoError.message}`);
+		}
+
+		return photoData;
+	}
 }
 
 export const profileDataService = new ProfileDataService();

@@ -20,7 +20,6 @@ const Password: React.FC = () => {
 			return;
 		}
 
-		// Obtenha o usuário atual
 		const {
 			data: {user},
 			error: userError,
@@ -65,21 +64,6 @@ const Password: React.FC = () => {
 			</h2>
 			<form className='mt-4' onSubmit={handleChangePassword}>
 				<div className='mb-6'>
-					{/* <label
-            className="block text-gray-300 mb-2"
-            htmlFor="current-password"
-          >
-            Palavra-passe Atual:
-          </label>
-          <input
-            type="password"
-            id="current-password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-            className="w-full p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:outline-none focus:border-pink-500 transition duration-200"
-            placeholder="Digite sua palavra-passe atual"
-          /> */}
 					<CommonInput
 						label='Palavra-passe Atual:'
 						value={currentPassword}
@@ -90,18 +74,6 @@ const Password: React.FC = () => {
 				</div>
 
 				<div className='mb-6'>
-					{/* <label className='block text-gray-300 mb-2' htmlFor='new-password'>
-						Nova Senha:
-					</label>
-					<input
-						type='password'
-						id='new-password'
-						value={newPassword}
-						onChange={e => setNewPassword(e.target.value)}
-						required
-						className='w-full p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:outline-none focus:border-pink-500 transition duration-200'
-						placeholder='Digite sua nova senha'
-					/> */}
 					<CommonInput
 						label='Nova Senha:'
 						value={newPassword}
@@ -113,18 +85,6 @@ const Password: React.FC = () => {
 				</div>
 
 				<div className='mb-6'>
-					{/* <label className='block text-gray-300 mb-2' htmlFor='confirm-password'>
-						Confirmar Nova Senha:
-					</label>
-					<input
-						type='password'
-						id='confirm-password'
-						value={confirmPassword}
-						onChange={e => setConfirmPassword(e.target.value)}
-						required
-						className='w-full p-3 rounded-xl bg-gray-700 text-gray-300 border border-gray-600 focus:outline-none focus:border-pink-500 transition duration-200'
-						placeholder='Confirme sua nova senha'
-					/> */}
 					<CommonInput
 						label='Confirmar Nova Senha:'
 						value={confirmPassword}
