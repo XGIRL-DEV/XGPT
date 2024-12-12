@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {FaTimes} from "react-icons/fa";
 import {useSelector, useDispatch} from "react-redux";
-import supabase from "@/database/supabase";
 import {updateTag} from "@/actions/ProfileActions";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Button} from "./ui/button";
 import CommonInput from "./ui/common-input";
 import {Dialog, DialogContent} from "./ui/dialog";
+import {profileDataService} from "@/services/profileDataService";
 
 interface ModalAtualizarTagProps {
 	isOpen: boolean;
@@ -19,6 +19,7 @@ const ModalAtualizarTag: React.FC<ModalAtualizarTagProps> = ({isOpen, onClose}) 
 
 	// Obtém dados do Redux
 	const tagRedux = useSelector((state: any) => state.profile?.profile?.tag);
+	const [isLoading, setIsLoading] = useState(false);
 	const userUID = useSelector((state: any) => state.profile?.profile?.userUID);
 	const dispatch = useDispatch();
 
@@ -30,42 +31,27 @@ const ModalAtualizarTag: React.FC<ModalAtualizarTagProps> = ({isOpen, onClose}) 
 			return;
 		}
 
+		setIsLoading(true);
 		try {
-			// Obter sessão do usuário
-			const {
-				data: {session},
-				error: sessionError,
-			} = await supabase.auth.getSession();
-			if (sessionError || !session) {
-				console.error("Erro ao obter sessão:", sessionError);
-				toast.error("Erro ao autenticar. Faça login novamente.");
-				return;
+			const response = await profileDataService.updateTag(userUID, tagInput);
+
+			if (!response.success) {
+				throw new Error(response.error);
 			}
 
-			// Atualizar tag no Supabase
-			const {data, error} = await supabase
-				.from("ProfilesData") // Nome da tabela
-				.update({tag: tagInput}) // Atualiza o campo `tag`
-				.eq("userUID", userUID);
+			// Update Redux state
+			dispatch(updateTag(tagInput));
+			toast.success("Novo estado atualizado com sucesso!");
 
-			if (error) {
-				console.error("Erro ao atualizar o estado:", error.message || error);
-				toast.error("Erro ao atualizar o estado. Tente novamente.");
-			} else {
-				console.log("Estado atualizado com sucesso:", data);
-				// Atualiza o estado no Redux
-				dispatch(updateTag(tagInput));
-				toast.success("Novo estado atualizado com sucesso!");
-
-				// Adiar o fechamento do modal para permitir exibição do toast
-				setTimeout(() => {
-					onClose(); // Fecha o modal
-				}, 1600); // 300ms de delay
-				setTagInput(""); // Limpa o campo de entrada
-			}
-		} catch (err) {
-			console.error("Erro inesperado:", err);
-			toast.error("Ocorreu um erro inesperado.");
+			// Delay modal closing to show the toast
+			setTimeout(() => {
+				onClose();
+				setTagInput("");
+			}, 1600);
+		} catch (error: any) {
+			toast.error(error.message || "Ocorreu um erro inesperado.");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 

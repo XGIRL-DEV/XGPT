@@ -1,5 +1,5 @@
 // services/profileService.ts
-import {Profile, UserProfileData} from "@/types";
+import {Profile, UpdateTagResponse, UserProfileData} from "@/types";
 import {supabase} from "../database/supabase";
 
 export class ProfileDataService {
@@ -252,6 +252,45 @@ export class ProfileDataService {
 		} catch (error: any) {
 			console.error("Erro ao buscar perfil:", error.message);
 			throw error;
+		}
+	}
+	async getSession() {
+		try {
+			const {
+				data: {session},
+				error,
+			} = await supabase.auth.getSession();
+			if (error) throw error;
+			return {session, error: null};
+		} catch (error: any) {
+			console.error("Session error:", error);
+			return {session: null, error: error.message};
+		}
+	}
+
+	async updateTag(userUID: string, newTag: string): Promise<UpdateTagResponse> {
+		try {
+			// First verify session
+			const {session, error: sessionError} = await this.getSession();
+			if (sessionError || !session) {
+				throw new Error("Authentication error. Please login again.");
+			}
+
+			// Update tag in Supabase
+			const {data, error} = await supabase.from("ProfilesData").update({tag: newTag}).eq("userUID", userUID);
+
+			if (error) throw error;
+
+			return {
+				success: true,
+				data,
+			};
+		} catch (error: any) {
+			console.error("Update tag error:", error);
+			return {
+				success: false,
+				error: error.message || "An unexpected error occurred",
+			};
 		}
 	}
 }

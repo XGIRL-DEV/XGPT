@@ -70,3 +70,9 @@ export interface PhotoData {
 	userUID: string;
 	imageurl: string;
 }
+
+export interface UpdateTagResponse {
+	success: boolean;
+	data?: any;
+	error?: string;
+}
