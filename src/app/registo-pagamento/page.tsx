@@ -1,7 +1,6 @@
 "use client"; // Certifique-se de que esta linha está no início do arquivo
 import React from "react";
 import {useRouter} from "next/navigation"; // Corrigido para 'next/navigation'
-import supabase from "@/database/supabase";
 import {useSelector} from "react-redux";
 import Link from "next/link";
 import {ProfileDataService} from "@/services/profileDataService";

@@ -1,8 +1,9 @@
+// components/Password.tsx
 import CommonInput from "@/components/ui/common-input";
-import supabase from "@/database/supabase";
+import {AuthService} from "@/services/authService";
 import React, {useState} from "react";
 import {FaLock} from "react-icons/fa";
-import {ToastContainer, toast} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Password: React.FC = () => {
@@ -12,6 +13,13 @@ const Password: React.FC = () => {
 	const [error, setError] = useState<string | null>(null);
 	const [success, setSuccess] = useState<string | null>(null);
 
+	const resetForm = () => {
+		setCurrentPassword("");
+		setNewPassword("");
+		setConfirmPassword("");
+		setError(null);
+	};
+
 	const handleChangePassword = async (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -20,45 +28,18 @@ const Password: React.FC = () => {
 			return;
 		}
 
-		const {
-			data: {user},
-			error: userError,
-		} = await supabase.auth.getUser();
+		const response = await AuthService.changePassword(currentPassword, newPassword);
 
-		if (userError || !user) {
-			setError("Erro ao obter o usuário.");
-			return;
-		}
-
-		// Verifique a senha atual
-		const {error: signInError} = await supabase.auth.signInWithPassword({
-			email: user.email as string,
-			password: currentPassword,
-		});
-
-		if (signInError) {
-			setError("A palavra-passe atual está incorreta.");
-			return;
-		}
-
-		// Tente atualizar a senha com a nova senha
-		const {error: updateError} = await supabase.auth.updateUser({
-			password: newPassword,
-		});
-
-		if (updateError) {
-			setError(updateError.message);
+		if (response.success) {
+			setSuccess(response.message || "Senha alterada com sucesso!");
+			resetForm();
 		} else {
-			setSuccess("Senha alterada com sucesso!");
-			setCurrentPassword("");
-			setNewPassword("");
-			setConfirmPassword("");
-			setError(null);
+			setError(response.error || "Erro ao alterar a senha");
 		}
 	};
 
 	return (
-		<div className='bg-gray-800 p-8 rounded-lg mb-6 shadow-lg  z-50'>
+		<div className='bg-gray-800 p-8 rounded-lg mb-6 shadow-lg z-50'>
 			<h2 className='text-3xl font-bold mb-6 text-pink-500 flex items-center'>
 				<FaLock className='mr-2 text-4xl' /> Alterar Senha
 			</h2>
