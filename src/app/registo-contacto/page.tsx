@@ -3,15 +3,12 @@ import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import Link from "next/link";
 
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 import CheckDeslocacoes from "@/components/register/check-deslocacoes";
 import CheckPagamento from "@/components/register/check-pagamento";
 import CheckLinguas from "@/components/register/check-linguas";
 import CheckServico from "@/components/register/check-servico";
 import FiltroPrice from "@/components/filtros/filtro-tarifa";
 import {updateDescription, updatePagamento, updateLingua, updateServico} from "@/actions/ProfileActions";
-import dynamic from "next/dynamic";
 
 import {Field, Label, Textarea} from "@headlessui/react";
 import clsx from "clsx";
