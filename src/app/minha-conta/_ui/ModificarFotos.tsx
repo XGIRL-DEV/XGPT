@@ -9,7 +9,7 @@ import {BlurImage} from "@/components/ui/blur-image";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer} from "react-toastify";
-import { Dialog,DialogContent } from "@/components/ui/dialog";
+import {Dialog, DialogContent} from "@/components/ui/dialog";
 
 interface ModificarFotosProps {
 	handleVoltar: () => void;
@@ -210,7 +210,7 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
 					</div>
 				</footer>
 			</DialogContent>
-		</Dia>
+		</Dialog>
 	);
 };
 

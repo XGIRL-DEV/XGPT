@@ -7,7 +7,7 @@ import {IoTrashBin} from "react-icons/io5";
 import supabase from "@/database/supabase";
 import {updatePhotos, updateVPhotos} from "@/actions/ProfileActions";
 import {BlurImage} from "@/components/ui/blur-image";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {Dialog, DialogContent} from "@/components/ui/dialog";
 
 const RegistoFotos: React.FC = () => {
 	const dispatch = useDispatch();
@@ -185,7 +185,7 @@ const RegistoFotos: React.FC = () => {
 					</div>
 				</footer>
 			</DialogContent>
-		</Dia>
+		</Dialog>
 	);
 };
 

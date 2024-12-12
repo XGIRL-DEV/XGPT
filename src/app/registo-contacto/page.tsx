@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 import {Field, Label, Textarea} from "@headlessui/react";
 import clsx from "clsx";
 import {Button} from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {Dialog, DialogContent} from "@/components/ui/dialog";
 
 const RegistoContacto: React.FC = () => {
 	const dispatch = useDispatch();
@@ -144,7 +144,7 @@ const RegistoContacto: React.FC = () => {
 					</div>
 				</div>
 			</DialogContent>
-		</Dia>
+		</Dialog>
 	);
 };
 
