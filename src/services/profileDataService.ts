@@ -101,6 +101,68 @@ export class ProfileDataService {
 
 		if (error) throw error;
 	}
+	async deleteVerificationPhotos(userUID: string): Promise<void> {
+		const {error} = await supabase.from("VPhoto").delete().match({userUID});
+		if (error) {
+			throw new Error(`Error deleting verification photos: ${error.message}`);
+		}
+	}
+
+	async deleteStories(userUID: string): Promise<void> {
+		const {error} = await supabase.from("stories").delete().match({userUID});
+		if (error) {
+			throw new Error(`Error deleting stories: ${error.message}`);
+		}
+	}
+
+	async deleteProfile(userUID: string): Promise<void> {
+		const {error} = await supabase.from("ProfilesData").delete().match({userUID});
+		if (error) {
+			throw new Error(`Error deleting profile: ${error.message}`);
+		}
+	}
+
+	async deleteAccount(userUID: string): Promise<void> {
+		await this.deleteStories(userUID);
+		await this.deleteVerificationPhotos(userUID);
+		await this.deleteProfile(userUID);
+
+		const response = await fetch("/api/delete-account", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({userId: userUID}),
+		});
+
+		const result = await response.json();
+		if (!response.ok) {
+			throw new Error(result.error);
+		}
+
+		const {error} = await supabase.auth.signOut();
+		if (error) {
+			throw new Error("Error logging out: " + error.message);
+		}
+	}
+
+	async updateProfileStatus(userUID: string, status: boolean): Promise<void> {
+		const {error} = await supabase.from("ProfilesData").update({status}).match({userUID});
+
+		if (error) {
+			throw new Error(`Error updating status: ${error.message}`);
+		}
+	}
+
+	async fetchProfileStatus(userUID: string): Promise<boolean> {
+		const {data, error} = await supabase.from("ProfilesData").select("status").eq("userUID", userUID).single();
+
+		if (error) {
+			throw new Error(`Error fetching status: ${error.message}`);
+		}
+
+		return data.status;
+	}
 }
 
 export const profileDataService = new ProfileDataService();

@@ -1,12 +1,11 @@
-import supabase from "@/database/supabase";
 import React, {useState, useEffect} from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {FaUser} from "react-icons/fa";
 import {logout} from "@/actions/ProfileActions";
-import {useDispatch} from "react-redux";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalConfirmation from "./ModalConfirmation";
+import {profileDataService} from "@/services/profileDataService";
 
 const AccountSettings: React.FC = () => {
 	const dispatch = useDispatch();
@@ -15,109 +14,43 @@ const AccountSettings: React.FC = () => {
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 	const [showSuspendModal, setShowSuspendModal] = useState(false);
 
-	const handleDeleteVerificationPhotos = async (userUID: string) => {
-		try {
-			const {error} = await supabase.from("VPhoto").delete().match({userUID});
-
-			if (error) {
-				throw new Error(`Erro ao eliminar fotos de verificação: ${error.message}`);
-			}
-
-			console.log("Fotos de verificação eliminadas com sucesso.");
-		} catch (error) {
-			console.error("Erro ao eliminar as fotos de verificação:", error);
-		}
-	};
-
-	const handleDeleteStories = async (userUID: string) => {
-		try {
-			const {error} = await supabase.from("stories").delete().match({userUID});
-
-			if (error) {
-				throw new Error(`Erro ao eliminar stories: ${error.message}`);
-			}
-
-			console.log("Stories eliminados com sucesso.");
-		} catch (error) {
-			console.error("Erro ao eliminar stories:", error);
-		}
-	};
-
-	const handleDeleteProfile = async (userUID: string) => {
-		try {
-			const {error} = await supabase.from("ProfilesData").delete().match({userUID});
-
-			if (error) {
-				throw new Error(`Erro ao eliminar perfil: ${error.message}`);
-			}
-
-			console.log("Perfil eliminado com sucesso.");
-		} catch (error) {
-			console.error("Erro ao eliminar o perfil:", error);
-		}
-	};
-
 	const deleteAccount = async () => {
 		if (!userUID) {
-			console.error("Usuário não está logado ou ID do usuário não disponível.");
+			console.error("User is not logged in or user ID is not available.");
 			return;
 		}
 
 		try {
-			await handleDeleteStories(userUID);
-			await handleDeleteVerificationPhotos(userUID);
-			await handleDeleteProfile(userUID);
-
-			const response = await fetch("/api/delete-account", {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({userId: userUID}),
-			});
-
-			const result = await response.json();
-			if (!response.ok) {
-				throw new Error(result.error);
-			}
-
-			toast.success("A tua conta foi eliminada permanentemente com sucesso."); // Toast de sucesso
-
-			const {error} = await supabase.auth.signOut();
-			if (error) {
-				throw new Error("Erro ao fazer logout: " + error.message);
-			}
+			await profileDataService.deleteAccount(userUID);
+			toast.success("Your account has been permanently deleted successfully.");
 			dispatch(logout());
-
 			window.location.replace("/login");
 		} catch (error) {
-			toast.error("Erro ao eliminar conta ou perfil."); // Toast para erro
-			console.error("Erro ao eliminar conta ou perfil:", error);
+			toast.error("Error deleting account or profile.");
+			console.error("Error deleting account or profile:", error);
 		}
 	};
 
 	const toggleStatus = async () => {
-		const newStatus = !status;
-		const {error} = await supabase.from("ProfilesData").update({status: newStatus}).match({userUID});
-
-		if (error) {
-			toast.error("Erro ao atualizar o status."); // Toast para erro
-			console.error("Erro ao atualizar o status:", error);
-		} else {
+		try {
+			const newStatus = !status;
+			await profileDataService.updateProfileStatus(userUID, newStatus);
 			setStatus(newStatus);
-			const message = newStatus ? "O teu Perfil foi Reactivado com Sucesso." : "O teu Perfil foi Suspendido Temporariamente com Sucesso.";
-			toast.success(message); // Toast de sucesso
+			const message = newStatus ? "Your Profile has been Successfully Reactivated." : "Your Profile has been Temporarily Suspended Successfully.";
+			toast.success(message);
+		} catch (error) {
+			toast.error("Error updating status.");
+			console.error("Error updating status:", error);
 		}
 	};
 
 	useEffect(() => {
 		const fetchStatus = async () => {
-			const {data, error} = await supabase.from("ProfilesData").select("status").eq("userUID", userUID).single();
-
-			if (error) {
-				console.error("Erro ao buscar status:", error);
-			} else {
-				setStatus(data.status);
+			try {
+				const currentStatus = await profileDataService.fetchProfileStatus(userUID);
+				setStatus(currentStatus);
+			} catch (error) {
+				console.error("Error fetching status:", error);
 			}
 		};
 
@@ -128,11 +61,10 @@ const AccountSettings: React.FC = () => {
 
 	const toggleAccountStatus = async () => {
 		try {
-			setStatus(!status);
-			toast.success(status ? "Conta suspensa com sucesso!" : "Conta reativada com sucesso!");
+			await toggleStatus();
 			setShowSuspendModal(false);
 		} catch (error) {
-			toast.error("Ocorreu um erro ao alterar o status da conta.");
+			toast.error("An error occurred while changing the account status.");
 		}
 	};
 
@@ -194,5 +126,4 @@ const AccountSettings: React.FC = () => {
 		</div>
 	);
 };
-
 export default AccountSettings;
