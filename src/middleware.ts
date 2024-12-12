@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Middleware simplificado para permitir acesso a todas as rotas
@@ -6,5 +6,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/Acompanhantes/:path*'],
+  matcher: ["/admin/:path*", "/acompanhantes/:path*"],
 };

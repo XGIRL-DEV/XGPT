@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import HeaderLoged from "@/components/Register/HeaderLoged";
+import HeaderLoged from "@/components/register/header-loged";
 import supabase from "@/database/supabase";
 import { useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
@@ -65,7 +65,10 @@ function Definicoes() {
               activeTab === "email" ? "bg-pink-800" : "bg-gray-400"
             } hover:bg-pink-900 text-white px-6 py-2 cursor-pointer align-center items-center rounded-l-md`}
           >
-            <MdOutlineEmail size={20} className="mr-2 items-center align-middle" />
+            <MdOutlineEmail
+              size={20}
+              className="mr-2 items-center align-middle"
+            />
             Email
           </div>
 
@@ -85,7 +88,10 @@ function Definicoes() {
               activeTab === "billing" ? "bg-pink-800" : "bg-gray-400"
             } hover:bg-pink-900 text-white px-6 py-2 cursor-pointer align-center items-center`}
           >
-            <LiaFileInvoiceDollarSolid size={20} className="mr-2 items-center align-middle" />
+            <LiaFileInvoiceDollarSolid
+              size={20}
+              className="mr-2 items-center align-middle"
+            />
             Faturação
           </div>
 
@@ -104,11 +110,17 @@ function Definicoes() {
         {activeTab === "email" && (
           <div className="bg-[#1E2427] py-6 w-1/2 px-10 border mt-6 border-gray-600 rounded-md mb-20 mx-auto">
             <p className="text-pink-800 text-2xl">Endereços de Email</p>
-            <p className="text-white">Os seguintes e-mails estão associados à sua conta:</p>
+            <p className="text-white">
+              Os seguintes e-mails estão associados à sua conta:
+            </p>
             <div className="flex gap-1 align-middle items-center mt-2">
               <p className="text-white text-lg">{userEmailRedux}</p>
-              <p className="bg-yellow-600 text-slate-900 text-sm px-2 rounded-md">Não verificado</p>
-              <p className="bg-pink-800 text-slate-900 text-sm px-2 rounded-md">Principal</p>
+              <p className="bg-yellow-600 text-slate-900 text-sm px-2 rounded-md">
+                Não verificado
+              </p>
+              <p className="bg-pink-800 text-slate-900 text-sm px-2 rounded-md">
+                Principal
+              </p>
             </div>
 
             <div className="flex gap-2 mt-4">
@@ -130,13 +142,27 @@ function Definicoes() {
             <p className="text-pink-800 text-2xl">Alterar Palavra Passe</p>
             <div className="mt-6">
               <p className="mb-2 text-pink-800">Palavra Passe atual</p>
-              <input type="password" className="w-full py-2 px-2 bg-slate-600 mb-6 text-white" placeholder="Palavra Passe Atual" />
+              <input
+                type="password"
+                className="w-full py-2 px-2 bg-slate-600 mb-6 text-white"
+                placeholder="Palavra Passe Atual"
+              />
 
               <p className="mb-2 text-pink-800">Nova Palavra Passe</p>
-              <input type="password" className="w-full py-2 px-2 bg-slate-600 mb-6 text-white" placeholder="Nova Palavra Passe" />
+              <input
+                type="password"
+                className="w-full py-2 px-2 bg-slate-600 mb-6 text-white"
+                placeholder="Nova Palavra Passe"
+              />
 
-              <p className="mb-2 text-pink-800">Nova Palavra Passe (Confirmação)</p>
-              <input type="password" className="w-full py-2 px-2 bg-slate-600 mb-6 text-white" placeholder="Confirmação de Palavra Passe" />
+              <p className="mb-2 text-pink-800">
+                Nova Palavra Passe (Confirmação)
+              </p>
+              <input
+                type="password"
+                className="w-full py-2 px-2 bg-slate-600 mb-6 text-white"
+                placeholder="Confirmação de Palavra Passe"
+              />
             </div>
             <div className="mt-2">
               <button className="bg-pink-800 hover:bg-pink-900 py-2 px-2 text-white w-42 rounded-md">
@@ -149,16 +175,25 @@ function Definicoes() {
         {activeTab === "billing" && (
           <div className="bg-[#1E2427] py-6 w-1/2 px-10 border mt-6 border-gray-600 rounded-md mb-10 mx-auto">
             <p className="text-pink-800 text-2xl">Detalhes de Faturação</p>
-            <p className="text-white">Área para configurar detalhes de faturação.</p>
+            <p className="text-white">
+              Área para configurar detalhes de faturação.
+            </p>
           </div>
         )}
 
         {activeTab === "delete" && (
           <div className="bg-[#1E2427] py-6 w-1/2 px-10 border mt-6 border-gray-600 rounded-md mb-10 mx-auto">
             <p className="text-pink-800 text-2xl mb-4">Eliminar Conta</p>
-            <p className="text-white">Tens a certeza que queres apagar a tua conta?</p>
-            <p className="mb-2 text-pink-800">*Todas as suas informações serão apagadas definitivamente</p>
-            <div className="bg-red-700 hover:bg-red-800 py-2 px-4 text-white rounded-md cursor-pointer" onClick={handleDeleteAccount}>
+            <p className="text-white">
+              Tens a certeza que queres apagar a tua conta?
+            </p>
+            <p className="mb-2 text-pink-800">
+              *Todas as suas informações serão apagadas definitivamente
+            </p>
+            <div
+              className="bg-red-700 hover:bg-red-800 py-2 px-4 text-white rounded-md cursor-pointer"
+              onClick={handleDeleteAccount}
+            >
               <ImBin size={20} className="mr-2" /> Apagar Conta
             </div>
           </div>
