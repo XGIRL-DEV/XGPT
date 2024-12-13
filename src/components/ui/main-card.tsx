@@ -79,7 +79,7 @@ const MainCard: React.FC<MainCardProps> = ({profiles, currentPage, itemsPerPage,
 			{paginatedProfiles.map((profile, index) => (
 				<Link
 					key={index}
-					href={`/Acompanhantes/${profile.nome}`}
+					href={`/escort/${profile.nome}`}
 					className='group rounded-xl bg-gray-800 shadow-lg overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl duration-300'
 					onClick={onProfileClick}
 				>

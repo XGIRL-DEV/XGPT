@@ -180,7 +180,7 @@ const HeaderMobile: React.FC = () => {
 					</Link>
 
 					{/* Ícone Acompanhantes */}
-					<Link href='/acompanhantes' aria-label='Ver Acompanhantes'>
+					<Link href='/escort' aria-label='Ver Acompanhantes'>
 						<div className='flex flex-col items-center'>
 							<FontAwesomeIcon icon={faUsers} className='text-xl' />
 							<span className='text-xs'></span>

@@ -24,7 +24,7 @@ const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfile
 
 		if (nextProfile) {
 			setCurrentProfileIndex(nextIndex);
-			router.push(`/acompanhantes/${nextProfile.nome}`);
+			router.push(`/escort/${nextProfile.nome}`);
 		}
 	};
 
@@ -35,7 +35,7 @@ const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfile
 
 		if (prevProfile) {
 			setCurrentProfileIndex(prevIndex);
-			router.push(`/acompanhantes/${prevProfile.nome}`);
+			router.push(`/escort/${prevProfile.nome}`);
 		}
 	};
 
@@ -58,7 +58,7 @@ const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfile
 					<div className='flex items-center text-center text-sm space-x-2'>
 						<p className='text-zinc-400'>Girls</p>
 						<p className='text-zinc-400'>/</p>
-						<Link href={`/acompanhantes?distrito=${encodeURIComponent(currentProfile.distrito)}`} className='text-zinc-400 cursor-pointer hover:text-pink-800'>
+						<Link href={`/escort?distrito=${encodeURIComponent(currentProfile.distrito)}`} className='text-zinc-400 cursor-pointer hover:text-pink-800'>
 							{currentProfile.distrito}
 						</Link>
 						<p className='text-zinc-400'>/</p>

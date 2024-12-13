@@ -9,14 +9,14 @@ const Footer = () => {
 
 	const footerLinks = {
 		quickLinks: [
-			{labelKey: "Footer.escort_paris", href: "/Acompanhantes?distrito=Lisboa"},
+			{labelKey: "Footer.escort_paris", href: "/escort?distrito=Lisboa"},
 			{labelKey: "Footer.escort_lyon", href: "/girls?distrito=Porto"},
 			{labelKey: "Footer.escort_marseille", href: "/girls?distrito=Faro"},
 			{labelKey: "Footer.escort_lille", href: "/girls?distrito=Madeira"},
 			{labelKey: "Footer.escort_toulouse", href: "/girls?distrito=Acores"},
 		],
 		categories: [
-			{labelKey: "Footer.vip_escorts", href: "/Acompanhantes"},
+			{labelKey: "Footer.vip_escorts", href: "/escort"},
 			{labelKey: "Footer.bdsm", href: "/tarifs"},
 			{labelKey: "Footer.salons", href: "/apropos"},
 			{labelKey: "Footer.stories", href: "/Stories"},

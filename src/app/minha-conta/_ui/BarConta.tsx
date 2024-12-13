@@ -38,7 +38,7 @@ const BarConta: React.FC<BarContaProps> = ({
 
 	const handleVerPerfil = () => {
 		// Redirecionar para a página de perfil
-		router.push(`/acompanhantes/${nomeRedux}`);
+		router.push(`/escort/${nomeRedux}`);
 	};
 
 	const {t, i18n} = useTranslation();

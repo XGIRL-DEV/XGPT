@@ -23,7 +23,7 @@ const Definicoes: React.FC = () => {
 	const [status, setStatus] = useState(null);
 
 	const handleVerPerfil = () => {
-		router.push(`/acompanhantes/${nomeRedux}`);
+		router.push(`/escort/${nomeRedux}`);
 	};
 
 	return (
