@@ -9,14 +9,17 @@ import {BlurImage} from "@/components/ui/blur-image";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer} from "react-toastify";
-import {Dialog, DialogContent} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {Button} from "@/components/ui/button";
 
 interface ModificarFotosProps {
 	handleVoltar: () => void;
-	// handleGuardar: () => void;
+	onClose: () => void;
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
 }
 
-const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
+const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar, open, onClose, onOpenChange}) => {
 	const dispatch = useDispatch();
 	const photoURLsRedux = useSelector((state: any) => state.profile?.profile.photos);
 	console.log("fotos redux", photoURLsRedux);
@@ -150,15 +153,15 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
 	};
 
 	return (
-		<Dialog>
-			<DialogContent className='md:w-full md:max-w-4xl  h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
-				<header className='bg-pink-800 py-6 px-4 md:px-10'>
-					<h1 className='text-xl md:text-3xl font-bold tracking-wide text-center'>Gerir Fotos</h1>
+		<Dialog open={open} onOpenChange={onClose}>
+			<DialogContent className='max-w-4xl h-2/3 md:h-4/5 sm:max-h-[80vh] p-0 overflow-hidden'>
+				<DialogHeader className='bg-pink-800 py-6'>
+					<DialogTitle className='text-3xl font-bold tracking-wide text-center'>Gerir Fotos</DialogTitle>
 					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Pode adicionar até 10 fotos</p>
 					<ToastContainer />
-				</header>
+				</DialogHeader>
 
-				<div className='p-10'>
+				<div className='p-8 space-y-8 overflow-y-auto '>
 					<div className='flex flex-col md:flex-row justify-center items-center mb-8 space-y-4 md:space-y-0 md:space-x-4'>
 						{/* Botão para adicionar fotos */}
 						<label
@@ -199,16 +202,17 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar}) => {
 					</div>
 				</div>
 
-				<footer className='bg-gray-800 border-t border-gray-700 p-4 sticky bottom-0'>
-					<div className='flex justify-between'>
-						<button className='px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium transition' onClick={handleVoltar}>
-							<span>Voltar</span>
-						</button>
-						<button className='px-6 py-3 bg-pink-800 hover:bg-pink-900 rounded-lg text-sm font-medium ' onClick={handleGuardar}>
-							Guardarsss
-						</button>
+				<DialogFooter className='bg-gray-800 border-t border-gray-700 p-4'>
+					<div className='flex justify-between w-full'>
+						<Button variant='voltar' onClick={handleVoltar}>
+							Voltar
+						</Button>
+
+						<Button variant='guarder' onClick={handleGuardar}>
+							Guardar
+						</Button>
 					</div>
-				</footer>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

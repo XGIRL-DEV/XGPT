@@ -12,18 +12,21 @@ import clsx from "clsx";
 import EmojiPicker, {EmojiClickData} from "emoji-picker-react";
 import {FaSmile} from "react-icons/fa"; // Importa um ícone de emoji
 
-import {Dialog} from "@/components/ui/dialog";
-import {DialogContent} from "@radix-ui/react-dialog";
+import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+
 import CheckPagamento from "@/components/register/check-pagamento";
 import CheckLinguas from "@/components/register/check-linguas";
 import CheckServico from "@/components/register/check-servico";
+import {Button} from "@/components/ui/button";
 
 interface ModificarContactoProps {
 	handleVoltar: () => void;
 	onClose: () => void;
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
 }
 
-const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onClose}) => {
+const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onClose, open, onOpenChange}) => {
 	const dispatch = useDispatch();
 
 	const userUID = useSelector((state: any) => state.profile?.profile?.userUID);
@@ -145,14 +148,13 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 	};
 
 	return (
-		<Dialog>
-			<DialogContent className='md:w-full md:max-w-4xl h-2/3 md:h-4/5 sm:max-h-[80vh] overflow-y-auto'>
-				<header className='bg-pink-800 py-6 px-4 md:px-10'>
-					<h1 className='text-xl md:text-3xl font-bold tracking-wide text-center'>Dados Gerais</h1>
+		<Dialog open={open} onOpenChange={onClose}>
+			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
+				<DialogHeader className='bg-pink-800 py-6 px-4 md:px-10'>
+					<DialogTitle className='text-xl md:text-3xl font-bold tracking-wide text-center'>Dados Gerais</DialogTitle>
 					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Altere os seus dados sempre que quiser</p>
-				</header>
-
-				<div className='p-8 space-y-8'>
+				</DialogHeader>
+				<div className='p-8 space-y-8 overflow-y-auto '>
 					<div className='grid grid-cols-1 lg:grid-cols-1 gap-8'>
 						<div className='w-44 mb-6'>
 							<FiltroTarifa />
@@ -204,16 +206,17 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 						</div>
 					</div>
 				</div>
-				<footer className='bg-gray-800 border-t border-gray-700 p-4 sticky bottom-0'>
-					<div className='flex justify-between'>
-						<button className='px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium transition' onClick={handleVoltar}>
-							<span>Voltar</span>
-						</button>
-						<button className='px-6 py-3 bg-pink-800 hover:bg-pink-900 rounded-lg text-sm font-medium ' onClick={handleGuardar}>
+				<DialogFooter className='bg-gray-800 border-t border-gray-700 p-4'>
+					<div className='flex justify-between w-full'>
+						<Button variant='voltar' onClick={handleVoltar}>
+							Voltar
+						</Button>
+
+						<Button variant='guarder' onClick={handleGuardar}>
 							Guardar
-						</button>
+						</Button>
 					</div>
-				</footer>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

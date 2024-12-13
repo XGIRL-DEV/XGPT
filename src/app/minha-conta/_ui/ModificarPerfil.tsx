@@ -41,9 +41,10 @@ interface ModificarPerfilProps {
 	handleVoltar: () => void;
 	onClose: () => void;
 	open: boolean;
+	onOpenChange: (open: boolean) => void;
 }
 
-const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose, open}) => {
+const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose, open, onOpenChange}) => {
 	const dispatch = useDispatch();
 	const {userUID} = useParams<{userUID: string}>();
 
@@ -273,8 +274,8 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 	};
 
 	return (
-		<Dialog open={true} onOpenChange={onClose}>
-			<DialogContent className='max-w-4xl   h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
+		<Dialog open={open} onOpenChange={onClose}>
+			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
 				<DialogHeader className='bg-pink-800 py-6 '>
 					<DialogTitle className='text-3xl font-bold tracking-wide text-center'>Modifica o teu Perfil</DialogTitle>
 					<p className='text-center text-gray-200 text-sm'>

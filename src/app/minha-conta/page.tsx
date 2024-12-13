@@ -268,13 +268,32 @@ const MinhaConta: React.FC<MinhaContaProps> = () => {
 
 							{/* Action Panels */}
 							<div className='w-full max-w-4xl bg-gray-800 rounded-xl shadow-lg p-6'>
-								{showModificar && <ModificarPerfil handleVoltar={handleVoltar} onOpen={() => setShowModificar(true)} onClose={() => setShowModificar(false)} />}
+								{/* {showModificar && <ModificarPerfil handleVoltar={handleVoltar} onOpen={() => setShowModificar(true)} onClose={() => setShowModificar(false)} />}
 
-								{showContacto && <ModificarContacto handleVoltar={handleVoltar} onClose={() => setShowContacto(false)} />}
+								{showContacto && <ModificarContacto handleVoltar={handleVoltar} onOpen={() => setShowModificar(true)} onClose={() => setShowContacto(false)} />}
+
+								{showFotos && (
+									// <div className='space-y-4'>
+									<ModificarFotos handleVoltar={handleVoltar} onOpen={() => setShowModificar(true)} onClose={() => setShowFotos(false)} />
+									// 	<div className='flex justify-center gap-4'>
+									// 		<button className='px-4 py-2 bg-pink-600 hover:bg-pink-700 rounded-md transition-colors'>Visualizar Fotos</button>
+									// 		<button className='px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors'>Remover Fotos</button>
+									// 	</div>
+									// </div>
+								)}
+
+								{showStories && <ModificarStories handleVoltar={handleVoltar} onOpen={() => setShowModificar(true)} onClose={() => setShowStories(false)} />} */}
+								{showModificar && (
+									<ModificarPerfil handleVoltar={handleVoltar} open={showModificar} onClose={() => setShowModificar(false)} onOpenChange={setShowModificar} />
+								)}
+
+								{showContacto && (
+									<ModificarContacto handleVoltar={handleVoltar} open={showContacto} onClose={() => setShowContacto(false)} onOpenChange={setShowContacto} />
+								)}
 
 								{showFotos && (
 									<div className='space-y-4'>
-										<ModificarFotos handleVoltar={handleVoltar} />
+										<ModificarFotos handleVoltar={handleVoltar} open={showFotos} onClose={() => setShowFotos(false)} onOpenChange={setShowFotos} />
 										<div className='flex justify-center gap-4'>
 											<button className='px-4 py-2 bg-pink-600 hover:bg-pink-700 rounded-md transition-colors'>Visualizar Fotos</button>
 											<button className='px-4 py-2 bg-red-600 hover:bg-red-700 rounded-md transition-colors'>Remover Fotos</button>
@@ -282,8 +301,15 @@ const MinhaConta: React.FC<MinhaContaProps> = () => {
 									</div>
 								)}
 
-								{showStories && <ModificarStories handleVoltar={handleVoltar} />}
-
+								{showStories && (
+									<ModificarStories
+										handleVoltar={handleVoltar}
+										open={showStories}
+										onClose={() => setShowStories(false)}
+										onOpenChange={setShowStories}
+										storyURLs={[]} // Add any story URLs here if needed
+									/>
+								)}
 								{!showModificar && !showContacto && !showFotos && !showStories && (
 									<div className='text-center text-gray-400'>Selecione uma opção no menu para modificar as suas informações.</div>
 								)}

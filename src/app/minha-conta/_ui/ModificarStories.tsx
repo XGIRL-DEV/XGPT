@@ -8,6 +8,8 @@ import {updateStories} from "@/actions/ProfileActions";
 import Link from "next/link";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter} from "@/components/ui/dialog";
+
 import {ToastContainer} from "react-toastify";
 import {BlurImage} from "@/components/ui/blur-image";
 import {Profile} from "@/types";
@@ -17,10 +19,13 @@ import {Button} from "@/components/ui/button";
 
 interface ModificarStoriesProps {
 	handleVoltar: () => void;
+	onClose: () => void;
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
 	storyURLs: string[];
 }
 
-const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyURLs}) => {
+const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyURLs, onClose, open, onOpenChange}) => {
 	const dispatch = useDispatch();
 	const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 	const [loading, setLoading] = useState<boolean>(false); // Estado de carregamento
@@ -226,9 +231,9 @@ const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyU
 	};
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 backdrop-blur-md'>
+		<Dialog open={open} onOpenChange={onClose}>
 			{loading && <LoaderBar />} {/* Renderiza o loader se estiver carregando */}
-			<div className='bg-gradient-to-b from-gray-900 to-gray-700 h-4/5 mt-16 mb-16 border border-zinc-600 rounded-3xl max-w-screen-lg shadow-2xl w-full overflow-y-auto flex flex-col'>
+			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
 				<div className='p-10 flex-grow'>
 					<h2 className='text-4xl text-pink-600 mb-4 font-bold text-center'>Gerir Stories</h2>
 					<p className='text-gray-400 mb-6 text-center'>Podes adicionar até 10 Stories</p>
@@ -281,16 +286,19 @@ const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyU
 					</div>
 				</div>
 
-				<div className='flex justify-between items-end px-8 py-4 bg-gradient-to-b from-gray-800 to-gray-700 rounded-b-3xl border-t border-gray-600 sticky bottom-0'>
-					<Button variant='voltar' onClick={handleVoltar}>
-						<span>Voltar</span>
-					</Button>
-					<Button value='guarder' onClick={handleGuardar}>
-						Guardar
-					</Button>
-				</div>
-			</div>
-		</div>
+				<DialogFooter className='bg-gray-800 border-t border-gray-700 p-4'>
+					<div className='flex justify-between w-full'>
+						<Button variant='voltar' onClick={handleVoltar}>
+							Voltar
+						</Button>
+
+						<Button variant='guarder' onClick={handleGuardar}>
+							Guardar
+						</Button>
+					</div>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
 	);
 };
 
