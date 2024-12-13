@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import MainCard from "./main-card";
 import {fetchProfiles} from "@/services/profileService";
+import {Dialog, DialogContent} from "./dialog";
 
 interface SearchModalProps {
 	isOpen: boolean;
@@ -63,14 +64,11 @@ const SearchModal: React.FC<SearchModalProps> = ({isOpen, onClose, searchQuery, 
 	if (!isOpen) return null;
 
 	return (
-		<div className='fixed inset-0 flex justify-center items-center px-4 bg-black bg-opacity-60 backdrop-blur-lg' onClick={onClose}>
-			<div className='w-4/5 bg-gray-800 p-6 rounded-xl shadow-2xl overflow-auto max-h-[90vh]' onClick={e => e.stopPropagation()}>
+		<Dialog open={isOpen} onOpenChange={onClose}>
+			<DialogContent className='w-4/5  max-h-[90vh]' onClick={e => e.stopPropagation()}>
 				{/* Header */}
 				<div className='flex justify-between items-center mb-6'>
 					<h1 className='text-lg md:text-xl text-white font-semibold'>Buscar</h1>
-					<button onClick={onClose} className='py-2 px-3 rounded-full hover:bg-gray-700'>
-						<span className='text-gray-400 hover:text-pink-500 transition-colors'>X</span>
-					</button>
 				</div>
 				<div className='border-t border-gray-700 mb-6'></div>
 				<div className='flex flex-col gap-4 mb-6'>
@@ -96,7 +94,7 @@ const SearchModal: React.FC<SearchModalProps> = ({isOpen, onClose, searchQuery, 
 						))}
 					</div>
 				</div>
-				<div>
+				<div className='overflow-y-auto h-[500px]'>
 					<h2 className='text-white font-medium text-lg'>Acompanhantes</h2>
 					{paginatedProfiles.length > 0 ? (
 						<MainCard profiles={paginatedProfiles} currentPage={currentPage} itemsPerPage={5} onProfileClick={onClose} />
@@ -105,8 +103,8 @@ const SearchModal: React.FC<SearchModalProps> = ({isOpen, onClose, searchQuery, 
 					)}
 				</div>
 				<div className='border-t border-gray-700 my-6'></div>
-			</div>
-		</div>
+			</DialogContent>
+		</Dialog>
 	);
 };
 

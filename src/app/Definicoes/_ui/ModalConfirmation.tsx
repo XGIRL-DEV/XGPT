@@ -1,4 +1,5 @@
 import React from "react";
+import {Dialog, DialogContent} from "@/components/ui/dialog";
 
 interface ModalConfirmationProps {
 	show: boolean;
@@ -12,8 +13,8 @@ const ModalConfirmation: React.FC<ModalConfirmationProps> = ({show, title, messa
 	if (!show) return null;
 
 	return (
-		<div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50 transition-opacity duration-300 ease-in-out'>
-			<div className='bg-gray-900 p-8 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out scale-105'>
+		<Dialog open={show} onOpenChange={onCancel}>
+			<DialogContent>
 				<h3 className='text-2xl font-semibold text-white mb-4'>{title}</h3>
 				<p className='text-gray-400 mb-6'>{message}</p>
 				<div className='flex justify-end space-x-4'>
@@ -30,8 +31,8 @@ const ModalConfirmation: React.FC<ModalConfirmationProps> = ({show, title, messa
 						Confirmar
 					</button>
 				</div>
-			</div>
-		</div>
+			</DialogContent>
+		</Dialog>
 	);
 };
 

@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import {useState, useEffect, useRef} from "react";
-import {ImCross} from "react-icons/im";
 import {VscVerifiedFilled} from "react-icons/vsc";
 import {useTranslation} from "react-i18next";
 import {Dialog, DialogContent, DialogTitle} from "../../../components/ui/dialog";

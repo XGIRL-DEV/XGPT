@@ -81,6 +81,7 @@ function StoriesPage({}) {
 					<StoryBigS
 						profile={filteredProfiles.find(profile => profile.nome === selectedNome)} // Trouve le profil correspondant
 						onClose={() => setShowLargeStory(false)}
+						open={showLargeStory}
 					/>
 				)}
 				<StoryCard profiles={filteredProfiles} onStoryClick={handleStoryClick} />

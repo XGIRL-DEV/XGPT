@@ -233,13 +233,13 @@ const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyU
 	return (
 		<Dialog open={open} onOpenChange={onClose}>
 			{loading && <LoaderBar />} {/* Renderiza o loader se estiver carregando */}
-			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
-				<div className='p-10 flex-grow'>
+			<DialogContent className='max-w-4xl w-full  p-0  overflow-hidden '>
+				<div className='p-10 flex-grow  h-[500px] overflow-y-auto  '>
 					<h2 className='text-4xl text-pink-600 mb-4 font-bold text-center'>Gerir Stories</h2>
 					<p className='text-gray-400 mb-6 text-center'>Podes adicionar até 10 Stories</p>
 					<ToastContainer />
 
-					<div className='flex justify-center mb-8 space-x-4'>
+					<div className='flex justify-center mb-8 space-x-4 '>
 						<label
 							htmlFor='upload-story'
 							className='text-white bg-green-500 px-6 py-3 rounded-full shadow-lg transition duration-300 hover:bg-green-400 hover:shadow-xl flex items-center space-x-2 cursor-pointer'
