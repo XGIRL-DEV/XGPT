@@ -8,11 +8,14 @@ import {
 } from "react-icons/fa";
 import { RiPaypalLine } from "react-icons/ri";
 import { FaDollarSign } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 interface TarifasProps {
   selectedProfile: {
     nome: string;
     pagamento: string[];
+    tarifa: number;
+
   };
 }
 
@@ -22,16 +25,20 @@ const Tarifas: React.FC<TarifasProps> = ({ selectedProfile }) => {
   );
 // console.log("tarifa: ", tarifaRedux)
 
+const { t, i18n } = useTranslation();
 
   const pagamentos = selectedProfile?.pagamento;
 
   return (
-    <div className="bg-gray-800 px-10 pt-10 pb-10 w-full border border-zinc-700 rounded-3xl">
-      <p className="text-pink-600 text-2xl">Tarifas</p>
+    <div className="bg-gray-800 px-10 pt-10 pb-10 w-full border border-zinc-700 rounded-xl">
+<p className="text-pink-600 text-2xl">
+  {t("profile.rates")}
+</p>
       <p className="text-white text-lg mt-4 mb-8">
-        Tarifas a partir de {tarifaRedux} €
+      {t("profile.tariffs_starting_from", { tarifa: selectedProfile?.tarifa })}
       </p>
-      <p className="text-pink-600 text-2xl">Aceita:</p>
+      <p className="text-pink-600 text-2xl"> {t("profile.accepts")} 
+      </p>
       {pagamentos && Array.isArray(pagamentos) ? (
         <div className="grid grid-cols-2 mt-4">
           {pagamentos.map((pagamento, index) => (
@@ -59,7 +66,7 @@ const Tarifas: React.FC<TarifasProps> = ({ selectedProfile }) => {
           ))}
         </div>
       ) : (
-        <p className="text-white">Nenhum método de pagamento selecionado.</p>
+        <p className="text-white">{t("profile.no_payment_methods_selected")}</p>
       )}
     </div>
   );
