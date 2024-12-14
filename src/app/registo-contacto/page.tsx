@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import Link from "next/link";
 
-import CheckDeslocacoes from "@/components/register/check-deslocacoes";
+// import CheckDeslocacoes from "@/components/register/Check-deslocacoes";
 import CheckPagamento from "@/components/register/check-pagamento";
 import CheckLinguas from "@/components/register/check-linguas";
 import CheckServico from "@/components/register/check-servico";
@@ -84,10 +84,10 @@ const RegistoContacto: React.FC = () => {
 									<FiltroPrice />
 								</div>
 
-								<div className='w-3/4 mt-2 gap-4'>
+								{/* <div className='w-3/4 mt-2 gap-4'>
 									<p className='text-md text-pink-800'>Meio de contacto</p>
 									<CheckDeslocacoes />
-								</div>
+								</div> */}
 
 								<div className='w-full mt-6'>
 									<p className='text-md text-pink-800'>Meios de Pagamento</p>

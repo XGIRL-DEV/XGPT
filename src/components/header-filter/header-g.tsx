@@ -14,7 +14,7 @@ const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfile
 	const router = useRouter();
 
 	const handleDistrictClick = (district: string) => {
-		router.push(`/girl?distrito=${encodeURIComponent(district)}`);
+		router.push(`/escort?distrito=${encodeURIComponent(district)}`);
 	};
 
 	const handleNextProfile = () => {

@@ -41,6 +41,7 @@ const RegistoEntrada = () => {
 	const cidadeRedux = useSelector((state: any) => state.profile?.profile?.cidade);
 	const distritoRedux = useSelector((state: any) => state.profile?.profile?.distrito);
 	const adressRedux = useSelector((state: any) => state.profile?.profile?.adress);
+	const userEmailRedux = useSelector((state: any) => state.profile?.profile?.email);
 
 	useEffect(() => {
 		setNome(nomeRedux || "");
@@ -174,12 +175,7 @@ const RegistoEntrada = () => {
 
 	return (
 		<Dialog open onClose={() => {}} fullWidth>
-			<DialogTitle className='bg-pink-800 text-white text-center py-6'>
-				<h1 className='text-3xl font-bold tracking-wide'>Cria o teu Perfil</h1>
-				<p className='text-sm mt-2 text-gray-200'>
-					Complete as informações para começar no <strong>Xgirl.pt</strong>
-				</p>
-			</DialogTitle>
+			
 
 			<DialogContent className='bg-gray-800 text-white p-8 space-y-8'>
 				<div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
@@ -280,8 +276,8 @@ const RegistoEntrada = () => {
 						Voltar
 					</Button>
 				</Link>
-				<Link href='/registo-contacto'>
-					<Button variant='contained' color='primary' className='px-6 py-3'>
+				<Link href="/registo-contacto">
+				<Button variant='contained' color='primary' className='px-6 py-3'>
 						Criar Conta
 					</Button>
 				</Link>
