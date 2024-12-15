@@ -1,10 +1,10 @@
 "use client";
 import {useEffect, useState} from "react";
-import Liga from "@/components/Profile/liga";
-import Partilha from "@/components/Profile/partilha";
+import Liga from "@/components/Profile/Liga";
+import Partilha from "@/components/Profile/Partilha";
 import Certificado from "@/app/escort/_ui/certificado";
-import Sobre from "@/components/Profile/sobre";
-import Tarifas from "@/components/Profile/tarifas";
+import Sobre from "@/components/Profile/Sobre";
+import Tarifas from "@/components/Profile/Tarifas";
 import Linguas from "@/components/Profile/idioma";
 import {useParams} from "next/navigation";
 import {useSelector} from "react-redux";
