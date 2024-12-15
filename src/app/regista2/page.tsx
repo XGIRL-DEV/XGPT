@@ -7,7 +7,7 @@ import {registerUser} from "@/actions/ProfileActions";
 import {useRouter} from "next/navigation";
 import {useTranslation} from "react-i18next";
 import FeaturesList from "./_ui/FeaturedList";
-import ListRegister from "@/components/Register/list-register";
+import ListRegister from "@/components/register/list-register";
 import CommonInput from "@/components/ui/common-input";
 
 const Registre2: React.FC = () => {
