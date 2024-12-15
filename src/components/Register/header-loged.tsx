@@ -18,7 +18,7 @@ function HeaderLoged() {
         </div>
         <>
           <Link
-            href="/girls"
+            href="/escort"
             className="text-white mr-0 ml-0 cursor-pointer hover:text-pink-800"
             passHref
           ></Link>
