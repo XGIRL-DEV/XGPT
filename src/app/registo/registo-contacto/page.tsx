@@ -5,7 +5,7 @@ import Link from "next/link";
 
 // import CheckDeslocacoes from "@/components/register/Check-deslocacoes";
 import CheckPagamento from "@/components/register/CheckPagamento";
-import CheckLinguas from "@/components/register/check-linguas";
+import CheckLinguas from "@/components/register/CheckLinguas";
 import CheckServico from "@/components/register/check-servico";
 import FiltroPrice from "@/components/filtros/filtro-tarifa";
 import {updateDescription, updatePagamento, updateLingua, updateServico} from "@/actions/ProfileActions";

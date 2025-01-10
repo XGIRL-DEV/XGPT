@@ -84,7 +84,7 @@ const CheckLinguas: React.FC = () => {
                   />
                 }
                 label={
-                  <div className="flex items-center text-white">{t(`profile.linguas.${key}`)}</div>
+                  <div className="flex items-center text-red-500">{t(`profile.linguas.${key}`)}</div>
                 }
                 className="text-white mr-4"
               />

@@ -15,7 +15,7 @@ import {FaSmile} from "react-icons/fa"; // Importa um ícone de emoji
 import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,} from "@/components/ui/dialog";
 
 import CheckPagamento from "@/components/register/CheckPagamento";
-import CheckLinguas from "@/components/register/check-linguas";
+import CheckLinguas from "@/components/register/CheckLinguas";
 import CheckServico from "@/components/register/check-servico";
 import {Button} from "@/components/ui/button";
 
