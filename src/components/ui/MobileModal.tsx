@@ -1,6 +1,6 @@
 // MobileModal.tsx
 import React from "react";
-import Email from "@/app/definicoes/email/page";
+import EMail from "@/app/definicoes/Email/page";
 import Password from "@/app/definicoes/Password";
 import {Dialog, DialogContent} from "./dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
@@ -21,7 +21,7 @@ const MobileModal: React.FC<MobileModalProps> = ({isOpen, onClose, modalType}) =
 					&times;
 				</DialogTitle>
 				{/* Renderiza o componente baseado no tipo do modal */}
-				{modalType === "email" ? <Email /> : <Password />}
+				{modalType === "email" ? <EMail /> : <Password />}
 			</DialogContent>
 		</Dialog>
 	);
