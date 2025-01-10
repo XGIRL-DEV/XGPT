@@ -3,7 +3,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPersonAdd } from "react-icons/io5";
 import { IoIosSettings } from "react-icons/io";
 
-function HeaderLoged() {
+function HeaderLogedd() {
   return (
     <div className="w-full bg-[#1E2427] mt-0">
       <div className="flex mx-auto md:mx-20 justify-center bg-[#1E2427] h-16 mb-4 items-center">
@@ -38,4 +38,4 @@ function HeaderLoged() {
   );
 }
 
-export default HeaderLoged;
+export default HeaderLogedd;

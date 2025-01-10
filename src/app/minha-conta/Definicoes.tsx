@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import HeaderLoged from "../../components/register/HeaderLoged"
+import HeaderLogedd from "../../components/register/HeaderLogedd"
 import supabase from "@/database/supabase";
 import { useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
@@ -52,7 +52,7 @@ function Definicoes() {
 
   return (
     <div className="text-gray-600 bg-[#1b1b1b] flex flex-col min-h-screen">
-      <HeaderLoged />
+      <HeaderLogedd />
       <div className="mx-10">
         <div className="flex-1">
           <p className="text-3xl text-white">Definições de Perfil</p>
