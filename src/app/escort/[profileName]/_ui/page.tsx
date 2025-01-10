@@ -1,7 +1,7 @@
 "use client";
 import {useEffect, useState, useCallback} from "react";
-import Liga from "../../../components/profile/Liga"
-import Partilha from "../../../components/profile/Partilha";
+import Liga from "../../../../components/profile/Liga"
+import Partilha from "../../../../components/profile/Partilha";
 import Certificado from "@/app/escort/_ui/certificado";
 import Sobre from "@/components/profile/Sobre";
 import Tarifas from "@/components/profile/Tarifas";
@@ -15,7 +15,7 @@ import StoryBig from "@/components/profile/story-big";
 import PhotosAndCertificado from "@/components/profile/photos-and-certificado";
 import ServicosPrestados from "@/components/profile/servicos-prestados";
 import HeaderG from "@/components/header-filter/header-g";
-import Comments from "./_ui/comments";
+import Comments from "../../_ui/comments";
 import {Profile} from "@/types";
 import {profileDataService} from "@/services/profileDataService";
 import { Heart, MapPin, MessageCircle, Star, Clock, Share2, Phone, Globe, Check } from 'lucide-react';
