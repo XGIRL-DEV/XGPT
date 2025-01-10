@@ -100,7 +100,10 @@ function Destaques() {
 												src={photo || "/logo.webp"}
 												alt={`Profile ${profile.nome}`}
 												className='w-full h-full object-cover rounded-2xl hover:opacity-60 overflow-hidden transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-zinc-600 hover:shadow-xl cursor-pointer'
-												style={{height: `${imageHeight}px`}} // Definir a altura da imagem
+												style={{height: `${imageHeight}px`}} 
+												height={150}
+												width={150}
+												// Definir a altura da imagem
 											/>
 										))}
 									</Link>

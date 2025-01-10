@@ -1,25 +1,38 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import {FaMapMarkerAlt} from "react-icons/fa";
+import {FaMapMarkerAlt, FaFireAlt, FaVideo} from "react-icons/fa"; // Ícone de "Movie"
 import {VscVerifiedFilled} from "react-icons/vsc";
 import {RiMessage2Fill} from "react-icons/ri";
-import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {MdFiberManualRecord} from "react-icons/md"; // Ícone de "Live"
 import Image from "next/image";
+import {useEffect, useState} from "react";
+import { Heart } from 'lucide-react';
+import {useLanguage} from "../../context/LanguageContext"; // Importe o contexto de idioma
+import {useTranslation} from "react-i18next";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { useCallback } from "react";
+
 interface Profile {
 	nome: string;
 	cidade: string;
 	photos: string[];
+	stories: string[]; // Histórias
 	tag: string;
-	tagtimestamp: string; // Certifique-se de que tagtimestamp está presente e é uma string.
+	tagtimestamp: string;
+	certificado: boolean;
+	live: boolean | string;
+	// live pode ser booleano ou string
 }
 
 interface LastAnnounceProps {
 	profiles: Profile[];
+	currentPage: number; // Página atual
+	itemsPerPage: number;
+	onProfileClick: () => void;
+	customClass?: string;
 }
 
-const LastAnnounce: React.FC<LastAnnounceProps> = ({profiles}) => {
-	const nomeRedux = useSelector((state: {profile: {profileData: {nome: string}}}) => state.profile?.profileData?.nome);
-
+const LastAnnounce: React.FC<LastAnnounceProps> = ({profiles, currentPage, itemsPerPage, onProfileClick, a}) => {
 	const [timeElapsedList, setTimeElapsedList] = useState<string[]>([]);
 
 	const formatTimeElapsed = (minutesElapsed: number): string => {
@@ -36,67 +49,100 @@ const LastAnnounce: React.FC<LastAnnounceProps> = ({profiles}) => {
 		}
 	};
 
-	const calculateTimeElapsed = (tagTimestamp: string): string => {
+	const calculateTimeElapsed = useCallback((tagTimestamp: string): string => {
 		const timestampDate = new Date(tagTimestamp);
-
+	
 		if (isNaN(timestampDate.getTime())) {
-			return "Tempo indeterminado";
+		  return "Tempo indeterminado";
 		}
-
+	
 		const currentTime = Date.now();
 		const elapsedTime = currentTime - timestampDate.getTime();
 		const minutesElapsed = Math.floor(elapsedTime / (1000 * 60));
-
+	
 		return formatTimeElapsed(minutesElapsed);
-	};
-
-	useEffect(() => {
-		const timeElapsed = profiles.map(profile => calculateTimeElapsed(profile.tagtimestamp));
+	  }, []);
+	
+	  useEffect(() => {
+		const timeElapsed = profiles.map((profile) =>
+		  calculateTimeElapsed(profile.tagtimestamp)
+		);
 		setTimeElapsedList(timeElapsed);
-
+	
 		const interval = setInterval(() => {
-			const updatedTimeElapsed = profiles.map(profile => calculateTimeElapsed(profile.tagtimestamp));
-			setTimeElapsedList(updatedTimeElapsed);
+		  const updatedTimeElapsed = profiles.map((profile) =>
+			calculateTimeElapsed(profile.tagtimestamp)
+		  );
+		  setTimeElapsedList(updatedTimeElapsed);
 		}, 60000);
-
+	
 		return () => clearInterval(interval);
-	}, [profiles]);
+	  }, [profiles, calculateTimeElapsed])
 
-	const shuffledProfiles = profiles.sort(() => Math.random() - 0.5);
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const paginatedProfiles = profiles.slice(startIndex, startIndex + itemsPerPage);
 
+		const {t, i18n} = useTranslation();
+		const {language, changeLanguage} = useLanguage();
+	
 	return (
-		<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-5 mx-14  md:mx-0 gap-8 mt-10 pb-16'>
-			{shuffledProfiles.slice(0, 5).map((profile, index) => (
-				<Link className='border-zinc-500 border-2 rounded-md' key={index} href={`/escort/${nomeRedux}`}>
-					<div className='relative'>
-						<div className='image-container overflow-hidden'>
-							<Image
-								src={profile.photos[0] || "/logo.webp"}
-								alt={profile.nome}
-								className='w-full h-72 object-cover transition duration-300 ease-in-out transform hover:scale-105 bg-pink-200 hover:bg-pink-800 hover:opacity-50'
-								priority
-								width={100}
-								height={100}
-							/>
-						</div>
-						<p className='flex items-center absolute bottom-0 left-1/2 transform -translate-x-1/2 pb-2 text-white text-md px-2 rounded'>
-							<FaMapMarkerAlt className='text-pink-700 mr-2' /> {profile.cidade}
-						</p>
-						<p className='absolute bottom-7 left-1/2 transform -translate-x-1/2 pb-2 text-white font-bold text-xl px-2 rounded whitespace-nowrap flex items-center'>
-							{profile.nome} <VscVerifiedFilled className='text-green-400 ml-2' />
-						</p>
-					</div>
-					<div className='h-20 bg-gray-900 dark:bg-gray-800 border-t border-zinc-700 rounded-md flex flex-col justify-center items-center'>
-						<p className='text-white text-xs italic'>{profile.tag}</p>
+	
 
-						<div className='flex justify-center items-center mt-2'>
-							<p className='text-yellow-500 text-xs italic'>{timeElapsedList[index]}</p>
-							<RiMessage2Fill className='text-yellow-500 ml-2' />
-						</div>
-					</div>
-				</Link>
-			))}
-		</div>
+<div className="mb-12">
+  <h2 className="text-3xl font-bold mb-6 dark:text-white">
+    {t("dashboard.featured_ads")}
+  </h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    {paginatedProfiles.map((profile, index) => (
+      <div
+        key={index}
+        className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+      >
+        <div className="relative w-full h-64">
+          {/* Imagem com tamanho consistente */}
+          <Image
+            src={profile.photos[0] || "/logo.webp"}
+            alt={profile.nome}
+            className="object-cover w-full h-full"
+            priority
+            width={400}
+            height={400}
+          />
+
+          {/* Degradê preto na parte inferior */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-4">
+            <p className="text-lg font-bold text-white">{profile.nome}</p>
+            <p className="text-sm text-gray-300 flex items-center">
+              <FaMapMarkerAlt className="text-rose-500 mr-1" />
+              {profile.cidade}
+            </p>
+          </div>
+
+          {/* Badges na imagem */}
+          {profile.live && (
+            <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold py-1 px-2 rounded-full z-10 animate-pulse flex items-center">
+              <MdFiberManualRecord className="text-white mr-1" />
+              <span className="text-xs">Live Cam</span>
+            </div>
+          )}
+          {Array.isArray(profile.stories) && profile.stories.length > 0 && (
+            <div className="absolute top-4 right-2 md:right-3 bg-pink-800 text-white text-xs font-semibold py-1 px-2 rounded-full z-50 flex items-center">
+              <FaVideo className="text-white mr-1 text-xs" />
+              <span className="text-xs">Stories</span>
+            </div>
+          )}
+        </div>
+
+        {/* Legenda abaixo da foto */}
+       
+      </div>
+    ))}
+  </div>
+</div>
+
+
+
 	);
 };
 

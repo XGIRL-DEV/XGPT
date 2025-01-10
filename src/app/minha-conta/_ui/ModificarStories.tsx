@@ -235,7 +235,7 @@ const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyU
 			{loading && <LoaderBar />} {/* Renderiza o loader se estiver carregando */}
 			<DialogContent className='max-w-4xl w-full  p-0  overflow-hidden '>
 				<div className='p-10 flex-grow  h-[500px] overflow-y-auto  '>
-					<h2 className='text-4xl text-pink-600 mb-4 font-bold text-center'>Gerir Stories</h2>
+					<DialogTitle className='text-4xl text-pink-600 mb-4 font-bold text-center'>Gerir Stories</DialogTitle>
 					<p className='text-gray-400 mb-6 text-center'>Podes adicionar até 10 Stories</p>
 					<ToastContainer />
 

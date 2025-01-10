@@ -8,7 +8,6 @@ import {fetchProfiles} from "@/services/profileService";
 import {useSearchParams} from "next/navigation";
 import {Profile} from "@/types";
 
-// import CitySelector from "@/components/CitySelector";
 import {useTranslation} from "react-i18next";
 import CaroselRound from "@/components/ui/carosel-round";
 import StoryBigS from "./storyBigS";
@@ -67,11 +66,10 @@ function StoriesPage({}) {
 	const {t, i18n} = useTranslation();
 
 	return (
-		<div className='text-gray-600 bg-gray-900 pt-4'>
+		<div className='text-gray-100 dark:bg-gray-900 pt-4'>
 			<div className='px-2 md:px-36'>
 				<p className='text-pink-800 text-3xl text-center justify-center mt-4'>{t("storyPage.titleStory")}</p>
 				{/* <div>
-        <CitySelector onCityChange={setSelectedCidade} />
         </div> */}
 			</div>
 			<CaroselRound profiles={filteredProfiles} />

@@ -113,10 +113,10 @@ function GirlsPage() {
 	const totalProfiles = profiles.length;
 
 	return (
-		<div className='bg-gray-900 text-white w-screen'>
+		<div className=' text-gray-900 dark:text-white w-screen'>
 			<div className='px-4 md:px-36 py-4'>
 				<h1 className='text-3xl md:text-4xl pink-500 font-bold text-center'>{t("escort.title")}</h1>
-				<p className='text-lg md:text-xl text-gray-300 text-center mt-2'>{t("escort.subtitle")}</p>
+				<p className='text-lg md:text-xl text-gray-700 dark:text-gray-300 text-center mt-2'>{t("escort.subtitle")}</p>
 			</div>
 
 			<CaroselRound profiles={filteredProfiles} />

@@ -8,6 +8,8 @@
   }
 }
 
+
+
 .slick-slide img {
 }
 
@@ -20,6 +22,7 @@
     max-width: 100%;
   }
 }
+
 
 @layer base {
   :root {

@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef, useCallback} from "react";
 import {MdEmail, MdContentCopy} from "react-icons/md";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,10 +21,10 @@ const Partilha: React.FC<PartilhaProps> = ({selectedProfile, setShowPartilha}) =
 	const {t, i18n} = useTranslation();
 
 	// Função para fechar o modal
-	const fecharPartilha = () => {
+	const fecharPartilha = useCallback(() => {
 		setMostrarPartilha(false);
 		setShowPartilha(false); // Resetar o estado showPartilha no componente Profile
-	};
+	}, [setShowPartilha]);
 
 	// Função para copiar o link
 	const copyToClipboard = () => {
@@ -41,11 +41,11 @@ const Partilha: React.FC<PartilhaProps> = ({selectedProfile, setShowPartilha}) =
 	};
 
 	// Fechar o modal se clicar fora dele
-	const handleClickOutside = (event: MouseEvent) => {
+	const handleClickOutside = useCallback((event: MouseEvent) => {
 		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
 			fecharPartilha();
 		}
-	};
+	}, [fecharPartilha]);
 
 	// Usando useEffect para adicionar o evento de clique fora do modal
 	useEffect(() => {
@@ -53,7 +53,9 @@ const Partilha: React.FC<PartilhaProps> = ({selectedProfile, setShowPartilha}) =
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside); // Remove o ouvinte quando o componente desmontar
 		};
-	}, []);
+	}, [handleClickOutside]);
+
+
 
 	return (
 		<>

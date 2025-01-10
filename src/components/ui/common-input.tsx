@@ -16,7 +16,7 @@ interface CommonInputProps {
 const CommonInput = ({label, value, onChange, placeholder, type, required = false, className = "", id}: CommonInputProps) => {
 	return (
 		<div>
-			<Label className='text-[#E84393] text-sm font-medium mb-1.5'>
+			<Label className='text-pink-500 text-sm font-medium mb-1.5'>
 				{label}
 				{required && <span className='text-red-500 ml-1'>*</span>}
 			</Label>

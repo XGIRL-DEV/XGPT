@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect , useMemo} from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -11,16 +11,7 @@ interface State {
   [key: string]: boolean;
 }
 
-const initialState: State = {
-  Português: false,
-  Inglês: false,
-  Francês: false,
-  Espanhol: false,
-  Alemão: false,
-  Italiano: false,
-  Russo: false,
-  Árabe: false,
-};
+
 
 const CheckLinguas: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,6 +22,19 @@ const CheckLinguas: React.FC = () => {
     (state: any) => state.profile?.profile?.lingua
   );
   console.log("linguaRedux", linguaRedux);
+
+  const initialState: State = useMemo(() => ({
+    [t('portuguese')]: false,
+    [t('english')]: false,
+    [t('french')]: false,
+    [t('spanish')]: false,
+    [t('german')]: false,
+    [t('italian')]: false,
+    [t('russian')]: false,
+    [t('arabic')]: false,
+  }), [t]);
+
+
 
   const [checkboxes, setCheckboxes] = useState<State>(
     initialState || linguaRedux
@@ -47,7 +51,7 @@ const CheckLinguas: React.FC = () => {
       });
       setCheckboxes(updatedCheckboxes);
     }
-  }, [selectedLingua]);
+  }, [selectedLingua, initialState]);
 
   const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -58,6 +62,7 @@ const CheckLinguas: React.FC = () => {
     dispatch(updateLingua(updatedLingua));
     setSelectedLingua(updatedLingua);
   };
+
 
   return (
     <div>
@@ -79,7 +84,7 @@ const CheckLinguas: React.FC = () => {
                   />
                 }
                 label={
-                  <div className="flex items-center text-white">{t(`linguas.${key}`)}</div>
+                  <div className="flex items-center text-white">{t(`profile.linguas.${key}`)}</div>
                 }
                 className="text-white mr-4"
               />

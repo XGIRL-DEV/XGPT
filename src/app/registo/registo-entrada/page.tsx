@@ -1,8 +1,8 @@
 "use client";
-import {useState, useEffect, ChangeEvent, useRef} from "react";
+import {useState, useEffect, ChangeEvent, useRef, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateNome, updateIdade, updateTelefone, updateCidade, updateDistrito, updateAdress, updateLongitude, updateLatitude} from "@/actions/ProfileActions";
-import {Switch, FormControlLabel, Dialog, DialogActions, DialogContent, DialogTitle, Button} from "@mui/material";
+import {Switch, FormControlLabel, } from "@mui/material";
 import Link from "next/link";
 import FiltroAltura from "@/components/filtros/filtro-altura";
 import FiltroCorpo from "@/components/filtros/filtro-corpo";
@@ -14,6 +14,11 @@ import FiltroPelos from "@/components/filtros/filtro-pelos";
 import FiltroSigno from "@/components/filtros/filtro-signo";
 import supabase from "@/database/supabase";
 import CommonInput from "@/components/ui/common-input";
+import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,} from "@/components/ui/dialog";
+import {Button} from "@/components/ui/button";
+import FiltroCabelo from "@/components/filtros/filtro-cabelo";
+import {useTranslation} from "react-i18next";
+
 
 declare global {
 	interface Window {
@@ -41,7 +46,7 @@ const RegistoEntrada = () => {
 	const cidadeRedux = useSelector((state: any) => state.profile?.profile?.cidade);
 	const distritoRedux = useSelector((state: any) => state.profile?.profile?.distrito);
 	const adressRedux = useSelector((state: any) => state.profile?.profile?.adress);
-	const userEmailRedux = useSelector((state: any) => state.profile?.profile?.email);
+		const {t, i18n} = useTranslation();
 
 	useEffect(() => {
 		setNome(nomeRedux || "");
@@ -100,51 +105,51 @@ const RegistoEntrada = () => {
 		}
 	};
 
-	const handleSelectAddress = (address: string, lat: number, lng: number) => {
+	const handleSelectAddress = useCallback((address: string, lat: number, lng: number) => {
 		setAdress(address);
 		setLatitude(lat);
 		setLongitude(lng);
 		dispatch(updateAdress(address));
 		dispatch(updateLatitude(lat));
 		dispatch(updateLongitude(lng));
-	};
+	}, [dispatch])
 
 	// Carregamento dinâmico do script do Google
 	useEffect(() => {
 		const loadGoogleAPI = () => {
-			if (typeof window !== "undefined" && !window.google) {
-				const script = document.createElement("script");
-				script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC9gd59nW47Bg63ksUnNd2HmigKDUDGA7E&libraries=places`;
-				script.async = true;
-				script.onload = () => setGoogleLoaded(true);
-				document.body.appendChild(script);
-			} else {
-				setGoogleLoaded(true);
-			}
+		  if (typeof window !== "undefined" && !window.google) {
+			const script = document.createElement("script");
+			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC9gd59nW47Bg63ksUnNd2HmigKDUDGA7E&libraries=places`;
+			script.async = true;
+			script.onload = () => setGoogleLoaded(true);
+			document.body.appendChild(script);
+		  } else {
+			setGoogleLoaded(true);
+		  }
 		};
-
+	
 		loadGoogleAPI();
-	}, []);
+	  }, []); 
 
-	useEffect(() => {
+	  
+	  useEffect(() => {
 		if (googleLoaded && useAdress && window.google && !autocompleteRef.current) {
 			const input = document.getElementById("adress-input") as HTMLInputElement;
 
 			if (input && !autocompleteRef.current) {
-				// Garantir que o Google Maps foi carregado antes de usar o Autocomplete
 				if (window.google && window.google.maps && window.google.maps.places) {
 					autocompleteRef.current = new window.google.maps.places.Autocomplete(input, {
 						types: ["geocode"],
-						componentRestrictions: {country: "pt"},
+						componentRestrictions: { country: "pt" },
 					});
 
 					autocompleteRef.current.addListener("place_changed", () => {
 						const place = autocompleteRef.current.getPlace();
 						if (place?.formatted_address) {
-							// Aqui, substituímos as atualizações diretas por uma chamada à função handleSelectAddress
 							const lat = place.geometry.location.lat();
 							const lng = place.geometry.location.lng();
-							handleSelectAddress(place.formatted_address, lat, lng); // Usando a função handleSelectAddress
+							// Call handleSelectAddress with the correct lat/lng values
+							handleSelectAddress(place.formatted_address, lat, lng); 
 						}
 					});
 				} else {
@@ -159,7 +164,7 @@ const RegistoEntrada = () => {
 				autocompleteRef.current = null;
 			}
 		};
-	}, [googleLoaded, useAdress]);
+	}, [googleLoaded, useAdress, handleSelectAddress]);
 
 	useEffect(() => {
 		const getSession = async () => {
@@ -175,114 +180,108 @@ const RegistoEntrada = () => {
 
 	return (
 		<Dialog open onClose={() => {}} fullWidth>
-			
 
-			<DialogContent className='bg-gray-800 text-white p-8 space-y-8'>
-				<div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-					<div className='space-y-6'>
-						{/* <div>
-							<label className='block text-sm font-medium text-gray-300'>Nome*</label>
-							<input
-								className='w-full py-3 px-4 bg-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-								value={nome}
-								onChange={handleNomeChange}
-								placeholder='Digite seu nome'
-							/>
-						</div> */}
-						<CommonInput label='Nome*' value={nome} onChange={(e: string) => setNome(e)} placeholder='Digite seu nome' />
-						{/* <div>
-							<label className='block text-sm font-medium text-gray-300'>Idade</label>
-							<input
-								type='number'
-								className='w-full py-3 px-4 bg-gray-700 border border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-								value={idade}
-								onChange={handleIdadeChange}
-								placeholder='Sua idade'
-							/>
-						</div> */}
-						<CommonInput label='Idade' value={idade} onChange={(e: string) => setIdade(e)} placeholder='Sua idade' />
-						{/* <div>
-							<label className='block text-sm font-medium text-gray-300'>Número de Telefone*</label>
-							<input
-								className='w-full py-3 px-4 bg-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-								value={telefone}
-								onChange={handleTelefoneChange}
-								placeholder='Seu telefone'
-							/>
-						</div> */}
-						<CommonInput label='Número de Telefone*' value={telefone} onChange={(e: string) => setTelefone(e)} placeholder='Seu telefone' />
-					</div>
+<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
 
-					<div>
-						<label className='block text-sm font-medium text-gray-300'>Escolha a opção</label>
-						<FormControlLabel control={<Switch checked={useAdress} onChange={toggleAdressOption} color='primary' />} label='Usar Morada Completa' />
+<DialogHeader className='bg-pink-900 py-6 px-4 md:px-10'>
+<h1 className='text-3xl font-bold tracking-wide text-white justify-center items-center'>{t('profileR2.createTitle')}
+</h1>
+				<DialogTitle className='text-sm mt-2 text-gray-200'>
+				{t('profileR2.createSubtitle')}  <strong>Xgirl.pt</strong>
+			</DialogTitle>
+			</DialogHeader>
 
-						{useAdress ? (
-							<div className='mt-6'>
-								{/* <label className='block text-sm font-medium text-gray-300'>Morada Completa</label>
-								<input
-									id='adress-input'
-									className='w-full py-3 px-4 bg-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-									value={adress}
-									onChange={handleAdressChange}
-									placeholder='Digite a morada completa'
-								/> */}
-								<CommonInput
-									label='Morada Completa'
-									id='adress-input'
-									value={adress}
-									onChange={(e: string) => setAdress(e)}
-									placeholder='Digite a morada completa'
-								/>
-							</div>
-						) : (
-							<div className='mt-6 space-y-4'>
-								{/* <label className='block text-sm font-medium text-gray-300'>Cidade</label>
-									<input
-										className='w-full py-3 px-4 bg-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-										value={cidade}
-										onChange={handleCidadeChange}
-										placeholder='Digite a sua cidade'
-									/> */}
-								<CommonInput label='Cidade' value={cidade} onChange={(e: string) => setCidade(e)} placeholder='Digite a sua cidade' />
+			<div className='p-8 space-y-8 overflow-y-auto'>
+  {/* Grupo de inputs em duas colunas no desktop e uma coluna no mobile */}
+  <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <CommonInput 
+            label={t('input.name')}
+			value={nome} 
+      onChange={handleNomeChange}
+	  placeholder={t('input.namePlaceholder')}
+	  />
+    <CommonInput 
+            label={t('input.age')}
+			value={idade} 
+      onChange={handleIdadeChange} 
+	  placeholder={t('input.agePlaceholder')}
+	  />
+    <CommonInput 
+            label={t('input.phone')}
+			value={telefone} 
+      onChange={handleTelefoneChange} 
+	  placeholder={t('input.phonePlaceholder')}
+	  />
+  </div>
 
-								{/* <label className='block text-sm font-medium text-gray-300'>Distrito</label>
-									<input
-										className='w-full py-3 px-4 bg-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-500'
-										value={distrito}
-										onChange={handleDistritoChange}
-										placeholder='Digite o seu distrito'
-									/> */}
-								<CommonInput label='Distrito' value={distrito} onChange={(e: string) => setDistrito(e)} placeholder='Digite o seu distrito' />
-							</div>
-						)}
-					</div>
-					<div className='space-y-6'>
-						<FiltroAltura />
-						<FiltroCorpo />
-						<FiltroOlhos />
-						<FiltroMamas />
-						<FiltroPeito />
-						<FiltroPelos />
-						<FiltroTatuagem />
-						<FiltroSigno />
-					</div>
-				</div>
-			</DialogContent>
+  <div>
+    <label className='block text-sm font-medium text-gray-300'> {t('input.chooseOption')}
+	</label>
+    <FormControlLabel 
+      control={<Switch checked={useAdress} onChange={toggleAdressOption} color='primary' />} 
+	  label={t('input.useFullAddress')}
+	  className="text-gray-300"
+	  />
 
-			<DialogActions className='bg-gray-800 p-4'>
+    {useAdress ? (
+      <div className='mt-6'>
+        <CommonInput
+                label={t('input.fullAddress')}
+				id='adress-input'
+          value={adress}
+          onChange={(e: string) => setAdress(e)}
+		  placeholder={t('input.fullAddressPlaceholder')}
+		  />
+      </div>
+    ) : (
+		<div className=' mt-4 grid grid-cols-1 md:grid-cols-2 gap-6'>
+        <CommonInput 
+                label={t('input.city')}
+				value={cidade} 
+          onChange={handleCidadeChange} 
+		  placeholder={t('input.cityPlaceholder')}
+		  />
+        <CommonInput 
+                label={t('input.district')}
+				value={distrito} 
+          onChange={handleDistritoChange}
+		  placeholder={t('input.districtPlaceholder')}
+		  />
+      </div>
+    )}
+  </div>
+
+  {/* Filtros em duas colunas no desktop e uma no mobile */}
+  <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <FiltroAltura />
+    <FiltroCorpo />
+    <FiltroOlhos />
+	<FiltroCabelo/>
+    <FiltroMamas />
+    <FiltroPeito />
+    <FiltroPelos />
+    <FiltroTatuagem />
+    <FiltroSigno />
+  </div>
+</div>
+
+<div className="justify-around">
+			<DialogFooter className='bg-gray-800 pb-4 '>
 				<Link href='/'>
-					<Button variant='contained' color='secondary' className='px-6 py-3'>
-						Voltar
+					<Button variant='voltar' color='secondary' className='px-6 py-3'>
+					{t('button.back')}
 					</Button>
 				</Link>
-				<Link href="/registo-contacto">
-				<Button variant='contained' color='primary' className='px-6 py-3'>
-						Criar Conta
+				<Link href='/registo/registo-contacto'>
+					<Button variant='guarder' color='primary' className='px-6 py-3'>
+					{t('button.createAccount')}
 					</Button>
 				</Link>
-			</DialogActions>
+			</DialogFooter>
+			</div>
+			</DialogContent>
 		</Dialog>
+		
 	);
 };
 

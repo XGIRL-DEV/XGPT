@@ -8,6 +8,8 @@ import React, {Dispatch, SetStateAction} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import CommonFilter from "./common-filter";
+import {useTranslation} from "react-i18next";
+
 
 interface FiltrosState {
 	age?: number[];
@@ -27,6 +29,7 @@ const ageOptions = [
 const FiltroAge = ({setFiltros}: FiltroAgeProps) => {
 	const dispatch = useDispatch();
 	const ageRedux = useSelector((state: any) => state.profile?.profile?.age || null);
+	const {t, i18n} = useTranslation();
 
 	const handleAgeChange = (newValue: string) => {
 		const selectedOption = ageOptions.filter(option => option.name === newValue);
@@ -39,7 +42,7 @@ const FiltroAge = ({setFiltros}: FiltroAgeProps) => {
 		console.log("Idade selecionada:", newValue);
 	};
 
-	return <CommonFilter label='Idade' options={ageOptions} value={ageRedux} onChange={handleAgeChange} placeholder='Selecionar idade' />;
+	return <CommonFilter label={t('filter.age')} options={ageOptions} value={ageRedux} onChange={handleAgeChange} placeholder={t('filter.select_age')} />;
 };
 
 export default FiltroAge;

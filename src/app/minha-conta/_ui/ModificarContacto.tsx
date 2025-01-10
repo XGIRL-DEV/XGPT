@@ -12,7 +12,7 @@ import clsx from "clsx";
 import EmojiPicker, {EmojiClickData} from "emoji-picker-react";
 import {FaSmile} from "react-icons/fa"; // Importa um ícone de emoji
 
-import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle,} from "@/components/ui/dialog";
 
 import CheckPagamento from "@/components/register/check-pagamento";
 import CheckLinguas from "@/components/register/check-linguas";
@@ -149,6 +149,7 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 
 	return (
 		<Dialog open={open} onOpenChange={onClose}>
+			
 			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
 				<DialogHeader className='bg-pink-800 py-6 px-4 md:px-10'>
 					<DialogTitle className='text-xl md:text-3xl font-bold tracking-wide text-center'>Dados Gerais</DialogTitle>

@@ -65,6 +65,7 @@ const Dashboard: React.FC = () => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 10;
+	const [darkMode, setDarkMode] = useState(false);
 
 	const {t, i18n} = useTranslation();
 	const {language, changeLanguage} = useLanguage();
@@ -111,7 +112,7 @@ const Dashboard: React.FC = () => {
 	};
 
 	return (
-		<div className='text-gray-600 bg-gray-900 w-full overflow-x-hidden'>
+		<div className='text-gray-600 w-full overflow-x-hidden'>
 			<Head>
 				<title>{t("dashboard.escort_title_en")}</title>
 				<meta
@@ -132,14 +133,14 @@ const Dashboard: React.FC = () => {
 
 			<div className='w-full'>{profiles && profiles.length > 0 && <CarouselG profiles={profiles} />}</div>
 
-			<p className='text-pink-800 text-xl md:text-3xl flex justify-center mb-6 w-full pt-4'>{t("dashboard.escort_title_en")}</p>
+			{/* <p className='text-pink-800 text-xl md:text-3xl flex justify-center mb-6 w-full pt-4'>{t("dashboard.escort_title_en")}</p> */}
 
-			<div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
+			{/* <div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
 				<Link href='/girls'>
 					<p className='text-white text-3xl flex'>{t("dashboard.featured_ads")}</p>
 				</Link>
-			</div>
-			<div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
+			</div> */}
+			<div className='w-full px-4 sm:px-8 md:px-36 lg:px-36 xl:px-36 max-w-full'>
 				<MainCard profiles={profiles} currentPage={currentPage} itemsPerPage={itemsPerPage} />
 			</div>
 
@@ -147,17 +148,16 @@ const Dashboard: React.FC = () => {
 
 			{/* <Map profiles={profiles} /> */}
 
-			<div className='hidden sm:block w-full px-4 max-w-screen-lg mx-auto'>
-				<div className='min-h-[150px] bg-gray-800 animate-pulse rounded'>
+			<div className="mx-36">
 					<InfoCard />
-				</div>
-			</div>
-			<div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
-				<p className='text-white text-3xl flex'>{t("dashboard.news")} </p>
-			</div>
+					</div>
 
-			<div className='w-full px-4 sm:px-10 md:px-16 lg:px-32 xl:px-48 max-w-full'>
-				<LastAnnounce profiles={profiles} />
+			{/* <div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
+				<p className='text-white text-3xl flex'>{t("dashboard.news")} </p>
+			</div> */}
+
+			<div className='w-full px-4 sm:px-8 md:px-36 lg:px-36 xl:px-36 max-w-full'>
+				<LastAnnounce profiles={profiles} currentPage={currentPage} itemsPerPage={itemsPerPage}/>
 			</div>
 		</div>
 	);

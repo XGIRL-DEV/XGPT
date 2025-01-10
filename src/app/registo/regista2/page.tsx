@@ -7,7 +7,7 @@ import {registerUser} from "@/actions/ProfileActions";
 import {useRouter} from "next/navigation";
 import {useTranslation} from "react-i18next";
 import FeaturesList from "./_ui/FeaturedList";
-import ListRegister from "@/components/Register/list-register";
+import ListRegister from "@/components/register/list-register";
 import CommonInput from "@/components/ui/common-input";
 
 const Regista2: React.FC = () => {
@@ -28,8 +28,7 @@ const Regista2: React.FC = () => {
 
 	const handleOptionSelect = (option: {id: number; name: string; unavailable: boolean}) => {
 		setSelectedOption(option);
-	};
-
+	}
 	const handleRegister = async () => {
 		if (password !== confirmPassword) {
 			console.error("Les mots de passe ne correspondent pas");
@@ -64,7 +63,7 @@ const Regista2: React.FC = () => {
 								},
 							]);
 
-							router.push(`/registo-entrada?email=${email}&userUID=${data.user?.id}`);
+							router.push(`/RegistoEntrada?email=${email}&userUID=${data.user?.id}`);
 							break;
 
 						case 2:
@@ -103,16 +102,15 @@ const Regista2: React.FC = () => {
 	}, [router]);
 
 	return (
-		<div className='bg-gray-600 rounded-md'>
-			<div className='pb-4 bg-gray-900 rounded-md'>
+			<div className='pb-4 bg-gray-100 dark:bg-gray-900 rounded-md'>
 				{/* <Header isLogged={isLoggedIn} /> */}
 				<div className=' h-full  dark:bg-gray-900 justify-center md:flex'>
 					{/* CÔTÉ GAUCHE */}
 					<FeaturesList />
 
 					{/* côté droit */}
-					<div className='bg-gray-900 dark:bg-gray-800 mt-10 w-full max-w-lg mx-auto border border-gray-700 rounded-2xl shadow-xl p-6 sm:p-8'>
-						<h1 className='text-2xl md:text-3xl font-extrabold text-center text-white mb-6'>{t("RegisterPage.create_account_title")}</h1>
+					<div className='bg-gray-100 dark:bg-gray-800 mt-10 w-full max-w-lg mx-auto border border-gray-700 rounded-2xl shadow-xl p-6 sm:p-8'>
+						<h1 className='text-2xl md:text-3xl font-extrabold text-center text-gray-500 dark:text-white mb-6'>{t("RegisterPage.create_account_title")}</h1>
 
 						<form className='space-y-6'>
 							<CommonInput
@@ -145,6 +143,7 @@ const Regista2: React.FC = () => {
 								onChange={e => setConfirmPassword(e.target.value)}
 								type='password'
 								required
+								className=""
 							/>
 
 							{/* Bouton Créer un compte */}
@@ -160,7 +159,6 @@ const Regista2: React.FC = () => {
 						</form>
 					</div>
 				</div>
-			</div>
 		</div>
 	);
 };

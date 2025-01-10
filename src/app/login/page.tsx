@@ -114,15 +114,15 @@ const Login = () => {
 				<meta name='robots' content='index, follow' />
 			</Head>
 
-			<div className='flex flex-col items-center mt-36 h-screen bg-gray-900 px-4 '>
+			<div className='flex flex-col items-center mt-36 h-screen pb-4 '>
 				{/* Texte motivant */}
 				{/* <p className="text-center text-gray-400 text-sm mb-4 max-w-md">
           Découvrez des moments uniques avec <span className="text-pink-500 font-bold">une totale confidentialité</span> et <span className="text-pink-500 font-bold">sécurité</span>.
         </p> */}
 
-				<div className='bg-gray-800 w-full max-w-md md:w-1/3 rounded-lg shadow-2xl border border-gray-700 px-6 py-6 space-y-4'>
+				<div className='bg-white dark:bg-gray-800  w-full mt-10 max-w-md md:w-1/3 rounded-lg shadow-2xl shadow-gray-400 dark:shadow-gray-800 border border-gray-200 dark:border-gray-700 px-6 py-6 space-y-4'>
 					{/* En-tête */}
-					<h1 className='text-3xl md:text-4xl font-extrabold text-center text-pink-600 mb-4'>{t("loginPage.title")}</h1>
+					<h1 className='text-3xl md:text-4xl font-extrabold text-center text-pink-500 mb-4'>{t("loginPage.title")}</h1>
 					<p className='text-center text-gray-400 text-sm mb-4'>{t("loginPage.description")} </p>
 
 					<div className='space-y-4'>
@@ -148,7 +148,7 @@ const Login = () => {
 						/>
 
 						{/* Message d'erreur */}
-						{errorMessage && <div className='text-center bg-pink-100 text-pink-600 border border-pink-500 rounded-lg p-2 text-sm'>{errorMessage}</div>}
+						{errorMessage && <div className='text-center bg-pink-100 text-pink-500 border border-pink-500 rounded-lg p-2 text-sm'>{errorMessage}</div>}
 					</div>
 
 					{/* Bouton de connexion */}
@@ -158,7 +158,7 @@ const Login = () => {
 
 					{/* Lien pour l'inscription */}
 					<div className='text-center mt-4'>
-						<Link href='/regista2' className='text-pink-600 cursor-pointer hover:text-pink-500 font-semibold'>
+						<Link href='/regista2' className='text-pink-500 cursor-pointer hover:text-pink-600 font-semibold'>
 							{t("loginPage.register_link")}
 						</Link>
 					</div>

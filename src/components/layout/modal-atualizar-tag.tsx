@@ -6,7 +6,7 @@ import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Button} from "../ui/button";
 import CommonInput from "../ui/common-input";
-import {Dialog, DialogContent} from "../ui/dialog";
+import {Dialog, DialogContent, DialogTitle} from "../ui/dialog";
 import {profileDataService} from "@/services/profileDataService";
 
 interface ModalAtualizarTagProps {
@@ -66,7 +66,7 @@ const ModalAtualizarTag: React.FC<ModalAtualizarTagProps> = ({isOpen, onClose}) 
 				>
 					{/* Header */}
 					<div className='flex justify-between items-center mb-4'>
-						<h1 className='text-lg md:text-xl text-white font-semibold'>Atualizar Estado</h1>
+						<DialogTitle className='text-lg md:text-xl text-white font-semibold'>Atualizar Estado</DialogTitle>
 						<button onClick={onClose} className='p-2 rounded-full hover:bg-gray-700'>
 							<FaTimes size={16} className='text-gray-400 hover:text-pink-500 transition-colors' />
 						</button>
