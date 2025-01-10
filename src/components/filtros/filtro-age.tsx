@@ -7,7 +7,7 @@ interface FiltroAgeProps {
 import React, {Dispatch, SetStateAction} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-import CommonFilter from "./common-filter";
+import CommonFilter from "./CommonFilter";
 import {useTranslation} from "react-i18next";
 
 

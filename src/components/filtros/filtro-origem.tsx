@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CommonFilter from "./common-filter";
+import CommonFilter from "./CommonFilter";
 import { updateOrigem } from "../../actions/ProfileActions";
 
 const origemOptions = [

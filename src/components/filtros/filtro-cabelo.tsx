@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CommonFilter from "./common-filter";
+import CommonFilter from "./CommonFilter";
 import { updateCabelo } from "../../actions/ProfileActions";
 import {useTranslation} from "react-i18next";
 

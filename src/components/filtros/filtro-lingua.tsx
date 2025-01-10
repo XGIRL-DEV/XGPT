@@ -1,5 +1,5 @@
 import React from "react";
-import CommonFilter from "./common-filter";
+import CommonFilter from "./CommonFilter";
 
 const linguaOptions = [
   { id: 1, name: "Portugues", unavailable: false },

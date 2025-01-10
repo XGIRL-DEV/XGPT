@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { updateSigno } from "../../actions/ProfileActions";
-import CommonFilter from "./common-filter";
+import CommonFilter from "./CommonFilter";
 import {useTranslation} from "react-i18next";
 
 

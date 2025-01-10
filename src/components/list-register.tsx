@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import CommonFilter from "../filtros/common-filter";
+import CommonFilter from "../components/filtros/CommonFilter";
 
 interface Option {
 	id: number;
