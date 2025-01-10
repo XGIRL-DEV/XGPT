@@ -2,7 +2,7 @@
 import React from "react";
 
 import Email from "@/app/definicoes/Email";
-import Password from "@/app/definicoes/_ui/Password";
+import Password from "@/app/definicoes/Password";
 import {Dialog, DialogContent} from "./dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
