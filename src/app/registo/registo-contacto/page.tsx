@@ -4,9 +4,9 @@ import {useSelector, useDispatch} from "react-redux";
 import Link from "next/link";
 
 // import CheckDeslocacoes from "@/components/register/Check-deslocacoes";
-import CheckPagamento from "@/components/register/CheckPagamento";
-import CheckLinguas from "@/components/register/CheckLinguas";
-import CheckServico from "@/components/register/check-servico";
+import CheckPagamento from "@/components/CheckPagamento";
+import CheckLinguas from "@/components/CheckLinguas";
+import CheckServico from "@/components/check-servico";
 import FiltroPrice from "@/components/filtros/filtro-tarifa";
 import {updateDescription, updatePagamento, updateLingua, updateServico} from "@/actions/ProfileActions";
 
