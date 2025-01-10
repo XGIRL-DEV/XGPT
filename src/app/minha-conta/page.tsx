@@ -10,7 +10,7 @@ import ModificarStories from "./ModificarStories";
 import {BlurImage} from "@/components/ui/blur-image";
 import {useDispatch} from "react-redux";
 import {updateTag} from "@/actions/ProfileActions";
-import Definicoes from "./_ui/Definicoes";
+import Definicoes from "./Definicoes";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BarConta from "./_ui/BarConta";

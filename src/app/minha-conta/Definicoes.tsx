@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import HeaderLoged from "../../../components/register/header-loged"
+import HeaderLoged from "@/components/register/header-loged"
 import supabase from "@/database/supabase";
 import { useSelector } from "react-redux";
 import { MdOutlineEmail } from "react-icons/md";
