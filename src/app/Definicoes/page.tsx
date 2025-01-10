@@ -61,7 +61,7 @@ const Definicoes: React.FC = () => {
 						}`}
 					>
 						<FaCreditCard className='text-2xl' />
-						<span className='ml-4 text-lg'>Subscrição</span>
+						<span className='ml-4 text-lg'>Subscriçãoo</span>
 					</button>
 
 					<button
