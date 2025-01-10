@@ -8,6 +8,8 @@ import {LanguageProvider} from "@/context/LanguageContext";
 import "../i18n/i18n";
 // Importar o NextUIProvider
 import {MainProvider} from "@/provider/MainProvider";
+import {ThemeProvider} from "next-themes"; // Adicione o ThemeProvider para alternância de temas
+
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -72,19 +74,17 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 				<meta property='og:image:alt' content='Logo XGirl' />
 				<meta property='twitter:card' content='summary_large_image' />
 			</head>
-			<body className={`${inter.className} bg-gray-900 pt-4 `}>
-				{" "}
-				{/* Ajout du padding haut et bas */}
-				<ReduxProvider>
-					<LanguageProvider>
-						<NextUIProvider>
-							{" "}
-							{/* NextUIProvider deve englobar MainProvider */}
-							<MainProvider>{children}</MainProvider>
-						</NextUIProvider>
-					</LanguageProvider>
-				</ReduxProvider>
-			</body>
+			<body className={`${inter.className}  bg-gray-200 dark:bg-gray-900`}>
+        <ReduxProvider>
+          <LanguageProvider>
+            <ThemeProvider attribute="class" defaultTheme="light"> {/* ThemeProvider */}
+              <NextUIProvider>
+                <MainProvider>{children}</MainProvider>
+              </NextUIProvider>
+            </ThemeProvider>
+          </LanguageProvider>
+        </ReduxProvider>
+      </body>
 		</html>
 	);
 }

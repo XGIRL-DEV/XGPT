@@ -3,16 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import CommonFilter from "./common-filter";
 import { updateCorpo } from "../../actions/ProfileActions";
 import { RootState } from "@/store";
+import {useTranslation} from "react-i18next";
 
-const corpoOptions = [
-  { id: 1, name: "Normal", unavailable: false },
-  { id: 2, name: "Atletica", unavailable: false },
-  { id: 3, name: "Magra", unavailable: false },
-  { id: 4, name: "Gordinha", unavailable: false },
-  { id: 5, name: "XXL", unavailable: false },
-];
+
 
 const FiltroCorpo: React.FC = () => {
+    const {t, i18n} = useTranslation();
+  
   const dispatch = useDispatch();
   const corpoRedux = useSelector(
     (state: RootState) => state.profile?.profile?.corpo || null
@@ -22,13 +19,21 @@ const FiltroCorpo: React.FC = () => {
     dispatch(updateCorpo(newValue));
   };
 
+  const corpoOptions = [
+    { id: 1, name: t('filter.normal'), unavailable: false },
+    { id: 2, name: t('filter.athletic'), unavailable: false },
+    { id: 3, name: t('filter.slim'), unavailable: false },
+    { id: 4, name: t('filter.curvy'), unavailable: false },
+    { id: 5, name: t('filter.xxl'), unavailable: false },
+  ];
+
   return (
     <CommonFilter
-      label="Corpo"
-      options={corpoOptions}
+    label={t('filter.body')}
+    options={corpoOptions}
       value={corpoRedux}
       onChange={handleCorpoChange}
-      placeholder="Silhueta"
+      placeholder={t('filter.select_body')}
     />
   );
 };

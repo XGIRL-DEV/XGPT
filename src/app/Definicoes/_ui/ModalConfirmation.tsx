@@ -1,5 +1,6 @@
 import React from "react";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 interface ModalConfirmationProps {
 	show: boolean;
@@ -13,9 +14,10 @@ const ModalConfirmation: React.FC<ModalConfirmationProps> = ({show, title, messa
 	if (!show) return null;
 
 	return (
+
 		<Dialog open={show} onOpenChange={onCancel}>
 			<DialogContent>
-				<h3 className='text-2xl font-semibold text-white mb-4'>{title}</h3>
+			<DialogTitle className='text-2xl font-semibold text-white mb-4'>{title}</DialogTitle>
 				<p className='text-gray-400 mb-6'>{message}</p>
 				<div className='flex justify-end space-x-4'>
 					<button

@@ -57,14 +57,14 @@ const InputWithIcon = ({
 	};
 
 	const getIconWrapperClass = () => {
-		const baseClass = "w-4 h-4 absolute top-1/2 -translate-y-1/2 text-gray-400";
+		const baseClass = "w-4 h-4 absolute top-1/2 -translate-y-1/2 text-gray-800 dark:text-gray-400 ";
 		return cn(baseClass, iconPosition === "left" ? "left-3" : "right-3", iconClassName);
 	};
 
 	return (
 		<div className={cn("space-y-2", className)}>
 			{!hideLabel && (
-				<Label htmlFor={id} className={cn("text-[#E84393] text-sm font-medium mb-1.5", labelClassName)}>
+				<Label htmlFor={id} className={cn("text-pink-500 text-sm font-medium mb-1.5", labelClassName)}>
 					{label}
 					{showAsterisk && required && "*"}
 				</Label>
@@ -80,7 +80,7 @@ const InputWithIcon = ({
 					disabled={disabled}
 					required={required}
 					className={cn(
-						"text-[#E84393] text-sm font-medium mb-1.5",
+						"text-pink-500 text-sm font-medium mb-1.5 bg-gray-200 dark:bg-gray-600",
 
 						sizeClasses[size],
 						iconPositionClasses[iconPosition],

@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef, useCallback} from "react";
 import {FiPhone} from "react-icons/fi";
 import {FaWhatsapp, FaMoneyBillWave} from "react-icons/fa";
 import {useSelector} from "react-redux";
@@ -21,10 +21,10 @@ const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 	const modalRef = useRef<HTMLDivElement>(null); // Ref para o modal
 	const {t, i18n} = useTranslation();
 
-	const fecharLiga = () => {
+	const fecharLiga = useCallback(() => {
 		setMostrarLiga(false);
 		setShowLiga(false); // Resetar o estado showLiga no componente Profile
-	};
+	}, [setShowLiga]);
 
 	const obterBandeira = (lingua: string): string => {
 		switch (lingua) {
@@ -53,11 +53,11 @@ const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 	const linguaRedux = useSelector((state: any) => state.profile?.profile?.lingua);
 
 	// Função para detectar clique fora do modal
-	const handleClickOutside = (event: MouseEvent) => {
+	const handleClickOutside = useCallback((event: MouseEvent) => {
 		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
 			fecharLiga(); // Fecha o modal se clicar fora
 		}
-	};
+	}, [fecharLiga]); // No dependencies needed, as the function doesn't depend on any other state
 
 	// Usando useEffect para adicionar o listener do clique fora
 	useEffect(() => {
@@ -65,7 +65,7 @@ const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, []);
+	}, [handleClickOutside]); 
 
 	return (
 		<>
@@ -83,7 +83,7 @@ const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 						{/* Contact Options */}
 						<div className='flex flex-col gap-4'>
 							{/* Phone */}
-							<div className='bg-pink-700 hover:bg-pink-600 py-3 rounded-lg flex items-center justify-center transition-colors'>
+							<div className='bg-pink-500 hover:bg-pink-600 py-3 rounded-lg flex items-center justify-center transition-colors'>
 								<FiPhone size={22} className='mr-2 text-white' />
 								<span className='text-white font-medium'>{selectedProfile?.telefone}</span>
 							</div>
@@ -103,7 +103,7 @@ const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 
 						{/* Tarifas */}
 						<div className='flex items-center justify-center mb-6'>
-							<FaMoneyBillWave size={28} className='text-pink-600 mr-3' />
+							<FaMoneyBillWave size={28} className='text-pink-500 mr-3' />
 							<p className='text-white text-lg font-medium'>{t("profile.tariffs_starting_from", {tarifa: selectedProfile?.tarifa})}</p>
 						</div>
 

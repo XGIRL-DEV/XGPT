@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import {useState, useEffect, useRef} from "react";
+import {useState, useEffect, useRef, useCallback} from "react";
 import {VscVerifiedFilled} from "react-icons/vsc";
 import {useTranslation} from "react-i18next";
 import {Dialog, DialogContent, DialogTitle} from "../../../components/ui/dialog";
@@ -19,17 +19,23 @@ const Certificado: React.FC<CertificadoProps> = ({setShowCertificado}) => {
 	const {t, i18n} = useTranslation();
 
 	// Função para fechar o modal
-	const fecharCertificado = () => {
+	const fecharCertificado = useCallback(() => {
 		setMostrarCertificado(false);
 		setShowCertificado(false); // Resetar o estado showCertificado no componente Profile
-	};
+	  }, [setShowCertificado]);
 
-	// Fechar o modal se clicar fora dele
-	const handleClickOutside = (event: MouseEvent) => {
+	const handleClickOutside = useCallback((event: MouseEvent) => {
 		if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-			fecharCertificado();
+		  fecharCertificado();
 		}
-	};
+	  }, [fecharCertificado]); // Include dependencies
+	  
+	  useEffect(() => {
+		document.addEventListener("mousedown", handleClickOutside); // Add event listener
+		return () => {
+		  document.removeEventListener("mousedown", handleClickOutside); // Cleanup
+		};
+	  }, [handleClickOutside]); 
 
 	// Usando useEffect para adicionar o evento de clique fora do modal
 	useEffect(() => {
@@ -37,7 +43,7 @@ const Certificado: React.FC<CertificadoProps> = ({setShowCertificado}) => {
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside); // Remove o ouvinte quando o componente desmontar
 		};
-	}, []);
+	}, [handleClickOutside]);
 
 	return (
 		<>

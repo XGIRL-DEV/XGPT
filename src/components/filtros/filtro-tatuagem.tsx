@@ -2,11 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommonFilter from "./common-filter";
 import { updateTatuagem } from "../../actions/ProfileActions";
+import {useTranslation} from "react-i18next";
 
-const tatuagemOptions = [
-  { id: 1, name: "Com Tatuagens", unavailable: false },
-  { id: 2, name: "Sem Tatuagens", unavailable: false },
-];
+
 
 interface FiltrosState {
   tatuagem?: string[];
@@ -17,6 +15,8 @@ interface FiltroTatuagemProps {
 }
 
 const FiltroTatuagem: React.FC<FiltroTatuagemProps> = ({ setFiltros }) => {
+          const {t, i18n} = useTranslation();
+  
   const dispatch = useDispatch();
   const tatuagemRedux = useSelector(
     (state: any) => state.profile?.profile?.tatuagem || null
@@ -33,14 +33,20 @@ const FiltroTatuagem: React.FC<FiltroTatuagemProps> = ({ setFiltros }) => {
     }
   };
 
+
+  const tatuagemOptions = [
+    { id: 1, name: t('tattoos.with_tattoos'), unavailable: false },
+    { id: 2, name: t('tattoos.without_tattoos'), unavailable: false },
+  ];
+
   return (
     <CommonFilter
-      label="Tatuagens"
+    label={t('filterT.tattoos')}
       options={tatuagemOptions}
       value={tatuagemRedux}
       onChange={handleTatuagemChange}
-      placeholder="Tatuagens"
-    />
+      placeholder={t('filterT.select_tattoos')}
+      />
   );
 };
 

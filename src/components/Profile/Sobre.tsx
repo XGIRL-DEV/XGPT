@@ -19,6 +19,7 @@ import {
   TbZodiacVirgo,
 } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
+import { Card, CardBody } from "@nextui-org/react";
 
 
 interface Profile {
@@ -35,6 +36,7 @@ interface Profile {
   seios: string;
   mamas: string;
   signo: string;
+  cabelo: string;
 }
 
 interface SobreProps {
@@ -61,62 +63,75 @@ const Sobre: React.FC<SobreProps> = ({ selectedProfile }) => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className=" bg-gray-800 grid gap-2 py-3 w-full px-10 border border-zinc-700 rounded-xl">
-       <p className="text-pink-600 text-2xl"> 
-  {t("profile.about", { name: selectedProfile?.nome })}</p>
+    <Card
+    isBlurred
+    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6"
+  >
+    <CardBody>
+     
+        {/* Título */}
+        
+        <h2 className="text-xl font-semibold mb-4 text-gray-600 dark:text-gray-400">{t("profile.about", { name: selectedProfile?.nome })}</h2>
 
-  
-  <div className="grid grid-cols-2 gap-2 mt-2 mb-4 text-sm">
-        <div className="flex items-center">
-          <LiaBirthdayCakeSolid className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.idade}</p>
-        </div>
-        <div className="flex items-center">
-          <GiBodyHeight className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.altura}</p>
-        </div>
-        <div className="flex items-center">
-          <FaMapMarkerAlt className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.distrito}</p>
-        </div>
-        <div className="flex items-center">
-          <FaFlag className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.origem}</p>
-        </div>
-        <div className="flex items-center">
-          <FaMapMarkerAlt className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.cidade}</p>
-        </div>
-        <div className="flex items-center">
-          <FaWeightScale className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.peso}</p>
-        </div>
-        <div className="flex items-center">
-          <FaCheck className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.tatuagens}</p>
-        </div>
-        <div className="flex items-center">
-          <AiOutlineScissor className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.pelos}</p>
-        </div>
-        <div className="flex items-center">
-          <FaEye className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.olhos}</p>
-        </div>
-        <div className="flex items-center">
-          <FaCheck className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.seios}</p>
-        </div>
-        <div className="flex items-center">
-          <FaCheck className="text-pink-800 mr-2" />
-          <p className="text-zinc-200">{selectedProfile?.mamas}</p>
-        </div>
-        <div className="flex items-center">
-          {selectedProfile && signoIcons[selectedProfile?.signo]}
-          <p className="text-zinc-200">{selectedProfile?.signo}</p>
-        </div>
+
+        {/* Informações do Perfil */}
+        <div className="grid grid-cols-2 gap-4 mt-2 text-sm">
+          <div className="flex items-center">
+            <LiaBirthdayCakeSolid className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.idade}</p>
+          </div>
+          <div className="flex items-center">
+            <GiBodyHeight className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.altura}</p>
+          </div>
+          <div className="flex items-center">
+            <FaMapMarkerAlt className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.distrito}</p>
+          </div>
+          <div className="flex items-center">
+            <FaFlag className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.origem}</p>
+          </div>
+          <div className="flex items-center">
+            <FaMapMarkerAlt className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cidade}</p>
+          </div>
+          <div className="flex items-center">
+            <FaWeightScale className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.peso}</p>
+          </div>
+          <div className="flex items-center">
+            <FaCheck className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cabelo}</p>
+          </div>
+          <div className="flex items-center">
+            <FaCheck className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.tatuagens}</p>
+          </div>
+          <div className="flex items-center">
+            <AiOutlineScissor className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.pelos}</p>
+          </div>
+          <div className="flex items-center">
+            <FaEye className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.olhos}</p>
+          </div>
+          <div className="flex items-center">
+            <FaCheck className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.seios}</p>
+          </div>
+          <div className="flex items-center">
+            <FaCheck className="text-pink-500 mr-2" />
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.mamas}</p>
+          </div>
+          <div className="flex items-center">
+            {selectedProfile && signoIcons[selectedProfile?.signo]}
+            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.signo}</p>
+          </div>
+       
       </div>
-    </div>
+    </CardBody>
+  </Card>
   );
 };
 

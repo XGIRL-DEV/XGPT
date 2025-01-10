@@ -3,6 +3,7 @@ import {SetStateAction, Dispatch} from "react";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {Profile} from "@/types";
+import {useTranslation} from "react-i18next";
 
 interface HeaderGProps {
 	currentProfileIndex: number;
@@ -12,6 +13,8 @@ interface HeaderGProps {
 
 const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfileIndex, profiles}) => {
 	const router = useRouter();
+	const {t, i18n} = useTranslation();
+
 
 	const handleDistrictClick = (district: string) => {
 		router.push(`/escort?distrito=${encodeURIComponent(district)}`);
@@ -42,36 +45,37 @@ const HeaderG: React.FC<HeaderGProps> = ({currentProfileIndex, setCurrentProfile
 	const currentProfile = profiles[currentProfileIndex];
 
 	return (
-		<div className='w-full bg-gray-800 fixed z-20'>
-			<div className='flex justify-between items-center px-4 h-14 bg-gray-900 dark:bg-gray-800 border-b border-gray-700'>
+		<div className='w-full fixed z-10 bg-gray-100/20 dark:bg-gray-800/40 backdrop-blur-sm'>
+			<div className='flex justify-between items-center px-4 h-14 bg-gray-100/80 dark:bg-gray-700/70 backdrop-blur-md'>
+
 				{/* Botão Perfil Anterior */}
 				<button
-					className='flex items-center px-4 py-1 border border-pink-800 text-sm rounded-md text-white bg-pink-800 hover:bg-pink-900 hover:text-zinc-300 transition duration-300 ease-in-out transform'
+					className='flex items-center px-4 py-1  border-pink-500 text-sm rounded-md text-white bg-pink-500 hover:bg-pink-900 hover:text-zinc-300 transition duration-300 ease-in-out transform'
 					onClick={handlePrevProfile}
 				>
 					<IoIosArrowRoundBack size={20} className='mr-1' />
-					<span className='hidden sm:inline'>Anterior</span>
+					<span className='hidden sm:inline'>{t('buttonHG.previous')}</span>
 				</button>
 
 				{/* Informações do Perfil */}
 				{currentProfile && currentProfile.distrito && (
 					<div className='flex items-center text-center text-sm space-x-2'>
-						<p className='text-zinc-400'>Girls</p>
+						<p className='text-zinc-400'>Escort</p>
 						<p className='text-zinc-400'>/</p>
-						<Link href={`/escort?distrito=${encodeURIComponent(currentProfile.distrito)}`} className='text-zinc-400 cursor-pointer hover:text-pink-800'>
+						<Link href={`/escort?distrito=${encodeURIComponent(currentProfile.distrito)}`} className='text-zinc-400 cursor-pointer hover:text-pink-600'>
 							{currentProfile.distrito}
 						</Link>
 						<p className='text-zinc-400'>/</p>
-						<p className='text-pink-800'>{currentProfile.nome}</p>
+						<p className='text-pink-500 hover:text-pink-600 cursor-pointer'>{currentProfile.nome}</p>
 					</div>
 				)}
 
 				{/* Botão Próximo Perfil */}
 				<button
-					className='flex items-center px-4 py-1 border border-pink-800 text-sm rounded-md text-white bg-pink-800 hover:bg-pink-900 hover:text-zinc-300 transition duration-300 ease-in-out transform'
+					className='flex items-center px-4 py-1 border border-pink-500 text-sm rounded-md text-white bg-pink-500 hover:bg-pink-600 hover:text-zinc-300 transition duration-300 ease-in-out transform'
 					onClick={handleNextProfile}
 				>
-					<span className='hidden sm:inline'>Próximo</span>
+					<span className='hidden sm:inline'>{t('buttonHG.next')}</span>
 					<IoIosArrowRoundForward size={20} className='ml-1' />
 				</button>
 			</div>

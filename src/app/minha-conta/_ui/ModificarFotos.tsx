@@ -32,59 +32,64 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar, open, onCl
 			const files = Array.from(event.target.files);
 			const selected = files.slice(0, 10); // Limitar o número de fotos a 10
 			const uploadedPhotoURLs: string[] = [];
-
-			const uploadPromises = selected.map(async file => {
+	
+			const uploadPromises = selected.map(async (file) => {
 				const filePath = `${userUID}/${file.name.toLowerCase().replace(/ /g, "_").replace(/\./g, "_")}`;
-
+	
 				console.log("filePath", filePath);
 				try {
-					const reader = new FileReader();
-					reader.readAsDataURL(file);
-
-					await new Promise<void>(resolve => {
-						reader.onload = async () => {
-							const fileBlob = new Blob([reader.result as ArrayBuffer], {type: file.type});
-
-							const {data, error} = await supabase.storage.from("profileFoto").upload(filePath, fileBlob);
-							console.log(data, error);
-							if (error) throw new Error(error.message);
-
-							const publicURLFoto = `https://ulcggrutwonkxbiuigdu.supabase.co/storage/v1/object/public/profileFoto/${filePath}`;
-							uploadedPhotoURLs.push(publicURLFoto);
-
-							resolve();
-						};
-					});
+					// Enviar o arquivo diretamente ao Supabase sem usar FileReader
+					const { data, error } = await supabase.storage.from("profileFoto").upload(filePath, file);
+	
+					if (error) {
+						console.error("Erro ao fazer upload:", error.message);
+						throw new Error(error.message);
+					}
+	
+					// Gerar a URL pública após o upload
+					const publicURLFoto = `https://ulcggrutwonkxbiuigdu.supabase.co/storage/v1/object/public/profileFoto/${filePath}`;
+					uploadedPhotoURLs.push(publicURLFoto);
+	
+					console.log("Foto enviada com sucesso:", publicURLFoto);
 				} catch (error: any) {
 					console.error("Erro durante o upload:", error.message);
 				}
 			});
-
+	
 			await Promise.all(uploadPromises);
-
-			// Inserir URLs das fotos na tabela profilephoto
-			const photoInsertionsProfile = uploadedPhotoURLs.map(photoURL => ({
-				userUID,
-				imageurl: photoURL,
-			}));
-
-			try {
-				const {data: photoData, error: photoError} = await supabase.from("profilephoto").insert(photoInsertionsProfile);
-
-				if (photoError) {
-					throw new Error("Erro ao inserir URLs das fotos na tabela profilephoto: " + photoError.message);
+	
+			// Verifique se as URLs das fotos foram corretamente armazenadas
+			if (uploadedPhotoURLs.length > 0) {
+				// Inserir URLs das fotos na tabela profilephoto
+				const photoInsertionsProfile = uploadedPhotoURLs.map((photoURL) => ({
+					userUID,
+					imageurl: photoURL,
+				}));
+	
+				try {
+					const { data: photoData, error: photoError } = await supabase.from("profilephoto").insert(photoInsertionsProfile);
+	
+					if (photoError) {
+						console.error("Erro ao inserir URLs das fotos na tabela profilephoto:", photoError.message);
+						throw new Error(photoError.message);
+					}
+	
+					console.log("URLs das fotos inseridas com sucesso na tabela profilephoto:", photoData);
+	
+					// Atualizar o Redux com as novas URLs de fotos
+					const newPhotoURLs = [...photoURLsRedux, ...uploadedPhotoURLs];
+					dispatch(updatePhotos(newPhotoURLs));  // Atualizar o estado do Redux
+				} catch (error: any) {
+					console.error("Erro ao inserir URLs na tabela:", error.message);
 				}
-
-				console.log("URLs das fotos inseridas com sucesso na tabela profilephoto:", photoData);
-
-				// Atualizar o Redux com as novas URLs de fotos
-				const newPhotoURLs = [...photoURLsRedux, ...uploadedPhotoURLs];
-				dispatch(updatePhotos(newPhotoURLs));
-			} catch (error: any) {
-				console.error("Erro ao inserir URLs das fotos na tabela:", error.message);
+			} else {
+				console.error("Nenhuma URL de foto foi gerada.");
 			}
+		} else {
+			console.error("Nenhum arquivo foi selecionado.");
 		}
 	}
+	
 
 	// Função para excluir foto
 	const handleDeletePhoto = async (index: number) => {
@@ -139,17 +144,25 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar, open, onCl
 
 	// Função para guardar alterações
 	const handleGuardar = () => {
-		console.log("Fotos guardadas com sucesso!");
-		toast.success("Alteração efetuada com sucesso!", {
-			position: "top-right",
-			autoClose: 1000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "light",
-		});
+		try {
+			// Simula operação de sucesso
+			console.log("stories guardadas com sucesso!");
+
+			// Exibe toast de sucesso
+			toast.success("Alteração efetuada com sucesso!", {
+				position: "top-right",
+				autoClose: 1000,
+				theme: "light",
+			});
+		} catch (error) {
+			// Em caso de erro, exibe toast de erro
+			toast.error("Erro ao guardar as alterações!", {
+				position: "top-right",
+				autoClose: 3000,
+				theme: "light",
+			});
+			console.error("Erro ao guardar as alterações:", error);
+		}
 	};
 
 	return (
@@ -157,7 +170,7 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar, open, onCl
 			<DialogContent className='max-w-4xl h-2/3 md:h-4/5 sm:max-h-[80vh] p-0 overflow-hidden'>
 				<DialogHeader className='bg-pink-800 py-6'>
 					<DialogTitle className='text-3xl font-bold tracking-wide text-center'>Gerir Fotos</DialogTitle>
-					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Pode adicionar até 10 fotos</p>
+					<h2 className='text-center text-gray-200 text- md:text-sm mt-2'>Pode adicionar até 10 fotos</h2>
 					<ToastContainer />
 				</DialogHeader>
 
@@ -188,17 +201,17 @@ const ModificarFotos: React.FC<ModificarFotosProps> = ({handleVoltar, open, onCl
 					</div>
 
 					<div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6'>
-						{Array.isArray(photoURLsRedux) &&
-							photoURLsRedux.map((photoURL: string, index: number) => (
-								<div key={index} className='relative group rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105'>
-									<IoTrashBin
-										size={26}
-										className='absolute top-2 right-2 opacity-0 group-hover:opacity-100 cursor-pointer text-white bg-red-600 rounded-full p-1 transition-opacity duration-300'
-										onClick={() => handleDeletePhoto(index)}
-									/>
-									<BlurImage src={photoURL} alt={`Foto ${index}`} className='w-full h-32 object-cover rounded-lg border border-gray-600' />
-								</div>
-							))}
+					{Array.isArray(photoURLsRedux) &&
+    photoURLsRedux.map((photoURL: string, index: number) => (
+        <div key={index} className='relative group rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105'>
+            <IoTrashBin
+                size={26}
+                className='absolute top-2 right-2 opacity-0 group-hover:opacity-100 cursor-pointer text-white bg-red-600 rounded-full p-1 transition-opacity duration-300'
+                onClick={() => handleDeletePhoto(index)}
+            />
+            <BlurImage src={photoURL} alt={`Foto ${index}`} className='w-full h-32 object-cover rounded-lg border border-gray-600' />
+        </div>
+    ))}
 					</div>
 				</div>
 

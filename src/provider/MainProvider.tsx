@@ -14,13 +14,13 @@ export function MainProvider(props: MainProviderProps) {
 	return (
 		<>
 			{/* Header visível apenas em telas médias ou maiores */}
-			<div className='hidden md:block mb-4'>
+			<div className='hidden md:block sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm'>
 				<Header />
 			</div>
 			<div className='block md:hidden '>
 				<HeaderMobile />
 			</div>
-			<main className='md:mt-24'>{children}</main>
+			<main className='md:'>{children}</main>
 			<footer className=''>
 				<Footer />
 			</footer>

@@ -1,18 +1,22 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function Termes({}) {
+  const { t } = useTranslation();
+
+
   return (
     <div className="text-gray-200 bg-gray-800 mx-4 my-10 md:mt-20 md:mx-auto max-w-5xl p-8 rounded-lg shadow-2xl font-sans space-y-12">
       {/* Titre principal */}
       <h1 className="text-center text-3xl md:text-5xl font-bold text-gray-100 mb-12 border-b-4 border-gray-600 pb-4">
-        Termes et Conditions Générales dUtilisation et Mention Légale
+      {t("terms.title")}
       </h1>
 
       {/* Sections */}
       <section className="space-y-8">
         <h2 className="text-xl md:text-2xl font-semibold text-gray-100 border-b border-gray-600 pb-2">
-          1. OBJET
+          {t("terms.section1.title")}
         </h2>
         <p className="leading-relaxed text-gray-300">
           Cet avis légal régule lutilisation du site XGirl.fr, propriété de XGirl, LDA.

@@ -45,7 +45,7 @@ const Footer = () => {
 	};
 
 	return (
-		<footer className='bg-gray-800 w-full pt-8' style={{borderTop: "4px solid #C2136A"}}>
+		<footer className='bg-white dark:bg-gray-800 w-full pt-8 border-t border-pink-500'>
 			<div className='max-w-screen-xl mx-auto px-4'>
 				<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left'>
 					{/* LOGO */}
@@ -64,7 +64,7 @@ const Footer = () => {
 						<ul className='space-y-1'>
 							{footerLinks.quickLinks.map(link => (
 								<li key={link.href}>
-									<Link href={link.href} className='text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]'>
+									<Link href={link.href} className='text-pink-500 cursor-pointer hover:underline hover:text-[#C2136A]'>
 										{t(link.labelKey)}
 									</Link>
 								</li>
@@ -78,7 +78,7 @@ const Footer = () => {
 						<ul className='space-y-1'>
 							{footerLinks.categories.map(link => (
 								<li key={link.href}>
-									<Link href={link.href} className='text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]'>
+									<Link href={link.href} className='text-pink-500 cursor-pointer hover:underline hover:text-[#C2136A]'>
 										{t(link.labelKey)}
 									</Link>
 								</li>
@@ -88,14 +88,14 @@ const Footer = () => {
 
 					{/* À PROPOS */}
 					<div className='mb-8'>
-						<p className='text-xl text-white py-2'>{t("Footer.about_title")}</p>
+						<p className='text-xl text-gray-400 dark:text-white py-2'>{t("Footer.about_title")}</p>
 						<ul className='space-y-1'>
 							{footerLinks.about.map((item, index) =>
 								item.type === "combined" ? (
 									<li key={index} className='flex space-x-2'>
 										{item.links.map((link, linkIndex) => (
 											<Fragment key={link.href}>
-												<Link href={link.href} className='text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]'>
+												<Link href={link.href} className='text-pink-500 cursor-pointer hover:underline hover:text-pink-600'>
 													{t(link.labelKey)}
 												</Link>
 												{linkIndex < item.links.length - 1 && <span className='text-white'>/</span>}
@@ -104,7 +104,7 @@ const Footer = () => {
 									</li>
 								) : (
 									<li key={item.href}>
-										<Link href={item.href} className='text-[#D53F8C] cursor-pointer hover:underline hover:text-[#C2136A]'>
+										<Link href={item.href} className='text-pink-500 cursor-pointer hover:underline hover:text-pink-600'>
 											{t(item.labelKey)}
 										</Link>
 									</li>
@@ -131,7 +131,7 @@ const Footer = () => {
 
 					{/* Colonne de droite */}
 					<div className='flex items-center justify-end padding-righ pr-10'>
-						<img src='/photos/icon_paiement.webp' alt='Méthodes de paiement' width={150} />
+						<Image src='/photos/icon_paiement.webp' alt='Méthodes de paiement' width={150} height={150} />
 					</div>
 				</div>
 			</div>

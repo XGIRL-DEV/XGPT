@@ -110,7 +110,7 @@
     "write_comment_placeholder": "Écrivez votre commentaire ici...",
     "send_comment": "Envoyer le commentaire",
 
-    "language": {
+    "linguas": {
     "russian": "Russe",
     "german": "Allemand",
     "portuguese": "Portugais",
@@ -119,7 +119,40 @@
     "italian": "Italien",
     "spanish": "Espagnol",
     "arabic": "Arabe"
+  },
+  "servico": {
+    "69": "69",
+    "AnulingusActivo": "Anulingus (Actif)",
+    "AnulingusPassivo": "Anulingus (Passif)",
+    "Champagne Dourado Activo": "Champagne Doré Actif",
+    "Champagne Dourado Passivo": "Champagne Doré Passif",
+    "Atende Casais": "Accepte Couples",
+    "Dedos Anal": "Doigts Anals",
+    "Dedos Vagina": "Doigts Vaginale",
+    "Dominacao soft": "Domination Douce",
+    "Dupla Penetracao": "Double Pénétration",
+    "Duo": "Duo",
+    "Ejaculacao Corporal": "Éjaculation Corporelle",
+    "Ejacular na Facial": "Éjaculer sur le Visage",
+    "Multipla Ejeculacao": "Éjaculation Multiple",
+    "Face Sitting": "Face Sitting",
+    "Fetichismo": "Fétichisme",
+    "BeijoFrances": "Baiser Français",
+    "Garganta Profunda": "Gorge Profonde",
+    "Jogos Eroticos": "Jeux Érotiques",
+    "Lingerie": "Lingerie",
+    "Massagem Erotica": "Massage Érotique",
+    "Masturbacao": "Masturbation",
+    "Experiencia Porn Star": "Expérience Porn Star",
+    "Servico VIP": "Service VIP",
+    "Sexo em Grupo": "Sexe en Groupe (Orgie)",
+    "Sex Toys": "Sex Toys",
+    "Sodomia Activa": "Sodomie Active",
+    "Sodomia Passiva": "Sodomie Passive",
+    "Striptease": "Striptease"
   }
+
+
  
   },
  "loginPage": {
@@ -170,7 +203,209 @@
     "my_stories": "Mes Stories",
     "settings": "Paramètres",
     "view_profile": "Voir le Profil"
-}
+},
+"filter": {
+  "age": "Âge",
+  "select_age": "Sélectionner l'âge",
+
+
+   "height": "Taille",
+    "select_height": "Sélectionnez la taille",
+
+
+    "hair_color": "Couleur des cheveux",
+    "select_hair_color": "Sélectionnez la couleur des cheveux",
+ 
+    "black": "Noir",
+    "blonde": "Blond",
+    "brown": "Brun",
+    "red": "Rouge",
+    "other": "Autre",
+
+
+      "body": "Corps",
+      "select_body": "Sélectionnez le type de corps",
+    
+      "normal": "Normal",
+      "athletic": "Athlétique",
+      "slim": "Mince",
+      "curvy": "Ronde",
+      "xxl": "XXL",
+
+
+
+
+      "filter": {
+        "eye_color": "Couleur des yeux",
+        "select_eye_color": "Sélectionnez la couleur des yeux"
+      },
+      "eyes": {
+        "brown": "Marron",
+        "black": "Noir",
+        "blue": "Bleu",
+        "green": "Vert"
+      }
+    },
+
+    "filterB": {
+      "breasts": "Poitrine",
+      "select_breasts": "Sélectionnez le type de poitrine",
+      "breast_size": "Taille de poitrine",
+      "select_breast_size": "Sélectionnez une taille"
+    },
+    "breasts": {
+      "natural": "Naturelle",
+      "silicone": "Silicone"
+    },
+    "breast_size": {
+      "small": "Petites Seins (A-B)",
+      "large": "Grands Seins (C-D)",
+      "xxl": "Seins XXL (E+)"
+    },
+    
+      "filterP": {
+    "hair_removal": "Pilosité",
+    "select_hair_removal": "Sélectionnez une préférence"
+  },
+  "hair_removal": {
+    "smooth": "Sans Poils",
+    "partially_smooth": "Partiellement Sans Poils",
+    "natural": "Naturel"
+  },
+  "filterT": {
+    "tattoos": "Tatouages",
+    "select_tattoos": "Sélectionnez une préférence pour les tatouages"
+  },
+  "tattoos": {
+    "with_tattoos": "Avec Tatouages",
+    "without_tattoos": "Sans Tatouages"
+  },
+
+  "filterS": {
+    "zodiac": "Signe du Zodiaque",
+    "select_zodiac": "Sélectionnez un Signe du Zodiaque"
+  },
+  "zodiac": {
+    "aries": "Bélier",
+    "taurus": "Taureau",
+    "gemini": "Gémeaux",
+    "cancer": "Cancer",
+    "leo": "Lion",
+    "virgo": "Vierge",
+    "libra": "Balance",
+    "scorpio": "Scorpion",
+    "sagittarius": "Sagittaire",
+    "capricorn": "Capricorne",
+    "aquarius": "Verseau",
+    "pisces": "Poissons"
+  },
+
+  "filterTa": {
+    "tarifa": "Tarif",
+    "select_tarifa": "Sélectionnez un tarif"
+  },
+  "tarifa": {
+    "50": "À partir de 50€",
+    "100": "À partir de 100€",
+    "200": "À partir de 200€",
+    "500": "À partir de 500€",
+    "more_than_500": "+ 500€"
+  },
+
+
+  "profileR2": {
+    "createTitle": "Créez votre profil",
+    "createSubtitle": "Complétez les informations pour commencer sur"
+  },
+  "input": {
+    "name": "Nom*",
+    "namePlaceholder": "Entrez votre nom",
+    "age": "Âge",
+    "agePlaceholder": "Votre âge",
+    "phone": "Numéro de Téléphone*",
+    "phonePlaceholder": "Votre téléphone",
+    "chooseOption": "Choisissez une option",
+    "useFullAddress": "Utiliser l'adresse complète",
+    "fullAddress": "Adresse Complète",
+    "fullAddressPlaceholder": "Entrez l'adresse complète",
+    "city": "Ville",
+    "cityPlaceholder": "Entrez votre ville",
+    "district": "Région",
+    "districtPlaceholder": "Entrez votre région"
+  },
+  "button": {
+    "back": "Retour",
+    "createAccount": "Créer un Compte"
+  },
+
+  "contactData": {
+    "title": "Données Générales",
+    "subtitle": "Modifiez vos informations à tout moment"
+  },
+  "paymentMethods": {
+    "title": "Méthodes de Paiement"
+  },
+  "languages": {
+    "title": "Langues"
+  },
+  "services": {
+    "title": "Services"
+  },
+  "description": {
+    "title": "Description",
+    "placeholder": "Écrivez la description ici..."
+  },
+  "button2": {
+    "back": "Retour",
+    "continue": "Continuer"
+  }, 
+
+  "buttonHG": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  }, 
+
+  "terms": {
+    "title": "Termes et Conditions d'Utilisation",
+    "section1": {
+      "title": "1. Objet",
+      "paragraph1": "Cet avis légal régule l'utilisation du site XGirl.fr, propriété de XGirl, LDA.",
+      "paragraph2": "L'accès et la navigation sur le site attribuent automatiquement la condition d'UTILISATEUR et impliquent l'acceptation pleine et sans réserve de toutes les conditions publiées dans cet avis légal.",
+      "paragraph3": "Le PROPRIÉTAIRE DU SITE peut modifier ces conditions sans préavis.",
+      "paragraph4": "Il est recommandé que l'UTILISATEUR lise attentivement ce contenu avant d'utiliser les services et informations mis à disposition par le site.",
+      "paragraph5": "L'UTILISATEUR s'engage à utiliser le site conformément aux lois et à cet avis légal."
+    },
+    "section2": {
+      "title": "2. Identification",
+      "paragraph1": "Nom légal : XGirl.pt, LDA.",
+      "paragraph2": "NIF : 123456789",
+      "paragraph3": "Adresse : Rua da Liberdade, 123, 1er étage, Lisbonne, Portugal.",
+      "paragraph4": "Email de contact : info@xgirl.fr"
+    },
+    "section3": {
+      "title": "3. Communications",
+      "paragraph1": "Les moyens de contact sont :",
+      "paragraph2": "Téléphone : +351 910253456",
+      "paragraph3": "Email : info@xgirl.fr"
+    },
+    "section4": {
+      "title": "4. Conditions d'Accès et d'Utilisation",
+      "paragraph1": "L'accès au site et à ses services est gratuit.",
+      "paragraph2": "L'UTILISATEUR déclare que toutes les informations fournies sont vraies et authentiques.",
+      "paragraph3": "L'UTILISATEUR s'engage à utiliser correctement les contenus et services du site.",
+      "listItem1": "Diffuser des contenus illégaux ou discriminatoires.",
+      "listItem2": "Introduire des virus ou des programmes nuisibles.",
+      "listItem3": "Essayer d'accéder aux zones restreintes du site ou des systèmes tiers et extraire des données non autorisées.",
+      "listItem4": "Violer les droits de propriété intellectuelle ou industrielle.",
+      "listItem5": "Impersonner d'autres utilisateurs.",
+      "listItem6": "Distribuer, reproduire ou modifier des contenus sans autorisation expresse."
+    }
+  }
+
+
+    
   
 }
+  
+
   

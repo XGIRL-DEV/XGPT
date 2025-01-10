@@ -30,14 +30,14 @@ const { t, i18n } = useTranslation();
   const pagamentos = selectedProfile?.pagamento;
 
   return (
-    <div className="bg-gray-800 px-10 pt-10 pb-10 w-full border border-zinc-700 rounded-xl">
-<p className="text-pink-600 text-2xl">
+    <div className="bg-white dark:bg-gray-800 px-10 pt-10 pb-10 w-full shadow-lg rounded-xl">
+<h1 className="text-pink-500 text-2xl">
   {t("profile.rates")}
-</p>
-      <p className="text-white text-lg mt-4 mb-8">
+</h1>
+      <p className=" text-base mt-4 mb-8 text-gray-700 dark:text-gray-500">
       {t("profile.tariffs_starting_from", { tarifa: selectedProfile?.tarifa })}
       </p>
-      <p className="text-pink-600 text-2xl"> {t("profile.accepts")} 
+      <p className="text-pink-500 text-2xl"> {t("profile.accepts")} 
       </p>
       {pagamentos && Array.isArray(pagamentos) ? (
         <div className="grid grid-cols-2 mt-4">
@@ -61,12 +61,12 @@ const { t, i18n } = useTranslation();
               {pagamento === "Visa" && (
                 <FaCcVisa className="mr-2 text-blue-400" />
               )}
-              <p className="">{pagamento}</p>
+              <p className="text-gray-700 dark:text-gray-500">{pagamento}</p>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-white">{t("profile.no_payment_methods_selected")}</p>
+        <p className="text-gray-700 dark:text-gray-500">{t("profile.no_payment_methods_selected")}</p>
       )}
     </div>
   );

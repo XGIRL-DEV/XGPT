@@ -48,31 +48,32 @@ const StoryCard: React.FC<StoryCardProps> = ({profiles}) => {
 		}
 	};
 
-	const calculateTimeElapsed = (tagTimestamp: string): string => {
-		const timestampDate = new Date(tagTimestamp);
-
-		if (isNaN(timestampDate.getTime())) {
-			return "Tempo indeterminado";
-		}
-
-		const currentTime = Date.now();
-		const elapsedTime = currentTime - timestampDate.getTime();
-		const minutesElapsed = Math.floor(elapsedTime / (1000 * 60));
-
-		return formatTimeElapsed(minutesElapsed);
-	};
-
 	useEffect(() => {
+		// Define calculateTimeElapsed inside useEffect to avoid dependency issue
+		const calculateTimeElapsed = (tagTimestamp: string): string => {
+			const timestampDate = new Date(tagTimestamp);
+	
+			if (isNaN(timestampDate.getTime())) {
+				return "Tempo indeterminado";
+			}
+	
+			const currentTime = Date.now();
+			const elapsedTime = currentTime - timestampDate.getTime();
+			const minutesElapsed = Math.floor(elapsedTime / (1000 * 60));
+	
+			return formatTimeElapsed(minutesElapsed);
+		};
+	
 		const timeElapsed = profiles.map(profile => calculateTimeElapsed(profile.tagtimestamp));
 		setTimeElapsedList(timeElapsed);
-
+	
 		const interval = setInterval(() => {
 			const updatedTimeElapsed = profiles.map(profile => calculateTimeElapsed(profile.tagtimestamp));
 			setTimeElapsedList(updatedTimeElapsed);
 		}, 60000);
-
+	
 		return () => clearInterval(interval);
-	}, [profiles]);
+	}, [profiles]); 
 
 	// Filtra perfis que possuem stories e mapeia cada story individualmente
 

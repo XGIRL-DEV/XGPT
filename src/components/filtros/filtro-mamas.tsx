@@ -2,17 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommonFilter from "./common-filter";
 import { updateMamas } from "../../actions/ProfileActions";
+import {useTranslation} from "react-i18next";
 
-const mamasOptions = [
-  { id: 1, name: "Naturais", unavailable: false },
-  { id: 2, name: "Silicone", unavailable: false },
-];
 
 interface FiltroMamasProps {
   onChange?: (value: string) => void;
 }
 
 const FiltroMamas: React.FC<FiltroMamasProps> = ({ onChange }) => {
+        const {t, i18n} = useTranslation();
+  
   const dispatch = useDispatch();
   const mamasRedux = useSelector(
     (state: any) => state.profile?.profile?.mamas || null
@@ -23,14 +22,20 @@ const FiltroMamas: React.FC<FiltroMamasProps> = ({ onChange }) => {
     if (onChange) onChange(newValue);
   };
 
+
+const mamasOptions = [
+  { id: 1, name: t('breasts.natural'), unavailable: false },
+  { id: 2, name: t('breasts.silicone'), unavailable: false },
+];
+
   return (
     <CommonFilter
-      label="Mamas"
+    label={t('filterB.breasts')}
       options={mamasOptions}
       value={mamasRedux}
       onChange={handleMamasChange}
-      placeholder="Mamas"
-    />
+      placeholder={t('filterB.select_breasts')}
+      />
   );
 };
 

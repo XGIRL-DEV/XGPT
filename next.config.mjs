@@ -7,10 +7,20 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['ulcggrutwonkxbiuigdu.supabase.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'dzwjathgqfvjbqjtthjh.supabase.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ulcggrutwonkxbiuigdu.supabase.co',
+        pathname: '/**',
+      },
+    ],
   },
   webpack(config) {
-    // Adiciona suporte para arquivos SVG
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],

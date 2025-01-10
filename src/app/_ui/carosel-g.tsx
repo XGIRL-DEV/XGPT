@@ -8,6 +8,8 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import ChevronRight from "lucide-react"
+import ChevronLeft from "lucide-react"
 
 interface Profile {
 	nome: string;
@@ -61,9 +63,13 @@ class CarouselG extends Component<CarouselGProps, CarouselGState> {
 		}
 	};
 
+	
+
 	render() {
 		const {profiles} = this.props;
 		const {slidesToShow} = this.state;
+	
+	
 
 		const settings = {
 			dots: true,
@@ -83,46 +89,54 @@ class CarouselG extends Component<CarouselGProps, CarouselGState> {
 			],
 		};
 
+
 		return (
-			<div className='relative w-full mt-4 md:mt-4'>
-				<Slider ref={this.sliderRef} {...settings} className=''>
-					{profiles.map((profile, index) => (
-						<div key={index} className='px-2'>
-							<div className='relative '>
-								<Link href={`/escort/${profile.nome}`}>
-									<Image
-										src={profile.photos[0] || "/logo.webp"}
-										alt={profile.nome}
-										className='w-full h-52 md:h-72 object-cover transition duration-300 ease-in-out transform hover:scale-105 bg-pink-200 hover:bg-pink-800 hover:opacity-50 rounded-xl'
-										priority
-										width={100}
-										height={100}
-									/>
-								</Link>
-								<p className='absolute bottom-7 left-1/2 transform -translate-x-1/2 pb-2 text-white font-bold text-md md:text-xl px-2 rounded whitespace-nowrap flex items-center'>
-									{profile.nome}
-									{profile.certificado && <VscVerifiedFilled className='text-green-400 ml-2' />}
-								</p>
-								<p className='absolute bottom-0 left-0 right-0 text-white text-center py-2'>
-									{profile.cidade} <FaMapMarkerAlt className='text-rose-800 inline-block' />
-								</p>
-							</div>
+
+			<div className="relative mb-12">
+			<div className="relative overflow-hidden">
+			  <div className="flex space-x-4 py-4">
+				{profiles.map((profile, index) => (
+				  <div
+					key={index}
+					className="flex-none w-44 bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 hover:shadow-2xl"
+				  >
+					<Link href={`/escort/${profile.nome}`}>
+					  <div className="relative">
+						<Image
+						  src={profile.photos[0] || "/logo.webp"}
+						  alt={profile.nome}
+						  className="w-full h-60 object-cover rounded-t-xl bg-pink-200"
+						  priority
+						  width={180}
+						  height={120}
+						/>
+						<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-4">
+						  <p className="flex items-center justify-center font-bold text-lg md:text-xl text-white">
+							{profile.nome}
+							{profile.certificado && (
+							  <VscVerifiedFilled className="text-green-400 ml-2" />
+							)}
+						  </p>
+						  <p className="flex items-center justify-center text-sm md:text-base text-gray-300">
+							<FaMapMarkerAlt className="text-rose-500 mr-2" />
+							{profile.cidade}
+						  </p>
 						</div>
-					))}
-				</Slider>
-				<button
-					onClick={() => this.handleClick("prev")}
-					className='bg-gray-700 bg-opacity-50 hover:bg-rose-800 text-white font-semibold hover:text-white py-2 px-4 rounded-full absolute top-1/2 transform -translate-y-1/2 left-4'
-				>
-					&lt;
-				</button>
-				<button
-					onClick={() => this.handleClick("next")}
-					className='bg-gray-700 bg-opacity-50 hover:bg-rose-800 text-white font-semibold hover:text-white py-2 px-4 rounded-full absolute top-1/2 transform -translate-y-1/2 right-4'
-				>
-					&gt;
-				</button>
+					  </div>
+					</Link>
+				  </div>
+				))}
+			  </div>
+		  
+			  {/* Left navigation button */}
+			  {/* <button className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 p-2 rounded-full shadow-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+				<ChevronLeft className="h-5 w-5 text-gray-600 dark:text-white" />
+			  </button>
+		  
+			  {/* Right navigation button */}
+			 
 			</div>
+		  </div>
 		);
 	}
 }

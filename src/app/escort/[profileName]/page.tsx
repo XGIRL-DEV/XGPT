@@ -1,5 +1,5 @@
 "use client";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useCallback} from "react";
 import Liga from "../../../components/profile/Liga"
 import Partilha from "../../../components/profile/Partilha";
 import Certificado from "@/app/escort/_ui/certificado";
@@ -18,6 +18,7 @@ import HeaderG from "@/components/header-filter/header-g";
 import Comments from "./_ui/comments";
 import {Profile} from "@/types";
 import {profileDataService} from "@/services/profileDataService";
+import { Heart, MapPin, MessageCircle, Star, Clock, Share2, Phone, Globe, Check } from 'lucide-react';
 
 function UserProfile() {
 	const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
@@ -85,15 +86,18 @@ function UserProfile() {
 		setStoryIndex(index);
 	};
 
-	const findProfileIndex = (profileId: number) => {
-		return profiles.findIndex(profile => profile.id === profileId);
-	};
+	const findProfileIndex = useCallback(
+		(profileId: number) => {
+		  return profiles.findIndex((profile) => profile.id === profileId);
+		},
+		[profiles] // Dependency array
+	  );
 
 	useEffect(() => {
 		if (profiles.length > 0 && selectedProfile?.id) {
 			setCurrentProfileIndex(findProfileIndex(selectedProfile.id));
 		}
-	}, [profiles, selectedProfile]);
+	}, [profiles, selectedProfile, findProfileIndex]);
 
 	useEffect(() => {
 		// console.log("isCertified state changed:", isCertified);
@@ -107,8 +111,8 @@ function UserProfile() {
 		<>
 			<HeaderG setCurrentProfileIndex={setCurrentProfileIndex} currentProfileIndex={currentProfileIndex} profiles={profiles} />
 			<div className='container relative'>
-				<div className='w-screen bg-gray-900 flex flex-col user-profile justify-center align-middle'>
-					<div className='md:flex md:mx-36 my-20 md:mt-24 relative'>
+				<div className='w-screen  flex flex-col user-profile justify-center align-middle'>
+					<div className='md:flex md:mx-36 my-8 md:mt-16 md:mb-36 relative'>
 						{showLiga && <Liga selectedProfile={selectedProfile as any} setShowLiga={setShowLiga} />}
 						{showPartilha && <Partilha selectedProfile={selectedProfile as any} setShowPartilha={setShowPartilha} />}
 						{showCertificado && <Certificado selectedProfile={selectedProfile as any} setShowCertificado={setShowCertificado} />}
@@ -119,10 +123,10 @@ function UserProfile() {
 
 						{showLargeStory && <StoryBig selectedProfile={selectedProfile as any} onClose={() => setShowLargeStory(false)} currentIndex={StoryIndex} />}
 
-						<div className='w-screen md:w-3/5 grid gap-10   justify-center align-middle'>
+						<div className='w-screen md:w-3/5 grid gap-4   justify-center align-middle'>
 							{selectedProfile && selectedProfile.storyURL?.length > 0 && (
 								<div className='flex flex-col ml-8 md:ml-10 md:mr-24'>
-									<p className='text-pink-700 text-2xl mb-4 font-semibold'> {t("profile.stories_of", {name: selectedProfile.nome})}</p>
+									<p className='text-pink-500 text-2xl mb-4 font-semibold'> {t("profile.stories_of", {name: selectedProfile.nome})}</p>
 									<div className='flex md:grid grid-cols-1  md:grid-cols-4 gap-6 md:gap-2'>
 										{selectedProfile.storyURL.map((media, index) => {
 											if (!media) return null;
@@ -163,6 +167,32 @@ function UserProfile() {
 								</div>
 							)}
 
+<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-2 mt-14">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h1 className="text-3xl font-bold  dark:text-white"> { selectedProfile?.nome }</h1>
+                  <div className="flex items-center mt-2 text-gray-600 dark:text-gray-400">
+                    <MapPin className="h-4 w-4 mr-1" />
+                    <span>{selectedProfile?.cidade}</span>
+                    <span className="mx-2">•</span>
+                    <span>{selectedProfile?.idade} years</span>
+                    <span className="mx-2">•</span>
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 mr-1" />
+                      {/* <span>{selectedProfile?.rating}</span> */}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex space-x-3">
+                  <button className="p-2 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300">
+                    <Heart className="h-6 w-6" />
+                  </button>
+                  <button className="p-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300">
+                    <Share2 className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+            </div>
 							<div className='grid md:mx-0 gap-y-6 justify-center items-center px-10 md:px-2 min-h-screen align-middle '>
 								<PhotosAndCertificado
 									selectedProfile={selectedProfile}
@@ -176,11 +206,11 @@ function UserProfile() {
 
 								<ServicosPrestados selectedProfile={selectedProfile} />
 
-								<div className='bg-gray-800 grid gap-2 items-center  py-6 w-full px-10  border border-zinc-700 rounded-xl'>
-									<p className='text-pink-700 text-2xl'>{t("profile.description")}</p>
+								<div className='bg-white dark:bg-gray-800 grid gap-2 items-center  py-6 w-full px-10  rounded-xl'>
+									<p className='text-pink-500 text-2xl'>{t("profile.description")}</p>
 									<div className='gap-4 mt-6'>
 										<div
-											className='text-white '
+											className='bg-white dark:bg-gray-800  '
 											style={{textAlign: "justify"}}
 											dangerouslySetInnerHTML={{
 												__html: selectedProfile?.description as any,

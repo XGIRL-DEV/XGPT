@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import supabase from "@/database/supabase";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -28,18 +28,11 @@ function Comments({  }: CommentsProps) {
   const { t, i18n } = useTranslation();
 
   // Lista de emojis para o seletor
+  
   const emojiList = ["😊", "😂", "😍", "😐", "😢", "😠", "😎", "🥳", "🤩", "🤔"];
 
-  // Verificação de userUID
-  useEffect(() => {
-    if (!userUID) {
-      console.error("userUID está indefinido ou inválido.");
-      return;
-    }
-    fetchComments();
-  }, [userUID]);
-
-  const fetchComments = async () => {
+  // Memoized function for fetching comments
+  const fetchComments = useCallback(async () => {
     if (!userUID) return;
 
     try {
@@ -52,13 +45,17 @@ function Comments({  }: CommentsProps) {
       if (error) throw error;
       setComments(data);
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Erro ao buscar comentários:", error.message);
-      } else {
-        console.error("Erro desconhecido:", error);
-      }
+      console.error("Erro ao buscar comentários:", error instanceof Error ? error.message : error);
     }
-  };
+  }, [userUID]);
+
+  useEffect(() => {
+    if (!userUID) {
+      console.error("userUID está indefinido ou inválido.");
+      return;
+    }
+    fetchComments();
+  }, [userUID, fetchComments]);
 
   const handleCommentSubmit = async () => {
     if (!newComment.trim() || rating === 0 || !authorName.trim()) {
@@ -70,7 +67,7 @@ function Comments({  }: CommentsProps) {
       const { data, error } = await supabase.from("comments").insert([
         {
           userUID,
-          authorName: authorName,
+          authorName,
           rating,
           comment: newComment,
         },
@@ -79,46 +76,39 @@ function Comments({  }: CommentsProps) {
       setNewComment("");
       setRating(0);
       setAuthorName("");
-      fetchComments(); // Recarregar os comentários após o envio
+      fetchComments();
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Erro ao enviar comentário:", error.message);
-      } else {
-        console.error("Erro desconhecido:", error);
-      }
+      console.error("Erro ao enviar comentário:", error instanceof Error ? error.message : error);
     }
   };
 
-  // Função para alternar a visibilidade do seletor de emojis
-  const toggleEmojiPicker = () => {
-    setIsEmojiPickerVisible(!isEmojiPickerVisible);
-  };
+  const toggleEmojiPicker = () => setIsEmojiPickerVisible(!isEmojiPickerVisible);
 
-  // Função para inserir emoji no campo de comentário na posição do cursor
   const addEmojiToComment = (emoji: string) => {
     if (emojiInputRef.current) {
       const cursorPosition = emojiInputRef.current.selectionStart;
-      const newText = newComment.slice(0, cursorPosition) + emoji + newComment.slice(cursorPosition);
+      const newText =
+        newComment.slice(0, cursorPosition) + emoji + newComment.slice(cursorPosition);
       setNewComment(newText);
-      emojiInputRef.current.selectionStart = cursorPosition + emoji.length; // Atualiza a posição do cursor após o emoji
+      emojiInputRef.current.selectionStart = cursorPosition + emoji.length;
       emojiInputRef.current.selectionEnd = cursorPosition + emoji.length;
     }
-    setIsEmojiPickerVisible(false); // Fecha o seletor após selecionar o emoji
+    setIsEmojiPickerVisible(false);
   };
-
+  
   return (
     <div className="space-y-4">
       {/* Card para exibir comentários */}
-      <div className="bg-gray-800 p-6 rounded-xl border border-zinc-700 shadow-md">
-        <h2 className="text-pink-700 text-2xl mb-4">  {t("profile.comments")}
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl  shadow-md">
+        <h2 className="text-pink-500 text-2xl mb-4">  {t("profile.comments")}
         </h2>
         <div className="space-y-2">
           {comments.length === 0 ? (
-            <p className="text-gray-400">  {t("profile.no_comments_yet")}
+            <p className="text-gray-700 dark:text-gray-400">  {t("profile.no_comments_yet")}
 </p>
           ) : (
             comments.map((comment) => (
-              <div key={comment.id} className="bg-gray-700 p-4 rounded-md shadow-sm">
+              <div key={comment.id} className="bg-gay-400 dark:bg-gray-700 p-4 rounded-md shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex">
                     {[...Array(5)].map((_, index) => (
@@ -138,8 +128,8 @@ function Comments({  }: CommentsProps) {
                     <span className="ml-2 text-lg">😊</span> {/* Coloque o emoji aqui */}
                   </div>
                 </div>
-                <p className="text-white">{comment.comment}</p>
-                <p className="text-gray-500 text-sm mt-2">
+                <p className="text-gray-600 dark:text-gray-200">{comment.comment}</p>
+                <p className="text-gray-600 dark:text-gray-500 text-sm mt-2">
                   {new Date(comment.created_at).toLocaleString()}
                 </p>
               </div>
@@ -149,12 +139,12 @@ function Comments({  }: CommentsProps) {
       </div>
 
       {/* Card para novo comentário */}
-      <div className="bg-gray-800 p-6 rounded-xl border border-zinc-700 shadow-md relative">
-        <h3 className="text-pink-700 text-lg mb-4">  {t("profile.leave_comment")}
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl   shadow-md relative">
+        <h3 className="text-pink-500 text-lg mb-4">  {t("profile.leave_comment")}
         </h3>
         <input
           type="text"
-          className="w-full bg-gray-800 text-white p-4 rounded-md mb-4 border border-zinc-700"
+          className="w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white p-4 rounded-md mb-4"
           placeholder={t("profile.write_comment_placeholder")}
 
           value={authorName}
@@ -175,7 +165,7 @@ function Comments({  }: CommentsProps) {
         {/* Caixa de comentário com ref para o emoji */}
         <textarea
           ref={emojiInputRef}
-          className="w-full bg-gray-800 text-white p-4 rounded-md mb-4 border border-zinc-700"
+          className="w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white p-4 rounded-md mb-4 "
           rows={4}
           placeholder="Escreva seu comentário aqui..."
           value={newComment}
@@ -207,7 +197,7 @@ function Comments({  }: CommentsProps) {
 
         <button
           onClick={handleCommentSubmit}
-          className="bg-pink-700 text-white px-4 py-2 rounded-md hover:bg-pink-600"
+          className="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600"
         >
           {t("profile.send_comment")}
         </button>
