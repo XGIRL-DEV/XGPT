@@ -17,7 +17,7 @@ import ModificarContacto from "@/app/minha-conta/ModificarContacto/page";
 import ModalAtualizarTagProps from "@/components/layout/modal-atualizar-tag";
 import SearchModal from "@/components/ui/search-modal";
 import {FaEnvelope, FaKey, FaCreditCard, FaUserCog} from "react-icons/fa";
-import MobileModal from "../ui/MobileModal";
+import MobileModal from "../MobileModal";
 
 const HeaderMobile: React.FC = () => {
 	const router = useRouter();

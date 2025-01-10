@@ -1,8 +1,8 @@
 // MobileModal.tsx
 import React from "react";
-import Password from "../../app/definicoes/Password";
+import Password from "../app/definicoes/Password";
 import Email from "@/app/definicoes/Email";
-import {Dialog, DialogContent} from "./dialog";
+import {Dialog, DialogContent} from "./ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
 interface MobileModalProps {
