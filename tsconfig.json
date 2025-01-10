@@ -1,31 +1,22 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ], // Bibliotecas de tipo usadas
-    "allowJs": true, // Permite a inclusão de arquivos JS
-    "skipLibCheck": true, // Ignora a verificação de tipos das bibliotecas
-    "strict": true, // Ativa todas as verificações rigorosas de tipo
-    "noEmit": true, // Não gera arquivos de saída
-    "esModuleInterop": true, // Permite a interoperabilidade entre módulos ES e CommonJS
-    "module": "ESNext",// Define o módulo como ESNext
-    "target": "ES6",
-    "moduleResolution": "node", // Resolve módulos de acordo com a resolução de módulos do Node.js
-    "resolveJsonModule": true, // Permite a importação de módulos JSON
-    "isolatedModules": true, // Garante que cada arquivo é tratado como um módulo isolado
-    "jsx": "preserve", // Preserva o JSX, necessário para Next.js
-    "incremental": true, // Habilita a compilação incremental
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "target": "es6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ] // Mapeia caminhos para facilitar importações
+      "@/*": ["./src/*"]
     },
-    "typeRoots": [
-      "./node_modules/@types"
-    ] // Define onde procurar tipos
-    ,
+    "typeRoots": ["./node_modules/@types"],
     "plugins": [
       {
         "name": "next"
@@ -36,9 +27,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "src/app/api/delete-account.js"  ], // Inclui arquivos TypeScript
-  "exclude": [
-    "node_modules"
-  ] // Exclui a pasta node_modules
+    ".next/types/**/*.ts",
+    "src/app/api/delete-account.js"
+  ],
+  "exclude": ["node_modules"]
 }
