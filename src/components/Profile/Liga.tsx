@@ -16,7 +16,7 @@ interface LigaProps {
 	setShowLiga: (show: boolean) => void;
 }
 
-const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
+export const Liga: React.FC<LigaProps> = ({selectedProfile, setShowLiga}) => {
 	const [mostrarLiga, setMostrarLiga] = useState(true);
 	const modalRef = useRef<HTMLDivElement>(null); // Ref para o modal
 	const {t, i18n} = useTranslation();
