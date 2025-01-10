@@ -14,7 +14,7 @@ import {ToastContainer} from "react-toastify";
 import {BlurImage} from "@/components/ui/blur-image";
 import {Profile} from "@/types";
 import LoaderBar from "@/components/ui/loader-bar";
-import StoryBigConta from "@/components/profile/story-big-conta";
+// import StoryBigConta from "@/components/profile/story-big-conta";
 import {Button} from "@/components/ui/button";
 
 interface ModificarStoriesProps {
@@ -262,7 +262,7 @@ const ModificarStories: React.FC<ModificarStoriesProps> = ({handleVoltar, storyU
 						</Link>
 					</div>
 
-					{showLargeStory && <StoryBigConta onClose={() => setShowLargeStory(false)} currentIndex={StoryIndex} />}
+					{/* {showLargeStory && <StoryBigConta onClose={() => setShowLargeStory(false)} currentIndex={StoryIndex} />} */}
 
 					<div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 '>
 						{Array.isArray(storyURLsRedux) &&
