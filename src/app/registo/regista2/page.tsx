@@ -10,7 +10,7 @@ import FeaturesList from "./_ui/FeaturedList";
 import ListRegister from "@/components/register/list-register";
 import CommonInput from "@/components/ui/common-input";
 
-const Regista2: React.FC = () => {
+const Registre2: React.FC = () => {
 	const {t} = useTranslation();
 
 	const [email, setEmail] = useState<string>("");
@@ -67,18 +67,18 @@ const Regista2: React.FC = () => {
 							break;
 
 						case 2:
-							await supabase.from("estabelecimentos").insert([
+							await supabase.from("etablissements").insert([
 								{
 									userUID: data.user?.id,
 									userData: data.user,
 								},
 							]);
-							router.push(`/registo-estabelecimentos?email=${email}&userUID=${data.user?.id}`);
+							router.push(`/registre-etablissement?email=${email}&userUID=${data.user?.id}`);
 
 							break;
 
 						case 3:
-							router.push(`/registo-cliente?email=${email}&userUID=${data.user?.id}`);
+							router.push("/registre-entrée");
 							break;
 						default:
 							break;
@@ -163,4 +163,4 @@ const Regista2: React.FC = () => {
 	);
 };
 
-export default Regista2;
+export default Registre2;

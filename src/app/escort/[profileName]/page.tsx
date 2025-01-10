@@ -3,9 +3,9 @@ import {useEffect, useState, useCallback} from "react";
 import Liga from "../../../components/profile/Liga"
 import Partilha from "../../../components/profile/Partilha";
 import Certificado from "@/app/escort/_ui/certificado";
-import Sobre from "../../../components/profile/Sobre";
-import Tarifas from "../../../components/profile/Tarifas";
-import Linguas from "../../../components/profile/idioma";
+import Sobre from "@/components/profile/Sobre";
+import Tarifas from "@/components/profile/Tarifas";
+import Linguas from "@/components/profile/idioma";
 import {useParams} from "next/navigation";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
