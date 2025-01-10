@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {FaMapMarkerAlt, FaUser, FaCamera} from "react-icons/fa";
 import supabase from "@/database/supabase";
 import ModificarPerfil from "./_ui/ModificarPerfil";
-import ModificarContacto from "./_ui/ModificarContacto";
+import ModificarContacto from "./ModificarContacto";
 import ModificarFotos from "./_ui/ModificarFotos";
 import ModificarStories from "./_ui/ModificarStories";
 import {BlurImage} from "@/components/ui/blur-image";

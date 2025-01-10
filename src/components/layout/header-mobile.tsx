@@ -13,7 +13,7 @@ import {FaUserEdit, FaPhotoVideo, FaInfoCircle} from "react-icons/fa";
 import ModificarFotos from "@/app/minha-conta/_ui/ModificarFotos";
 import ModificarStories from "@/app/minha-conta/_ui/ModificarStories";
 import ModificarPerfil from "@/app/minha-conta/_ui/ModificarPerfil";
-import ModificarContacto from "@/app/minha-conta/_ui/ModificarContacto";
+import ModificarContacto from "@/app/minha-conta/ModificarContacto";
 import ModalAtualizarTagProps from "@/components/layout/modal-atualizar-tag";
 import SearchModal from "@/components/ui/search-modal";
 import {FaEnvelope, FaKey, FaCreditCard, FaUserCog} from "react-icons/fa";
