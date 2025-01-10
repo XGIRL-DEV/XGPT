@@ -6,7 +6,7 @@ import Image from "next/image";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/navigation";
 import {FaEnvelope, FaLock, FaCreditCard, FaUserCircle} from "react-icons/fa";
-import Email from "./_ui/Email";
+import Email from "./Email";
 import Password from "./_ui/Password";
 import Billing from "./_ui/Billing";
 import AccountSettings from "./_ui/AccountSettings";
