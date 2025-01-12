@@ -52,16 +52,15 @@ export const SET_SELECTED_PROFILE = "SET_SELECTED_PROFILE";
 
 export const loginSuccess = (userData: { email: string; token: string; user: any }) => {
   if (!userData || !userData.token || !userData.email) {
-    console.error("Dados de login incompletos:", userData);
-    return {
-      type: LOGIN_FAILURE,
-      payload: "Dados de login incompletos",
-    };
+      console.error("Dados de login incompletos:", userData);
+      return {
+          type: LOGIN_FAILURE,
+          payload: "Dados de login incompletos",
+      };
   }
-
   return {
-    type: LOGIN_SUCCESS,
-    payload: userData
+      type: LOGIN_SUCCESS,
+      payload: userData,
   };
 };
 

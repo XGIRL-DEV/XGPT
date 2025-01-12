@@ -32,8 +32,18 @@ const Login = () => {
 
 	useEffect(() => {
 		const token = localStorage.getItem("userToken");
-		if (token) {
-			dispatch(loginSuccess(token));
+		const email = localStorage.getItem("email"); // Recupere o email salvo no localStorage (se houver)
+	
+		if (token && email) {
+			dispatch(
+				loginSuccess({
+					email, // O email salvo no localStorage
+					token, // O token salvo no localStorage
+					user: {}, // Use um objeto vazio ou preencha com informações relevantes
+				})
+			);
+		} else {
+			console.error("Token ou email ausente no localStorage.");
 		}
 	}, [dispatch]);
 
@@ -67,37 +77,49 @@ const Login = () => {
 	};
 
 	const handleLogin = async () => {
-		setErrorMessage(""); // Efface le message d'erreur lors de la tentative de connexion
-		const {data: user, error} = await supabase.auth.signInWithPassword({
+		setErrorMessage(""); // Limpar mensagem de erro ao tentar fazer login
+		const { data: user, error } = await supabase.auth.signInWithPassword({
 			email,
 			password,
 		});
+		console.log("Dados retornados pelo Supabase:", user);
 
 		if (error) {
-			console.error("Erreur lors de la connexion :", error.message);
-			setErrorMessage("Email ou mot de passe incorrect. Veuillez réessayer."); // Met à jour le message d'erreur
+			console.error("Erro ao fazer login:", error.message);
+			setErrorMessage("Email ou senha incorretos. Por favor, tente novamente.");
 			dispatch(loginFailure(error));
 		} else {
 			if (user) {
 				const userUID = user.user.id;
-				fetchProfileData(userUID);
+				const token = user.session.refresh_token; // Obtenha o token de sessão
+	
+				// Buscar dados do perfil
+				await fetchProfileData(userUID);
+				if (user?.user?.email && user?.session?.refresh_token) {
+
+			
 
 				dispatch(
 					loginSuccess({
-						email: user.user.email,
-						userUID: user.user.id,
+						email: user!.user!.email,
+						token: user!.session!.refresh_token,
+						user: user!.user,
 					})
 				);
+				if (typeof window !== "undefined") {
 
-				const tokenID = user.session.refresh_token;
-				localStorage.setItem("userToken", tokenID);
+				// Salvar informações no localStorage
+				localStorage.setItem("userToken", token);
 				localStorage.setItem("email", email);
-
+				console.log(localStorage.getItem("userToken")); // Deve retornar "exemploToken"
+				console.log(localStorage.getItem("email"));
+	
+				// Redirecionar o usuário
 				router.push("/escort");
 			} else {
-				console.log("L'objet utilisateur retourné est vide ou indéfini.");
+				console.log("O objeto usuário retornado está vazio ou indefinido.");
 			}
-		}
+		}}}
 	};
 
 	return (
