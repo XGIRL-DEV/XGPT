@@ -149,78 +149,111 @@ const ModificarContacto: React.FC<ModificarContactoProps> = ({handleVoltar, onCl
 
 	return (
 		<Dialog open={open} onOpenChange={onClose}>
-			
-			<DialogContent className='max-w-4xl w-full  h-2/3 md:h-4/5 sm:max-h-[80vh] p-0  overflow-hidden'>
-				<DialogHeader className='bg-pink-800 py-6 px-4 md:px-10'>
-					<DialogTitle className='text-xl md:text-3xl font-bold tracking-wide text-center'>Dados Gerais</DialogTitle>
-					<p className='text-center text-gray-200 text- md:text-sm mt-2'>Altere os seus dados sempre que quiser</p>
-				</DialogHeader>
-				<div className='p-8 space-y-8 overflow-y-auto '>
-					<div className='grid grid-cols-1 lg:grid-cols-1 gap-8'>
-						<div className='w-44 mb-6'>
-							<FiltroTarifa />
-						</div>
-
-						<div className='w-full mt-2'>
-							<p className='text-lg text-pink-800 font-semibold mb-2'>Meios de Pagamento</p>
-							<CheckPagamento />
-						</div>
-
-						<div className='w-full mt-4'>
-							<p className='text-lg text-pink-800 font-semibold mb-2'>Línguas</p>
-							<CheckLinguas />
-						</div>
-
-						<div className='w-full mt-4'>
-							<p className='text-lg text-pink-800 font-semibold mb-2'>Serviços</p>
-							<CheckServico selectedServico={selectedServico} setSelectedServico={setSelectedServico} />
-						</div>
-
-						<div className='w-full mt-6 relative'>
-							<Field>
-								<Label className='text-lg text-pink-800 font-semibold mb-2'>Descrição</Label>
-
-								<div className='relative'>
-									<Textarea
-										name='description'
-										value={description}
-										onChange={e => handleDescriptionChange(e.target.value)}
-										className={clsx(
-											"w-full h-32 p-4 pr-10 border rounded-lg",
-											"data-[hover]:shadow-lg data-[focus]:bg-gray-300",
-											"focus:outline-none focus:ring-2 focus:ring-pink-800 text-gray-700"
-										)}
-										placeholder='Escreva a descrição aqui...'
-									/>
-
-									{/* Ícone de Emoji dentro da área de texto */}
-									<FaSmile className='absolute top-4 right-4 text-pink-600 cursor-pointer' onClick={() => setShowEmojiPicker(prev => !prev)} size={24} />
-
-									{/* Picker de Emoji */}
-									{showEmojiPicker && (
-										<div className='absolute bottom-full right-0 mb-2 z-50'>
-											<EmojiPicker onEmojiClick={onEmojiClick} />
-										</div>
-									)}
-								</div>
-							</Field>
-						</div>
-					</div>
+		  <DialogContent className="max-w-4xl w-full h-[90vh] p-0 overflow-hidden bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+			{/* Header with gradient background */}
+			<DialogHeader className="bg-pink-500 py-6 px-4 md:px-10">
+			  <DialogTitle className="text-2xl md:text-3xl font-bold tracking-wide text-white text-center">
+				Dados Gerais
+			  </DialogTitle>
+			  <p className="text-center text-gray-200 text-sm md:text-base mt-2">
+				Altere os seus dados sempre que quiser
+			  </p>
+			</DialogHeader>
+	  
+			{/* Main Content Area */}
+			<div className="p-8 space-y-8 overflow-y-auto">
+			  <div className="grid grid-cols-1 gap-8">
+				{/* Filtro Tarifa Section */}
+				<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+				  <div className="w-44 mb-6">
+					<FiltroTarifa />
+				  </div>
 				</div>
-				<DialogFooter className='bg-gray-800 border-t border-gray-700 p-4'>
-					<div className='flex justify-between w-full'>
-						<Button variant='voltar' onClick={handleVoltar}>
-							Voltar
-						</Button>
-
-						<Button variant='guarder' onClick={handleGuardar}>
-							Guardar
-						</Button>
+	  
+				{/* Meios de Pagamento Section */}
+				<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+				  <p className="text-lg text-pink-800 dark:text-pink-500 font-semibold mb-4">
+					Meios de Pagamento
+				  </p>
+				  <CheckPagamento />
+				</div>
+	  
+				{/* Línguas Section */}
+				<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+				  <p className="text-lg text-pink-800 dark:text-pink-500 font-semibold mb-4">
+					Línguas
+				  </p>
+				  <CheckLinguas />
+				</div>
+	  
+				{/* Serviços Section */}
+				<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+				  <p className="text-lg text-pink-800 dark:text-pink-500 font-semibold mb-4">
+					Serviços
+				  </p>
+				  <CheckServico 
+					selectedServico={selectedServico} 
+					setSelectedServico={setSelectedServico} 
+				  />
+				</div>
+	  
+				{/* Descrição Section */}
+				<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+				  <Field>
+					<Label className="text-lg text-pink-800 dark:text-pink-500 font-semibold mb-4">
+					  Descrição
+					</Label>
+					<div className="relative">
+					  <Textarea
+						name="description"
+						value={description}
+						onChange={e => handleDescriptionChange(e.target.value)}
+						className="w-full h-32 p-4 pr-10 border rounded-lg bg-white dark:bg-gray-700 
+						  text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-pink-500 
+						  focus:outline-none transition-all duration-200"
+						placeholder="Escreva a descrição aqui..."
+					  />
+					  <FaSmile 
+						className="absolute top-4 right-4 text-pink-600 dark:text-pink-400 
+						  cursor-pointer hover:scale-110 transition-transform duration-200" 
+						onClick={() => setShowEmojiPicker(prev => !prev)} 
+						size={24} 
+					  />
+					  {showEmojiPicker && (
+						<div className="absolute bottom-full right-0 mb-2 z-50">
+						  <EmojiPicker onEmojiClick={onEmojiClick} />
+						</div>
+					  )}
 					</div>
-				</DialogFooter>
-			</DialogContent>
+				  </Field>
+				</div>
+			  </div>
+			</div>
+	  
+			{/* Footer */}
+			<DialogFooter className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 
+			  dark:border-gray-700 p-4 mt-auto">
+			  <div className="flex justify-between w-full px-4">
+				<Button 
+				  variant="outline"
+				  onClick={handleVoltar}
+				  className="px-6 py-2 rounded-full border border-pink-500 text-pink-500 
+					hover:bg-pink-500 hover:text-white transition-colors"
+				>
+				  Voltar
+				</Button>
+				<Button 
+				  onClick={handleGuardar}
+				  className="px-6 py-2 rounded-full bg-pink-500 text-white 
+					hover:bg-pink-600 transition-colors"
+				>
+				  Guardar
+				</Button>
+			  </div>
+			</DialogFooter>
+		  </DialogContent>
 		</Dialog>
-	);
+	  );
 };
 
 export default ModificarContacto;

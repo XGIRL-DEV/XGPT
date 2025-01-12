@@ -95,33 +95,50 @@ const CheckServico: React.FC<CheckServicoProps> = () => {
   console.log("selectedservico:", selectedServico);
 
   return (
-    <div>
-      <FormGroup className="text-xs items-bottom gap-0 ">
-        <div className="grid md:grid-cols-3 text-xs  items-bottom ">
-          {Object.entries(checkboxes).map(([key, value]) => (
-            <div key={key}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    size="small"
-                    sx={{
-                      color: "white",
-                      "&.Mui-checked": { color: pink[800] },
-                    }}
-                    onChange={handleCheckChange}
-                    name={key}
-                    checked={value}
-                  />
-                }
-                label={
-                  <div className="flex items-center text-white">{t(`profile.servico.${key}`)}</div>
-                }
-                className="text-white mr-4"
-              />
-            </div>
-          ))}
-        </div>
-      </FormGroup>
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+      <div className="mb-4">
+        <h2 className="text-2xl font-bold text-pink-500 mb-6">{t("profile.services")}</h2>
+        <FormGroup className="text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {Object.entries(checkboxes).map(([key, value]) => (
+              <div 
+                key={key} 
+                className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-700 
+                  p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 
+                  transition-colors duration-200"
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      size="small"
+                      sx={{
+                        color: "rgb(219, 39, 119)", // pink-600
+                        '&.Mui-checked': {
+                          color: "rgb(219, 39, 119)",
+                        },
+                        '& .MuiSvgIcon-root': {
+                          fontSize: 20,
+                        },
+                      }}
+                      onChange={handleCheckChange}
+                      name={key}
+                      checked={value}
+                    />
+                  }
+                  label={
+                    <div className="flex items-center">
+                      <span className="text-gray-700 dark:text-gray-200 text-sm">
+                        {t(`profile.servico.${key}`)}
+                      </span>
+                    </div>
+                  }
+                  className="m-0 flex-1"
+                />
+              </div>
+            ))}
+          </div>
+        </FormGroup>
+      </div>
     </div>
   );
 };
