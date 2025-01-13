@@ -122,10 +122,197 @@ const Header: React.FC<HeaderProps> = ({blur}) => {
 	
 
 	return (
-	
+		// <nav className='hidden md:block fixed flex h-10 top-0 w-full z-40'>
+		// 	{/* Header Principal */}
+		// 	<div className='w-full bg-black  h-16 flex justify-center items-center shadow-md'>
+		// 		<Link href='/' aria-label='Ir para a página inicial'>
+		// 			<Image src='/logo.webp' alt='Logo' width={200} height={200} priority style={{objectFit: "contain"}} />
+		// 		</Link>
+		// 	</div>
+
+		// 	{/* Navegação */}
+		// 	<div className='w-full bg-pink-800'>
+		// 		<div className='flex mx-auto px-5 md:px-10 items-center justify-between'>
+		// 			{/* Links de navegação */}
+		// 			<div className='flex space-x-5 h-full text-md'>
+		// 				<Link
+		// 					href='/'
+		// 					className={`nav-link flex items-center px-4 py-3 text-white h-full ${
+		// 						pathname === "/" ? "bg-pink-900" : "hover:bg-pink-800"
+		// 					} transition duration-200`}
+		// 				>
+		// 					{t("home")}
+		// 				</Link>
+
+		// 				<Link
+		// 					href='/escort'
+		// 					className={`nav-link flex items-center px-4 py-3 text-white h-full ${
+		// 						pathname === "/escort" ? "bg-pink-900" : "hover:bg-pink-800"
+		// 					} transition duration-200`}
+		// 				>
+		// 					{t("acompanhantes")}
+		// 				</Link>
+
+		// 				<Link
+		// 					href='/stories'
+		// 					className={`nav-link flex items-center px-4 py-3 text-white h-full ${
+		// 						pathname === "/Stories" ? "bg-pink-900" : "hover:bg-pink-800"
+		// 					} transition duration-200`}
+		// 				>
+		// 					<BiSolidMoviePlay className='mr-2' />
+		// 					Stories
+		// 				</Link>
+		// 				<button onClick={toggleFiltro} className='flex items-center px-4 py-3 text-white h-full hover:bg-pink-800 transition duration-200'>
+		// 					<IoIosOptions className='mr-2' />
+		// 					{t("filtros")}
+		// 				</button>
+		// 				{filtroAberto && <Filtro open={filtroAberto} onOpenChange={setFiltroAberto} />}
+		// 			</div>
+
+		// 			{/* Barra de Pesquisa */}
+		// 			<div className='relative py-2 px-2'>
+		// 				<input
+		// 					type='text'
+		// 					placeholder={t("searchBar")}
+		// 					onClick={() => setModalOpen(true)} // Abrir o mdddddddodal ao clicar
+		// 					className='px-2 py-2 pl-10 w-72 text-sm bg-white text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500'
+		// 				/>
+		// 				<div className='absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm'>
+		// 					<button>
+		// 						<FaSearch />
+		// 					</button>
+		// 				</div>
+		// 			</div>
+
+		// 		{/* Coloque o ThemeSwitcher aqui */}
+
+		// 			<div className="flex items-center space-x-4">
+				
+					
+        //     {/* Outras funcionalidades como menu de idiomas, logout, etc */}
+        //   </div>
+
+		// 			{/* Área de usuário e configurações ddddddddddddd*/}
+		// 			<div className='flex items-center space-x-2 h-full text-sm'>
+		// 			<ThemeSwitcher /> 
+		// 				{/* Menu de Idiomas */}
+		// 				<div className='relative'>
+		// 					<button
+		// 						onClick={toggleLanguageMenu}
+		// 						className='flex items-center text-white px-4 py-2 bg-pink-800 rounded-lg transition duration-200 hover:bg-pink-700'
+		// 					>
+		// 						<FaGlobe className='mr-2' />
+		// 						{selectedLanguage}
+		// 						<IoIosArrowDown className='ml-2' />
+		// 					</button>
+		// 					{languageMenuOpen && (
+		// 						<ul ref={languageRef} className='absolute right-0 mt-2 w-32 bg-pink-800 text-white shadow-lg rounded-lg py-2'>
+		// 							{/* <li
+        //             onClick={() => handleLanguageChange("pt")}
+        //             className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
+        //           >
+        //             Português
+        //           </li> */}
+		// 							<li onClick={() => handleLanguageChange("en")} className='px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200'>
+		// 								{t("EN")}
+		// 							</li>
+		// 							<li onClick={() => handleLanguageChange("fr")} className='px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200'>
+		// 								{t("FR")}
+		// 							</li>
+		// 						</ul>
+		// 					)}
+		// 				</div>
+
+		// 				<p className='text-gray-300 ml-2'></p>
+		// 				{!emailReduxProfile && !emailReduxClubs ? (
+		// 					<>
+		// 						<Link
+		// 							href='/login'
+		// 							className={`nav-link flex items-center py-3 px-4 text-white h-full ${
+		// 								pathname === "/login" ? "bg-pink-800 py-4" : "hover:bg-pink-800"
+		// 							} transition duration-200`}
+		// 						>
+		// 							<FaUser className='mr-2 text-sm' />
+		// 							{t("login")}
+		// 						</Link>
+		// 						<Link
+		// 							href='registo/regista2'
+		// 							className={`nav-link flex items-center px-4 py-4 text-white h-full ${
+		// 								pathname === "registo/regista2" ? "bg-pink-800 py-4" : "hover:bg-pink-800 "
+		// 							} transition duration-200`}
+		// 						>
+		// 							<FaUser className='mr-2 text-sm' />
+		// 							{t("register")}
+		// 						</Link>
+		// 					</>
+		// 				) : (
+		// 					<div className='flex items-center space-x-4 cursor-pointer'>
+		// 						<span className='text-gray-300 flex'> {emailReduxProfile}</span>
+		// 						<div className='relative w-12 h-12 rounded-full overflow-hidden border-4 border-pink-800 transition-transform hover:scale-110'>
+		// 							{photoUID ? (
+		// 								<Image
+		// 									src={photoUID || "/logo.webp"}
+		// 									alt='Profile Photo'
+		// 									className='w-full h-full object-cover rounded-full'
+		// 									loading='lazy'
+		// 									width={100}
+		// 									height={100}
+		// 								/>
+		// 							) : (
+		// 								<div className='w-full h-full bg-gray-400'></div>
+		// 							)}
+		// 						</div>
+
+		// 						{/* Seta do dropdown só é renderizada quando o usuário está logado */}
+		// 						<div className='relative'>
+		// 							<button onClick={toggleLanguageDropdown} className='flex items-center text-gray-300 h-full'>
+		// 								<IoIosArrowDown className='text-xl ml-1' />
+		// 							</button>
+		// 							{languageDropdownOpen && (
+		// 								<ul ref={dropdownRef} className='absolute right-0 mt-2 w-48 bg-pink-900 text-white shadow-lg rounded-lg py-2'>
+		// 									<li
+		// 										onClick={() => {
+		// 											router.push("/minha-conta");
+		// 											setLanguageDropdownOpen(false);
+		// 										}}
+		// 										className='flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200'
+		// 									>
+		// 										<FaUser className='mr-2' />
+		// 										{t("user.myAccount")}
+		// 									</li>
+		// 									<li
+		// 										onClick={() => {
+		// 											router.push("/definicoes");
+		// 											setLanguageDropdownOpen(false);
+		// 										}}
+		// 										className='flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200'
+		// 									>
+		// 										<FaCog className='mr-2' />
+		// 										{t("user.settings")}
+		// 									</li>
+		// 									<li onClick={handleLogout} className='flex items-center px-5 py-3 hover:bg-pink-800 cursor-pointer transition duration-200'>
+		// 										<FaSignOutAlt className='mr-2' />
+		// 										{t("user.logout")}
+		// 									</li>
+		// 								</ul>
+		// 							)}
+		// 						</div>
+		// 					</div>
+		// 				)}
+		// 			</div>
+		// 		</div>
+		// 	</div>
+
+		// 	{/* Passando modalOpen para o SearchModal */}
+		// 	<SearchModal isOpen={modalOpen} onClose={() => setModalOpen(false)} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+		// </nav>
 
 		<header className="">
-				
+				{/* <div className='w-full bg-black  h-16 flex justify-center items-center shadow-md'>
+			<Link href='/' aria-label='Ir para a página inicial'>
+	 			<Image src='/logo.webp' alt='Logo' width={200} height={200} priority style={{objectFit: "contain"}} />
+			</Link>
+			</div> */}
         <div className="container mx-auto ">
           <div className="flex items-center justify-between">
 		  <div className="flex items-center space-x-8 h-16">
@@ -161,7 +348,12 @@ const Header: React.FC<HeaderProps> = ({blur}) => {
 		 					</button>
 		 					{languageMenuOpen && (
 		 						<ul ref={languageRef} className='absolute right-0 w-32 bg-white text-sm dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-lg rounded-lg hover:rounded-md'>
-		 				
+		 							{/* <li
+                     onClick={() => handleLanguageChange("pt")}
+                     className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
+               >
+                     Português
+                   </li> */}
 		 							<li onClick={() => handleLanguageChange("en")} className='px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition duration-200'>
 		 								{t("EN")}
 		 							</li>
@@ -171,7 +363,18 @@ const Header: React.FC<HeaderProps> = ({blur}) => {
 		 						</ul>
 							)}
 		 				</div>
-      
+              {/* <div className="flex items-center">
+                <Globe className="h-5 w-5 mr-1" />
+                <select
+                  value={language}
+                //   onChange={(e) => setLanguage(e.target.value)}
+                  className="bg-transparent focus:outline-none dark:text-white"
+                >
+                  <option value="EN">EN</option>
+                  <option value="ES">ES</option>
+                  <option value="FR">FR</option>
+                </select>
+              </div> */}
               
               <div className="flex items-center space-x-4">
 			  {!emailReduxProfile && !emailReduxClubs ? (
