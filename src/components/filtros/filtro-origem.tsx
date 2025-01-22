@@ -1,7 +1,26 @@
+
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommonFilter from "./common-filter";
 import { updateOrigem } from "../../actions/ProfileActions";
+import {useTranslation} from "react-i18next";
+
+
+const FiltroOrigem: React.FC = () => {
+      const {t, i18n} = useTranslation();
+  
+  const dispatch = useDispatch();
+  const origemRedux = useSelector(
+    (state: any) => state.profile?.profile?.origem || null
+  );
+
+  const handleOrigemChange = (newValue: string) => {
+    dispatch(updateOrigem(newValue));
+  };
+
+
+
 
 const origemOptions = [
   { id: 1, name: "Portuguesa", unavailable: false },
@@ -12,25 +31,15 @@ const origemOptions = [
   { id: 6, name: "Oriental", unavailable: false },
 ];
 
-const FiltroOrigem: React.FC = () => {
-  const dispatch = useDispatch();
-  const origemRedux = useSelector(
-    (state: any) => state.profile?.profile?.origem || null
-  );
-
-  const handleOrigemChange = (newValue: string) => {
-    dispatch(updateOrigem(newValue));
-  };
-
-  return (
-    <CommonFilter
-      label="Origem"
-      options={origemOptions}
-      value={origemRedux}
-      onChange={handleOrigemChange}
-      placeholder="Selecione uma Origem"
+return (
+  <CommonFilter
+  label={t('filter.filter.origin')}
+  options={origemOptions}
+    value={origemRedux}
+    onChange={handleOrigemChange}
+    placeholder={t('filter.filter.select_origin')}
     />
-  );
+);
 };
 
 export default FiltroOrigem;

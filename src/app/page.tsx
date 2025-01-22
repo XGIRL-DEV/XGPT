@@ -133,13 +133,7 @@ const Dashboard: React.FC = () => {
 
 			<div className='w-full'>{profiles && profiles.length > 0 && <CarouselG profiles={profiles} />}</div>
 
-			{/* <p className='text-pink-800 text-xl md:text-3xl flex justify-center mb-6 w-full pt-4'>{t("dashboard.escort_title_en")}</p> */}
-
-			{/* <div className='w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-48 max-w-full'>
-				<Link href='/girls'>
-					<p className='text-white text-3xl flex'>{t("dashboard.featured_ads")}</p>
-				</Link>
-			</div> */}
+			
 			<div className='w-full px-4 sm:px-8 md:px-36 lg:px-36 xl:px-36 max-w-full'>
 				<MainCard profiles={profiles} currentPage={currentPage} itemsPerPage={itemsPerPage} />
 			</div>

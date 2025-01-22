@@ -33,19 +33,21 @@ const Login = () => {
 	useEffect(() => {
 		const token = localStorage.getItem("userToken");
 		const email = localStorage.getItem("email"); // Recupere o email salvo no localStorage (se houver)
-	
+	  
 		if (token && email) {
-			dispatch(
-				loginSuccess({
-					email, // O email salvo no localStorage
-					token, // O token salvo no localStorage
-					user: {}, // Use um objeto vazio ou preencha com informações relevantes
-				})
-			);
+		  // Se o token e o email estiverem presentes, fazer login automaticamente
+		  dispatch(
+			loginSuccess({
+			  email, // O email salvo no localStorage
+			  token, // O token salvo no localStorage
+			  user: {}, // Use um objeto vazio ou preencha com informações relevantes
+			})
+		  );
 		} else {
-			console.error("Token ou email ausente no localStorage.");
+		  // Não faz nada se não houver token ou email. A página de login será mostrada normalmente.
+		  console.log("Token ou email ausente no localStorage, usuário não está logado.");
 		}
-	}, [dispatch]);
+	  }, [dispatch]);
 
 	useEffect(() => {
 		const handleAuthStateChange = async (event: string) => {
@@ -142,7 +144,7 @@ const Login = () => {
           Découvrez des moments uniques avec <span className="text-pink-500 font-bold">une totale confidentialité</span> et <span className="text-pink-500 font-bold">sécurité</span>.
         </p> */}
 
-				<div className='bg-white dark:bg-gray-800  w-full mt-10 max-w-md md:w-1/3 rounded-lg shadow-2xl shadow-gray-400 dark:shadow-gray-800 border border-gray-200 dark:border-gray-700 px-6 py-6 space-y-4'>
+				<div className=' w-full mt-10 max-w-md md:w-1/3 rounded-lg shadow-2xl shadow-gray-400 dark:shadow-gray-800 border border-gray-200 dark:border-gray-700 px-6 py-6 space-y-4'>
 					{/* En-tête */}
 					<h1 className='text-3xl md:text-4xl font-extrabold text-center text-pink-500 mb-4'>{t("loginPage.title")}</h1>
 					<p className='text-center text-gray-400 text-sm mb-4'>{t("loginPage.description")} </p>

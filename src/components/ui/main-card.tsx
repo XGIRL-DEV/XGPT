@@ -117,20 +117,20 @@ const MainCard: React.FC<MainCardProps> = ({ profiles, currentPage, itemsPerPage
                 </p>
               </div>
               {/* Premium Badge */}
-              <div className="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-semibold py-1 px-3 rounded-full z-10 flex items-center shadow-md">
+              <div className="absolute top-2 right-2 bg-yellow-600 text-white text-xs font-semibold py-1 px-2 rounded-full z-10 flex items-center  shadow-md">
                 <FaCrown className="text-white mr-1" />
-                <span className="uppercase text-xs">Premium</span>
+                <span className=" text-xs">Premium</span>
               </div>
               {/* Badges na imagem */}
               {profile.live && (
-                <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-semibold py-1 px-2 rounded-full z-10 animate-pulse flex items-center">
+                <div className="absolute top-2 left-2 bg-red-700 text-white text-xs font-semibold py-1 px-2 rounded-full z-10 animate-pulse flex items-center">
                   <MdFiberManualRecord className="text-white mr-1" />
                   <span className="text-xs">Live Cam</span>
                 </div>
               )}
               {Array.isArray(profile.stories) && profile.stories.length > 0 && (
-                <div className="absolute top-4 right-2 md:right-3 bg-pink-800 text-white text-xs font-semibold py-1 px-2 rounded-full z-50 flex items-center">
-                  <FaVideo className="text-white mr-1 text-xs" />
+                <div className="absolute top-10 right-2 md:right-3 bg-pink-800 text-white text-xs font-semibold py-1 px-2 rounded-full z-50 flex items-center">
+                  <FaVideo className="text-white mr-1 " />
                   <span className="text-xs">Stories</span>
                 </div>
               )}

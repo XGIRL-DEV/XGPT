@@ -87,7 +87,7 @@ Varios
 - [] live cam ok  com registo, e base de dados
 - [] google maps
 - [] api google .env
-- [] Filtros apenas 1 componente
+- [X] Filtros apenas 1 componente
 
 Paginas
 - [X] Termos e Condicoes
@@ -98,3 +98,16 @@ Mobile
 - [] Definicoes
 - [] refazer menu login/logout
 
+
+
+
+-----------
+
+- [X] solve comments issue
+- [] solve change profile features issue
+- [] rendering profiles only if they have Tag
+- [] Tarifs not working
+- [] aspas em Tag
+- [] story badge
+- [] modificar tautagens nao esta a funcionar
+- [] linguas sem imagem do pais

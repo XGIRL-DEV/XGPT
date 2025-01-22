@@ -7,13 +7,13 @@ import ModificarPerfil from "./_ui/ModificarPerfil";
 import ModificarContacto from "./_ui/ModificarContacto";
 import ModificarFotos from "./_ui/ModificarFotos";
 import ModificarStories from "./_ui/ModificarStories";
-import {BlurImage} from "@/components/ui/blur-image";
 import {useDispatch} from "react-redux";
 import {updateTag} from "@/actions/ProfileActions";
 import Definicoes from "./_ui/Definicoes";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BarConta from "./_ui/BarConta";
+import { BlurImage } from "@/components/ui/blur-image";
 
 interface MinhaContaProps {}
 
@@ -85,32 +85,31 @@ const MinhaConta: React.FC<MinhaContaProps> = () => {
 
 	useEffect(() => {
 		const fetchCertificado = async () => {
-			const {
-				data: {session},
-				error: sessionError,
-			} = await supabase.auth.getSession();
-			if (sessionError || !session) {
-				console.error("Erro ao obter sessão:", sessionError);
-				return;
-			}
-
-			const userUID = session.user.id;
-
-			const {data, error} = await supabase
-				.from("ProfilesData") // Substitua pelo nome correto da sua tabela
-				.select("certificado")
-				.eq("userUID", userUID)
-				.single();
-
-			if (error) {
-				console.error("Erro ao buscar certificado:", error.message);
-			} else {
-				setCertificado(data?.certificado); // Atualiza o estado com o valor do certificado
-			}
+		  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+		  if (sessionError || !session) {
+			console.error("Erro ao obter sessão:", sessionError);
+			return;
+		  }
+	  
+		  const userUID = session.user.id;
+		  const { data, error } = await supabase
+			.from("ProfilesData")
+			.select("certificado")
+			.eq("userUID", userUID)
+			.single();
+	  
+		  if (error) {
+			console.error("Erro ao buscar certificado:", error.message);
+			return;
+		  }
+	  
+		  if (data?.certificado !== certificado) { // Apenas atualize se o valor mudou
+			setCertificado(data.certificado);
+		  }
 		};
-
+	  
 		fetchCertificado();
-	}, []);
+	  }, [certificado]); 
 
 	// Função para determinar a cor e mensagem da notificação com base no valor de "certificado"
 	const renderNotification = () => {

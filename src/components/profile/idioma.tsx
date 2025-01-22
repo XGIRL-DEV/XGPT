@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
+
 
 interface Profile {
   lingua: string[];
@@ -61,9 +63,11 @@ const Linguas: React.FC<LinguasProps> = ({ selectedProfile }) => {
         {linguaRedux &&
           linguaRedux.map((lingua: string, index: number) => (
             <div key={index} className="flex items-center">
-              <img
+              <Image
                 src={obterBandeira(lingua)}
                 alt={`${lingua} flag`}
+                width={150}
+                height={150}
                 className="w-6 h-6 mr-2 rounded-full object-cover"
               />
               <span className="text-gray-700 dark:text-gray-500">{lingua}</span>

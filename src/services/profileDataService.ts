@@ -227,6 +227,12 @@ export class ProfileDataService {
 				throw profileError;
 			}
 
+			const {data: comments, error: commentsError} = await supabase.from("comments").select("*").eq("comment", (profileData.comments));
+
+			if (commentsError) {
+				throw comments;
+			}
+
 			const {data: photoData, error: photoError} = await supabase.from("profilephoto").select("*").eq("userUID", profileData.userUID);
 
 			if (photoError) {

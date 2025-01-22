@@ -64,75 +64,123 @@ const Sobre: React.FC<SobreProps> = ({ selectedProfile }) => {
 
   return (
     <Card
-    isBlurred
-    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6"
-  >
-    <CardBody>
-     
+      isBlurred
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6"
+    >
+      <CardBody>
         {/* Título */}
-        
-        <h2 className="text-xl font-semibold mb-4 text-gray-600 dark:text-gray-400">{t("profile.about", { name: selectedProfile?.nome })}</h2>
-
+        <h2 className="text-xl font-semibold mb-4 text-gray-600 dark:text-gray-400">
+          {t("profile.about", { name: selectedProfile?.nome })}
+        </h2>
 
         {/* Informações do Perfil */}
         <div className="grid grid-cols-2 gap-4 mt-2 text-sm">
-          <div className="flex items-center">
-            <LiaBirthdayCakeSolid className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.idade}</p>
-          </div>
-          <div className="flex items-center">
-            <GiBodyHeight className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.altura}</p>
-          </div>
-          <div className="flex items-center">
-            <FaMapMarkerAlt className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.distrito}</p>
-          </div>
-          <div className="flex items-center">
-            <FaFlag className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.origem}</p>
-          </div>
-          <div className="flex items-center">
-            <FaMapMarkerAlt className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cidade}</p>
-          </div>
-          <div className="flex items-center">
-            <FaWeightScale className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.peso}</p>
-          </div>
-          <div className="flex items-center">
-            <FaCheck className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cabelo}</p>
-          </div>
-          <div className="flex items-center">
-            <FaCheck className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.tatuagens}</p>
-          </div>
-          <div className="flex items-center">
-            <AiOutlineScissor className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.pelos}</p>
-          </div>
-          <div className="flex items-center">
-            <FaEye className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.olhos}</p>
-          </div>
-          <div className="flex items-center">
-            <FaCheck className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.seios}</p>
-          </div>
-          <div className="flex items-center">
-            <FaCheck className="text-pink-500 mr-2" />
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.mamas}</p>
-          </div>
-          <div className="flex items-center">
-            {selectedProfile && signoIcons[selectedProfile?.signo]}
-            <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.signo}</p>
-          </div>
-       
-      </div>
-    </CardBody>
-  </Card>
+          {selectedProfile?.idade && (
+            <div className="flex items-center">
+              <LiaBirthdayCakeSolid className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.idade}</p>
+            </div>
+          )}
+
+          {selectedProfile?.altura && (
+            <div className="flex items-center">
+              <GiBodyHeight className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.altura}</p>
+            </div>
+          )}
+
+{selectedProfile?.olhos && (
+            <div className="flex items-center">
+              <FaMapMarkerAlt className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.olhos}</p>
+            </div>
+          )}
+
+
+          {selectedProfile?.distrito && (
+            <div className="flex items-center">
+              <FaMapMarkerAlt className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.distrito}</p>
+            </div>
+          )}
+
+          {selectedProfile?.origem && (
+            <div className="flex items-center">
+              <FaFlag className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.origem}</p>
+            </div>
+          )}
+
+          {selectedProfile?.cidade && (
+            <div className="flex items-center">
+              <FaMapMarkerAlt className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cidade}</p>
+            </div>
+          )}
+
+          {selectedProfile?.peso && (
+            <div className="flex items-center">
+              <FaWeightScale className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.peso}</p>
+            </div>
+          )}
+
+          {selectedProfile?.cabelo && (
+            <div className="flex items-center">
+              <FaCheck className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.cabelo}</p>
+            </div>
+          )}
+
+          {selectedProfile?.tatuagens && (
+            <div className="flex items-center">
+              <FaCheck className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.tatuagens}</p>
+            </div>
+          )}
+
+          {selectedProfile?.pelos && (
+            <div className="flex items-center">
+              <AiOutlineScissor className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.pelos}</p>
+            </div>
+          )}
+
+          {selectedProfile?.olhos && (
+            <div className="flex items-center">
+              <FaEye className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.olhos}</p>
+            </div>
+          )}
+
+          {selectedProfile?.seios && (
+            <div className="flex items-center">
+              <FaCheck className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.seios}</p>
+            </div>
+          )}
+
+          {selectedProfile?.mamas && (
+            <div className="flex items-center">
+              <FaCheck className="text-pink-500 mr-2" />
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.mamas}</p>
+            </div>
+          )}
+
+          {selectedProfile?.signo && (
+            <div className="flex items-center">
+              {signoIcons[selectedProfile?.signo]}
+              <p className="bg-white dark:bg-gray-800 ">{selectedProfile?.signo}</p>
+            </div>
+          )}
+        </div>
+      </CardBody>
+    </Card>
   );
 };
 
 export default Sobre;
+
+
+
+

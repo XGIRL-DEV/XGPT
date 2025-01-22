@@ -29,6 +29,7 @@ import {
 	updateOlhos,
 	updateSeios,
 	updatePelos,
+	updateSigno,
 	updateTatuagem,
 } from "@/actions/ProfileActions";
 import {useParams} from "next/navigation";
@@ -36,6 +37,7 @@ import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Button} from "@/components/ui/button";
 import CommonInput from "@/components/ui/common-input";
+import FiltroOrigem from "@/components/filtros/filtro-origem";
 
 interface ModificarPerfilProps {
 	handleVoltar: () => void;
@@ -62,6 +64,8 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 	const [olhos, setOlhos] = useState<string>("");
 	const [seios, setSeios] = useState<string>("");
 	const [tatuagem, setTatuagem] = useState<string>("");
+	const [signo, setSigno] = useState<string>("");
+
 
 	const reduxState = useSelector((state: any) => state);
 	const userUIDd = useSelector((state: any) => state.profile?.profile?.userUID);
@@ -93,13 +97,14 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 			origem,
 			altura,
 			pelos,
-			userUID: userUIDd,
+			userUID: userUID,
 			mamas,
 			corpo,
 			cabelo,
 			olhos,
 			seios,
 			tatuagem,
+			signo,
 		};
 
 		try {
@@ -134,7 +139,7 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 		if (userUID) {
 			dispatch(updateuserUID(userUID));
 		}
-	}, [dispatch, userUID]);
+	}, []);
 
 	useEffect(() => {
 		const getSession = async () => {
@@ -160,22 +165,53 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 	}, []);
 
 	useEffect(() => {
-		if (nomeRedux) setNome(nomeRedux);
-		if (idadeRedux) setIdade(idadeRedux);
-		if (telefoneRedux) setTelefone(telefoneRedux);
-		if (cidadeRedux) setCidade(cidadeRedux);
-		if (distritoRedux) setDistrito(distritoRedux);
-		if (origemRedux) setOrigem(origemRedux);
-		if (alturaRedux) setAltura(alturaRedux);
-		if (pelosRedux) setPelos(pelosRedux);
-		if (mamasRedux) setMamas(mamasRedux);
-		if (corpoRedux) setCorpo(corpoRedux);
-		if (cabeloRedux) setCabelo(cabeloRedux);
-		if (olhosRedux) setOlhos(olhosRedux);
-		if (seiosRedux) setSeios(seiosRedux);
-		if (tatuagemRedux) setTatuagem(tatuagemRedux);
-		if (signoRedux) setTatuagem(signoRedux);
-	}, [
+		// Only update state if the redux state is different from the local state
+		if (nomeRedux !== nome) {
+		  setNome(nomeRedux);
+		}
+		if (idadeRedux !== idade) {
+		  setIdade(idadeRedux);
+		}
+		if (telefoneRedux !== telefone) {
+		  setTelefone(telefoneRedux);
+		}
+		if (cidadeRedux !== cidade) {
+		  setCidade(cidadeRedux);
+		}
+		if (distritoRedux !== distrito) {
+		  setDistrito(distritoRedux);
+		}
+		if (origemRedux !== origem) {
+		  setOrigem(origemRedux);
+		}
+		if (alturaRedux !== altura) {
+		  setAltura(alturaRedux);
+		}
+		if (pelosRedux !== pelos) {
+		  setPelos(pelosRedux);
+		}
+		if (mamasRedux !== mamas) {
+		  setMamas(mamasRedux);
+		}
+		if (corpoRedux !== corpo) {
+		  setCorpo(corpoRedux);
+		}
+		if (cabeloRedux !== cabelo) {
+		  setCabelo(cabeloRedux);
+		}
+		if (olhosRedux !== olhos) {
+		  setOlhos(olhosRedux);
+		}
+		if (seiosRedux !== seios) {
+		  setSeios(seiosRedux);
+		}
+		if (tatuagemRedux !== tatuagem) {
+		  setTatuagem(tatuagemRedux);
+		}
+		if (signoRedux !== signo) {
+		  setSigno(signoRedux);
+		}
+	  }, [
 		nomeRedux,
 		idadeRedux,
 		telefoneRedux,
@@ -191,7 +227,23 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 		seiosRedux,
 		tatuagemRedux,
 		signoRedux,
-	]);
+		nome,
+		idade,
+		telefone,
+		cidade,
+		distrito,
+		origem,
+		altura,
+		pelos,
+		mamas,
+		corpo,
+		cabelo,
+		olhos,
+		seios,
+		tatuagem,
+		signo,
+	  ]);
+	  
 
 	// INPUT ONCHANGE START
 
@@ -223,55 +275,7 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 
 	// LISTBOX ONCHANGE START
 
-	const handleMamasChange = (newValue: string) => {
-		dispatch(updateMamas(newValue));
-		setMamas(newValue);
-	};
-
-	const handleAlturaChange = (newValue: string) => {
-		dispatch(updateAltura(newValue));
-		setAltura(newValue);
-	};
-
-	const handleDistritoChange = (newValue: string) => {
-		dispatch(updateDistrito(newValue));
-		setDistrito(newValue);
-	};
-
-	const handleOrigemChange = (newValue: string) => {
-		dispatch(updateOrigem(newValue));
-		setOrigem(newValue);
-	};
-
-	const handleCorpoChange = (newValue: string) => {
-		dispatch(updateCorpo(newValue));
-		setCorpo(newValue);
-	};
-
-	const handleCabeloChange = (newValue: string) => {
-		dispatch(updateCabelo(newValue));
-		setCabelo(newValue);
-	};
-
-	const handleOlhosChange = (newValue: string) => {
-		dispatch(updateOlhos(newValue));
-		setOlhos(newValue);
-	};
-
-	const handleSeiosChange = (newValue: string) => {
-		dispatch(updateSeios(newValue));
-		setSeios(newValue);
-	};
-
-	const handlePelosChange = (newValue: string) => {
-		dispatch(updatePelos(newValue));
-		setPelos(newValue);
-	};
-
-	const handleTatuagemChange = (newValue: string) => {
-		dispatch(updateTatuagem(newValue));
-		setTatuagem(newValue);
-	};
+	
 
 	return (
 		<Dialog open={open} onOpenChange={onClose}>
@@ -309,6 +313,7 @@ const ModificarPerfil: React.FC<ModificarPerfilProps> = ({handleVoltar, onClose,
 							<FiltroPelos />
 							<FiltroTatuagem />
 							<FiltroSigno />
+							<FiltroOrigem/>
 						</div>
 					</div>
 				</div>

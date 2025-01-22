@@ -144,7 +144,7 @@ const HeaderMobile: React.FC = () => {
 	return (
 		<>
 			{/* Banda preta com o logo e avatar no topo */}
-			<div className='fixed top-0 left-0 w-full z-50  flex items-center justify-between h-24 shadow-md px-4 transition-all duration-300'>
+			<div className='fixed top-0 left-0 w-full z-50 bg-black opacity-70 flex items-center justify-between h-24 shadow-md px-4 transition-all duration-300'>
 			{/* Logo no lado esquerdo */}
   <div className='flex items-center'>
     <Link href='/' aria-label='Ir para a página inicial'>

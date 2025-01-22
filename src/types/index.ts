@@ -33,7 +33,8 @@ export interface Profile {
 	pagamento: string[];
 	inactive: boolean;
 	certificado: boolean;
-	live?: boolean; // Adicionei a propriedade 'live' aqui, tornando-a opcional
+	live?: boolean; 
+	comment?: string[],// Adicionei a propriedade 'live' aqui, tornando-a opcional
 }
 
 export interface UserProfileData {
@@ -64,6 +65,8 @@ export interface UserProfileData {
 	description: string;
 	certificado: boolean;
 	status: null;
+	comment?: string[],// Adicionei a propriedade 'live' aqui, tornando-a opcional
+
 }
 
 export interface PhotoData {
