@@ -32,7 +32,7 @@ const Login = () => {
 
 	useEffect(() => {
 		const token = localStorage.getItem("userToken");
-<<<<<<< HEAD
+
 		const email = localStorage.getItem("email"); // Recupere o email salvo no localStorage (se houver)
 	  
 		if (token && email) {
@@ -47,10 +47,7 @@ const Login = () => {
 		} else {
 		  // Não faz nada se não houver token ou email. A página de login será mostrada normalmente.
 		  console.log("Token ou email ausente no localStorage, usuário não está logado.");
-=======
-		if (token) {
-			dispatch(loginSuccess(token));
->>>>>>> c49ee2f4cf42fa83b91f7e9c14fd125f7bcc9151
+
 		}
 	  }, [dispatch]);
 
