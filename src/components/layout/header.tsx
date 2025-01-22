@@ -175,7 +175,7 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
           </div>
 		  <div className="relative flex items-center rounded-full bg-gray-200 dark:bg-gray-700 p-2 py-2 pr-2">
               {/* Ícone de busca */}
-              <Search className="text-gray-400 h-4 w-4 mr-1" />
+              <Search className="text-gray-400 h-4 w-4 mr-2 ml-1" />
 
               {/* Input de busca */}
               <input
