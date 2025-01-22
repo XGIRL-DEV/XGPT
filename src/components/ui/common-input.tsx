@@ -18,7 +18,7 @@ const CommonInput = ({label, value, onChange, placeholder, type, required = fals
 		<div>
 			<Label className='text-pink-500 text-sm font-medium mb-1.5'>
 				{label}
-				{required && <span className='text-red-500 ml-1'>*</span>}
+				{required && <span className='text-pink-500 ml-1'>*</span>}
 			</Label>
 			<Input type={type} value={value} onChange={onChange} placeholder={placeholder} className={className} />
 		</div>
