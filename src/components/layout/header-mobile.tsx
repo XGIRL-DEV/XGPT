@@ -143,7 +143,7 @@ const HeaderMobile: React.FC = () => {
 	return (
 		<>
 			{/* Banda preta com o logo e avatar no topo */}
-<<<<<<< HEAD
+
 			<div className='fixed top-0 left-0 w-full z-50 bg-black opacity-70 flex items-center justify-between h-24 shadow-md px-4 transition-all duration-300'>
 			{/* Logo no lado esquerdo */}
   <div className='flex items-center'>
@@ -158,18 +158,7 @@ const HeaderMobile: React.FC = () => {
       />
     </Link>
   </div>
-=======
-			<div className='md:hidden fixed top-0 left-0 w-full z-50 bg-black flex items-center justify-between h-24 shadow-md px-4'>
-				{emailReduxProfile && (
-					<div className='absolute left-4 w-12 h-12 rounded-full overflow-hidden border-4 border-pink-800 cursor-pointer' onClick={toggleMenu}>
-						{photoUID ? (
-							<Image src={photoUID} alt='User Avatar' className='w-full h-full object-cover' width={48} height={48} />
-						) : (
-							<div className='w-full h-full bg-gray-400'></div>
-						)}
-					</div>
-				)}
->>>>>>> c49ee2f4cf42fa83b91f7e9c14fd125f7bcc9151
+
 
 				<div className='absolute left-1/2 transform -translate-x-1/2'>
 					<Link href='/' aria-label='Ir para a página inicial'>
