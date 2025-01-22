@@ -15,7 +15,7 @@ import StoryBig from "@/components/profile/story-big";
 import PhotosAndCertificado from "@/components/profile/photos-and-certificado";
 import ServicosPrestados from "@/components/profile/servicos-prestados";
 import HeaderG from "@/components/header-filter/header-g";
-import Comments from "./_ui/comments";
+import  Comments  from "./_ui/comments";
 import { Profile } from "@/types";
 import { profileDataService } from "@/services/profileDataService";
 import {
@@ -176,14 +176,56 @@ function UserProfile() {
             )}
 
             <div className="w-screen md:w-3/5 grid gap-4   justify-center align-middle">
-              
-			{selectedProfile?.storyURL && selectedProfile.storyURL.length > 0 && (
-  <ProfileStories
-    storyURLs={selectedProfile.storyURL}
-    thumbnails={thumbnails}
-    onStoryClick={handleStoryClick}
-  />
-)}
+            <div className="flex md:grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-2">
+     {selectedProfile && selectedProfile.storyURL?.length > 0 && (
+                <div className="flex flex-col ml-8 md:ml-10 md:mr-24">
+                  <p className="text-pink-500 text-2xl mb-4 font-semibold">
+                    {" "}
+                    {t("profile.stories_of", { name: selectedProfile.nome })}
+                  </p>
+                  <div className="flex md:grid grid-cols-1  md:grid-cols-4 gap-6 md:gap-2">
+                    {selectedProfile.storyURL.map((media, index) => {
+                      if (!media) return null;
+                      const isVideo =
+                        media.endsWith(".mp4") ||
+                        media.endsWith(".mov") ||
+                        media.endsWith(".webm");
+                      const thumbnailSrc = thumbnails[index];
+
+                      return (
+                        <div key={index} className="relative flex">
+                          {isVideo ? (
+                            <div>
+                              <video
+                                src={thumbnailSrc}
+                                alt={`Thumbnail ${index + 1}`}
+                                className="rounded-2xl border border-zinc-500 shadow-md transition-transform duration-200 ease-in-out hover:scale-105"
+                                onClick={() => handleStoryClick(index)}
+                                width={300}
+                                height={200}
+                                priority={index === 0}
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-white text-3xl">▶️</span>
+                              </div>
+                            </div>
+                          ) : (
+                            <video
+                              src={media}
+                              className="relative w-20 h-20 md:w-24 md:h-24 rounded-full cursor-pointer object-cover overflow-hidden border-2 border-pink-800 transition duration-300 ease-in-out transform hover:scale-105"
+                              onClick={() => handleStoryClick(index)}
+                              controls={false}
+                              muted
+                              playsInline
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+    </div>
 
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-2 mt-14">
                 <div className="flex justify-between items-start">
@@ -247,10 +289,10 @@ function UserProfile() {
                   <Tarifas selectedProfile={selectedProfile as any} />
                 </div>
 
-                {/* <Comments
+                <Comments
 									profileuid={selectedProfile?.userUID || ""}
 									comment={selectedProfile?.comment || []}
-								/>								 */}
+								/>								
               </div>
             </div>
           </div>
