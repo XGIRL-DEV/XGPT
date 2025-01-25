@@ -126,7 +126,11 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
 
   return (
     <header className="">
-  
+      {/* <div className='w-full bg-black  h-16 flex justify-center items-center shadow-md'>
+			<Link href='/' aria-label='Ir para a página inicial'>
+	 			<Image src='/logo.webp' alt='Logo' width={200} height={200} priority style={{objectFit: "contain"}} />
+			</Link>
+			</div> */}
       <div className="container mx-auto ">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8 h-16">
@@ -169,9 +173,20 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
               ))}
             </nav>
           </div>
-		  <div className="relative flex items-center rounded-full bg-gray-200 dark:bg-gray-700 p-2 py-2 pr-2">
+
+          <div className="flex items-center space-x-4">
+            {/* <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-10" />
+                <input
+                  type="text"
+                  placeholder={t("searchBar")}
+                  className="pl-36 pr-4 py-2 text-sm mr-8 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500"
+				  onClick={() => setModalOpen(true)} 			   />
+              </div> */}
+
+            <div className="relative flex items-center rounded-full bg-gray-800 dark:bg-gray-700 p-2 py-2 pr-2">
               {/* Ícone de busca */}
-              <Search className="text-gray-400 h-4 w-4 mr-2 ml-1" />
+              <Search className="text-gray-400 h-4 w-4 mr-1" />
 
               {/* Input de busca */}
               <input
@@ -180,11 +195,8 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                 className="flex-1 bg-transparent text-white text-sm placeholder-gray-400 focus:outline-none"
                 onClick={() => setModalOpen(true)}
               />
-              <PiSlidersHorizontal className="h-6 w-6 p-1 bg-pink-500 text-white rounded-full" />
+              <PiSlidersHorizontal className="h-6 w-6 p-1 bg-gray-500 rounded-full" />
             </div>
-
-          <div className="flex items-center space-x-4">
-
             <ThemeSwitcher />
             <div className="relative">
               <button
@@ -200,7 +212,12 @@ const Header: React.FC<HeaderProps> = ({ blur }) => {
                   ref={languageRef}
                   className="absolute right-0 w-32 bg-white text-sm dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-lg rounded-lg hover:rounded-md"
                 >
-               
+                  {/* <li
+                     onClick={() => handleLanguageChange("pt")}
+                     className="px-4 py-2 hover:bg-pink-900 cursor-pointer transition duration-200"
+               >
+                     Português
+                   </li> */}
                   <li
                     onClick={() => handleLanguageChange("en")}
                     className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition duration-200"
